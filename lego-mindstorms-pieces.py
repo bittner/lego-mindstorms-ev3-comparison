@@ -26,6 +26,7 @@ import sys
 
 files = sys.argv[1:]
 part_list = {}
+part_names = {}
 NO_PARTS = [0 for a in range(len(files))]
 
 for file_count, name in enumerate(files):
@@ -42,6 +43,7 @@ for file_count, name in enumerate(files):
 
                 if part_no not in part_list.keys():
                     part_list[part_no] = NO_PARTS.copy()
+                    part_names[part_no] = part_name
 
                 part_list[part_no][file_count] = quantity
             except ValueError as err:
@@ -54,4 +56,5 @@ part_numbers.sort()
 print('Part no.\t%s\tPart name' % '\t'.join(files))
 for part_no in part_numbers:
     part_counts = '\t'.join([str(a) for a in part_list[part_no]])
-    print('%s\t%s' % (part_no, part_counts))
+    part_name = part_names[part_no]
+    print('%s\t%s\t%s' % (part_no, part_counts, part_name))
