@@ -62,6 +62,54 @@ Resources
 .. _45560-1: http://brickset.com/inventories/45560-1
 .. _LEGO Answers: http://bricks.stackexchange.com/questions/1819/what-is-different-between-the-ev3-home-and-educational-sets/
 
+Where To Go From Here?
+----------------------
+
+Inspiration for LEGO EV3 Robots
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* `Education Edition Core Set robots`_ (build instructions for 5 robots)
+
+  #. Educator Vehicle
+  #. Sorter
+  #. Gyro Boy
+  #. Puppy
+  #. Robot Arm H25
+
+* `Education Edition Expansion Set robots`_ (build instructions for 6 robots)
+
+  #. Znap
+  #. Remote Control
+  #. Stair Climber
+  #. Tank Bot
+  #. Elephant
+  #. Spinner Factory
+
+* `Self-balancing robot tutorial`_ (a gyro sensor application)
+* `Walking robots`_
+
+
+.. _Education Edition Core Set robots: http://robotsquare.com/2013/10/01/education-ev3-45544-instruction/
+.. _Education Edition Expansion Set robots: http://robotsquare.com/2013/10/01/lego-mindstorms-ev3-education-expansion-set-45560-instructions/
+.. _Self-balancing robot tutorial: http://robotsquare.com/2014/07/01/tutorial-ev3-self-balancing-robot/
+.. _Walking robots: http://www.legoengineering.com/walking-robots/
+
+Programming EV3 on Linux
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* `Boot Linux from SDCard`_
+* `Python programming on EV3`_
+* `MindBOARDS community`_ (several project enabling programming on LEGO bricks)
+* `Lego Mindstorm with Linux Mini-HOWTO`_ (a bit aged information, probably for the NXT brick)
+* `Lego Mindstorms IDE on WINE?`_ (and other dev environment alternatives)
+
+
+.. _Boot Linux from SDCard: http://www.ev3dev.org/
+.. _Python programming on EV3: http://bitsandbricks.no/2014/01/19/getting-started-with-python-on-ev3/
+.. _MindBOARDS community: https://github.com/mindboards
+.. _Lego Mindstorm with Linux Mini-HOWTO: http://tldp.org/HOWTO/Lego/index.html
+.. _Lego Mindstorms IDE on WINE?: http://www.linuxquestions.org/questions/linux-software-2/lego-mindstorms-on-wine-154292/
+
 Your Contribution
 -----------------
 
