@@ -19,20 +19,26 @@ pieces to buy.
 Usage
 -----
 
-``Lego-Mindstorms-Editions-Comparison.ods``, a LibreOffice Calc spread sheet, lists
-the pieces of all sets combined.  Columns ``F`` and ``I`` tell you which pieces to
-buy if you have either Home Edition + Expansion Set or Education Edition + Expansion
-Set.  You can filter the columns using the "Auto Filter" in the first row.
+#. ``Lego-Mindstorms-Editions-Comparison.ods``, a LibreOffice Calc spread sheet, lists
+   the pieces of all sets combined.  Columns ``F`` and ``I`` tell you which pieces to
+   buy if you have either Home Edition + Expansion Set or Education Edition + Expansion
+   Set.  You can filter the columns using the "Auto Filter" in the first row.
 
-The spread sheet document specifically targets the two sections
-*"‘Upgrading’ Elements from Education Edition to Home Edition"* and
-*"‘Upgrading’ Elements from Home Edition to Education Edition"* in Lauren's article.
-Specifically, the document will make the latter section less vague with regards to
-the *"you’ll need to purchase [...] certain Technic building elements"* statement.
+   The spread sheet document specifically targets the two sections
+   *"‘Upgrading’ Elements from Education Edition to Home Edition"* and
+   *"‘Upgrading’ Elements from Home Edition to Education Edition"* in Lauren's article.
+   Specifically, the document will make the latter section less vague with regards to
+   the *"you’ll need to purchase [...] certain Technic building elements"* statement.
 
-``lego-mindstorms-pieces.py`` is a Python3 script to generate the combined list of
-LEGO pieces from the three separate inventory lists.  It takes three file names as
-an argument.
+#. ``lego-mindstorms-pieces.py`` is a Python3 script to generate the combined list of
+   LEGO pieces from the three separate inventory lists.  It takes three file names as
+   an argument, e.g. ::
+
+    $ python3 lego-mindstorms-pieces.py raw-data/Brickset-inventory-* > combined-list.csv
+
+   You only need this script if you change the source data (inventory lists) to create
+   a new combined list, in order to re-integrate the changes into the spread sheet.
+   That said, chances are you won't need to use this script ever.
 
 Resources
 ---------
