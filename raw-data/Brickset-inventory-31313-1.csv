@@ -1,109 +1,105 @@
-SetNumber,PartID,Quantity,Colour,Category,DesignID,PartName,ImageURL,SetCount
-"31313-1",6024581,4,"Black","System: Bricks, Special Circles And Angles",11145,"Cable 250 Mm","http://cache.lego.com/media/bricks/4/1/6024581.jpg",2
-"31313-1",6024583,2,"Black","System: Bricks, Special Circles And Angles",11146,"Cable 350 Mm","http://cache.lego.com/media/bricks/4/1/6024583.jpg",2
-"31313-1",6024585,1,"Black","System: Bricks, Special Circles And Angles",11147,"Cabel 500 Mm","http://cache.lego.com/media/bricks/4/1/6024585.jpg",2
-"31313-1",4246901,2,"Black","System: Tyres And Rims For Snap Ø3,2",50951,"Tyre Low Narrow Ø14.58 X 6.24","http://cache.lego.com/media/bricks/5/1/4246901.jpg",109
-"31313-1",4184286,4,"Black","System: Tyres And Rims For/To Snap Ø4,85 W. Cross",44309,"Tyre Normal Wide Ø43,2 X 22","http://cache.lego.com/media/bricks/5/1/4184286.jpg",47
-"31313-1",4299389,4,"Black","System: Tyres And Rims For/To Snap Ø4,85 W. Cross",56145,"Rim Wide W.Cross 30/20","http://cache.lego.com/media/bricks/5/1/4299389.jpg",49
-"31313-1",4502834,2,"Black","System: Wheel Base",53992,"Caterpillar Track","http://cache.lego.com/media/bricks/5/1/4502834.jpg",11
-"31313-1",4111998,12,"Black","Technic: Beams",32009,"Double Angular Beam 3X7 45°","http://cache.lego.com/media/bricks/5/1/4111998.jpg",111
-"31313-1",4120017,8,"Black","Technic: Beams",32140,"Technic Ang. Beam 4X2 90 Deg","http://cache.lego.com/media/bricks/5/1/4120017.jpg",209
-"31313-1",4128593,4,"Black","Technic: Beams",32348,"Technic Angular Beam 4X4","http://cache.lego.com/media/bricks/5/1/4128593.jpg",68
-"31313-1",4140327,12,"Black","Technic: Beams",32271,"Technic Angular Beam 3X7","http://cache.lego.com/media/bricks/5/1/4140327.jpg",81
-"31313-1",4142135,10,"Black","Technic: Beams",32316,"Technic 5M Beam","http://cache.lego.com/media/bricks/5/1/4142135.jpg",193
-"31313-1",4142822,12,"Black","Technic: Beams",32523,"Technic 3M Beam","http://cache.lego.com/media/bricks/5/1/4142822.jpg",160
-"31313-1",4142823,6,"Black","Technic: Beams",32526,"Technic Ang. Beam 3X5 90 Deg.","http://cache.lego.com/media/bricks/5/1/4142823.jpg",120
-"31313-1",4495935,6,"Black","Technic: Beams",32524,"Technic 7M Beam","http://cache.lego.com/media/bricks/5/1/4495935.jpg",136
-"31313-1",4522933,4,"Black","Technic: Beams",41239,"Technic 13M Beam","http://cache.lego.com/media/bricks/5/1/4522933.jpg",75
-"31313-1",4542573,4,"Black","Technic: Beams",64871,"Technic 15M Beam","http://cache.lego.com/media/bricks/5/1/4542573.jpg",115
-"31313-1",4552347,4,"Black","Technic: Beams",60484,"T-Beam 3X3 W/Hole Ø4.8","http://cache.lego.com/media/bricks/5/1/4552347.jpg",55
-"31313-1",4645732,8,"Black","Technic: Beams",64289,"Technic 9M Beam","http://cache.lego.com/media/bricks/5/1/4645732.jpg",63
-"31313-1",6006140,10,"Black","Technic: Beams, Special",74695,"Beam 1X2 W/Cross And Hole","http://cache.lego.com/media/bricks/5/1/6006140.jpg",74
-"31313-1",370626,9,"Black","Technic: Connectors",3706,"Cross Axle 6M","http://cache.lego.com/media/bricks/5/1/370626.jpg",692
-"31313-1",4121715,95,"Black","Technic: Connectors",2780,"Connector Peg W. Friction","http://cache.lego.com/media/bricks/5/1/4121715.jpg",1491
-"31313-1",4184169,6,"Black","Technic: Connectors",6628,"Ball With Friction Snap","http://cache.lego.com/media/bricks/5/1/4184169.jpg",276
-"31313-1",4141300,4,"Black","Technic: Functional Elements",32293,"Lt Steering Gear","http://cache.lego.com/media/bricks/5/1/4141300.jpg",33
-"31313-1",4530733,2,"Black","Technic: Functional Elements",32005,"Track Rod 6M,","http://cache.lego.com/media/bricks/5/1/4530733.jpg",24
-"31313-1",4629921,2,"Black","Technic: Functional Elements",32005,"Track Rod 6M,","http://cache.lego.com/media/bricks/5/1/4629921.jpg",18
-"31313-1",6024106,1,"Black","Technic: Functional Elements",54271,"Shooter","http://cache.lego.com/media/bricks/5/1/6024106.jpg",1
-"31313-1",6024109,1,"Black","Technic: Functional Elements",53550,"Magasine For Balls Ø16.5","http://cache.lego.com/media/bricks/5/1/6024109.jpg",7
-"31313-1",4177431,2,"Black","Technic: Functional Elements, Gear Wheels And Racks",32270,"Double Conical Wheel Z12 1M","http://cache.lego.com/media/bricks/5/1/4177431.jpg",216
-"31313-1",4248204,4,"Black","Technic: Functional Elements, Gear Wheels And Racks",32072,"Technic Angular Wheel","http://cache.lego.com/media/bricks/5/1/4248204.jpg",65
-"31313-1",4255563,5,"Black","Technic: Functional Elements, Gear Wheels And Racks",32498,"Double Conical Wheel Z36","http://cache.lego.com/media/bricks/5/1/4255563.jpg",32
-"31313-1",6093977,4,"Black","Technic: Functional Elements, Gear Wheels And Racks",18575,"Double Conical Wheel Z20 1M","http://cache.lego.com/media/bricks/5/1/6093977.jpg",35
-"31313-1",4143187,2,"Black","Technic: Half Beams",6575,"Comb Wheel","http://cache.lego.com/media/bricks/5/1/4143187.jpg",31
-"31313-1",4558692,1,"Black","Technic: Half Beams, Special",87408,"Beam 3M Ø4.85 W. Fork","http://cache.lego.com/media/bricks/5/1/4558692.jpg",29
-"31313-1",6028041,3,"Black","Technic: Tyres And Rims, Special",2815,"Tyre For Wedge-Belt Wheel","http://cache.lego.com/media/bricks/5/1/6028041.jpg",48
-"31313-1",4514554,4,"Brick Yellow","Technic: Connectors",32556,"3M Connector Peg","http://cache.lego.com/media/bricks/5/1/4514554.jpg",197
-"31313-1",4666999,3,"Brick Yellow","Technic: Connectors",99008,"Krydsaksel M/Stop 4M","http://cache.lego.com/media/bricks/5/1/4666999.jpg",28
-"31313-1",4514557,1,"Brick Yellow","Technic: Functional Elements, Gear Wheels And Racks",32198,"Bevel Gear Z20","http://cache.lego.com/media/bricks/5/1/4514557.jpg",36
-"31313-1",4565452,1,"Brick Yellow","Technic: Functional Elements, Gear Wheels And Racks",6589,"Conical Wheel Z12","http://cache.lego.com/media/bricks/5/1/4565452.jpg",122
-"31313-1",6031962,1,"Brick Yellow","Technic: Functional Elements, Gear Wheels And Racks",32198,"Bevel Gear Z20","http://cache.lego.com/media/bricks/5/1/6031962.jpg",28
-"31313-1",4206482,28,"Bright Blue","Technic: Connectors",43093,"Conn.Bush W.Fric./Crossale","http://cache.lego.com/media/bricks/5/1/4206482.jpg",1024
-"31313-1",4514553,38,"Bright Blue","Technic: Connectors",6558,"Connector Peg W. Friction 3M","http://cache.lego.com/media/bricks/5/1/4514553.jpg",464
-"31313-1",4100396,1,"Bright Red","System: Rubbers And Strings",71321,"V-Belt Ø24  / Clear Red","http://cache.lego.com/media/bricks/5/1/4100396.jpg",54
-"31313-1",4544143,1,"Bright Red","System: Rubbers And Strings",85544,"V-Belt Ø 24, Red","http://cache.lego.com/media/bricks/5/1/4544143.jpg",32
-"31313-1",4562805,4,"Bright Red","Technic: Beams",64290,"Technic 11M Beam","http://cache.lego.com/media/bricks/5/1/4562805.jpg",39
-"31313-1",4128594,2,"Bright Red","Technic: Beams, Special",32291,"Technic Cross Block 2X1","http://cache.lego.com/media/bricks/5/1/4128594.jpg",31
-"31313-1",4128598,17,"Bright Red","Technic: Beams, Special",32184,"Double Cross Block","http://cache.lego.com/media/bricks/5/1/4128598.jpg",41
-"31313-1",4175442,14,"Bright Red","Technic: Beams, Special",42003,"Cross Blok 3M","http://cache.lego.com/media/bricks/5/1/4175442.jpg",38
-"31313-1",4188298,8,"Bright Red","Technic: Beams, Special",6536,"Cross Block 90°","http://cache.lego.com/media/bricks/5/1/4188298.jpg",55
-"31313-1",4140806,10,"Bright Red","Technic: Connectors",32054,"2M Fric. Snap W/Cross Hole","http://cache.lego.com/media/bricks/5/1/4140806.jpg",170
-"31313-1",4142865,12,"Bright Red","Technic: Connectors",32062,"2M Cross Axle W. Groove","http://cache.lego.com/media/bricks/5/1/4142865.jpg",816
-"31313-1",4189131,1,"Bright Red","Technic: Connectors",32014,"Angle Element, 90 Degrees [6]","http://cache.lego.com/media/bricks/5/1/4189131.jpg",26
-"31313-1",4189936,4,"Bright Red","Technic: Connectors",32192,"Angle Element 135 Deg. [4]","http://cache.lego.com/media/bricks/5/1/4189936.jpg",23
-"31313-1",4227155,9,"Bright Red","Technic: Connectors",6590,"Bush For Cross Axle","http://cache.lego.com/media/bricks/5/1/4227155.jpg",228
-"31313-1",4234429,6,"Bright Red","Technic: Connectors",32034,"Angle Element, 180 Degrees [2]","http://cache.lego.com/media/bricks/5/1/4234429.jpg",37
-"31313-1",4254606,4,"Bright Red","Technic: Connectors",32013,"Angle Element, 0 Degrees [1]","http://cache.lego.com/media/bricks/5/1/4254606.jpg",46
-"31313-1",4513174,3,"Bright Red","Technic: Connectors",59443,"Cross Axle, Extension, 2M","http://cache.lego.com/media/bricks/5/1/4513174.jpg",94
-"31313-1",4185661,6,"Bright Red","Technic: Decoration Elements",41669,"Bion. Eye","http://cache.lego.com/media/bricks/5/1/4185661.jpg",20
-"31313-1",4545430,3,"Bright Red","Technic: Functional Elements",54821,"Ball Ø16,5","http://cache.lego.com/media/bricks/5/1/4545430.jpg",11
-"31313-1",4173975,4,"Bright Red","Technic: Half Beams, Special",41678,"Technic Cross Block/Fork 2X2","http://cache.lego.com/media/bricks/5/1/4173975.jpg",19
-"31313-1",4239601,11,"Bright Yellow","Technic: Connectors",32123,"1/2 Bush","http://cache.lego.com/media/bricks/5/1/4239601.jpg",267
-"31313-1",4499858,6,"Dark Stone Grey","Technic: Connectors",55013,"Cross Axle 8M With End Stop","http://cache.lego.com/media/bricks/5/1/4499858.jpg",187
-"31313-1",4508553,2,"Dark Stone Grey","Technic: Connectors",59426,"Cross Axle 5,5  With Stop 1M.","http://cache.lego.com/media/bricks/5/1/4508553.jpg",312
-"31313-1",6083620,4,"Dark Stone Grey","Technic: Connectors",87083,"Cross Axle 4M With End Stop","http://cache.lego.com/media/bricks/5/1/6083620.jpg",221
-"31313-1",4514558,2,"Dark Stone Grey","Technic: Functional Elements, Gear Wheels And Racks",3648,"Gear Wheel Z24","http://cache.lego.com/media/bricks/5/1/4514558.jpg",90
-"31313-1",6008472,1,"Medium Stone Grey","Mindstorms: Electric Parts",95648,"Ms, Ev3, Touch Sensor","http://cache.lego.com/media/bricks/5/1/6008472.jpg",3
-"31313-1",6008577,1,"Medium Stone Grey","Mindstorms: Electric Parts",99455,"Ms-Ev3, Medium Motor","http://cache.lego.com/media/bricks/5/1/6008577.jpg",3
-"31313-1",6008919,1,"Medium Stone Grey","Mindstorms: Electric Parts",95650,"Ms, Ev3, Sensor, Colour","http://cache.lego.com/media/bricks/5/1/6008919.jpg",3
-"31313-1",6009811,1,"Medium Stone Grey","Mindstorms: Electric Parts",95654,"Ms-Ev3, Ir Sensor","http://cache.lego.com/media/bricks/5/1/6009811.jpg",2
-"31313-1",4225033,12,"Medium Stone Grey","Technic: Beams, Special",48989,"Beam 3 M. W/4 Snaps","http://cache.lego.com/media/bricks/5/1/4225033.jpg",157
-"31313-1",4538007,2,"Medium Stone Grey","Technic: Beams, Special",63869,"Cross Block 3X2","http://cache.lego.com/media/bricks/5/1/4538007.jpg",56
-"31313-1",4539880,2,"Medium Stone Grey","Technic: Beams, Special",64179,"Beam Frame 5X7 Ø 4.85","http://cache.lego.com/media/bricks/5/1/4539880.jpg",38
-"31313-1",4540797,2,"Medium Stone Grey","Technic: Beams, Special",64178,"Beam R. Frame 5X11 Ø4.85","http://cache.lego.com/media/bricks/5/1/4540797.jpg",29
-"31313-1",4560175,6,"Medium Stone Grey","Technic: Beams, Special",87082,"Double Bush 3M Ø4.9","http://cache.lego.com/media/bricks/5/1/4560175.jpg",69
-"31313-1",4211375,6,"Medium Stone Grey","Technic: Connectors",2736,"Ball W. Cross Axle","http://cache.lego.com/media/bricks/5/1/4211375.jpg",162
-"31313-1",4211553,2,"Medium Stone Grey","Technic: Connectors",32039,"Catch W. Cross Hole","http://cache.lego.com/media/bricks/5/1/4211553.jpg",127
-"31313-1",4211639,9,"Medium Stone Grey","Technic: Connectors",32073,"Cross Axle 5M","http://cache.lego.com/media/bricks/5/1/4211639.jpg",445
-"31313-1",4211758,4,"Medium Stone Grey","Technic: Connectors",42610,"Hub Ø11,2 X 7,84","http://cache.lego.com/media/bricks/5/1/4211758.jpg",185
-"31313-1",4211805,2,"Medium Stone Grey","Technic: Connectors",44294,"Cross Axle 7M","http://cache.lego.com/media/bricks/5/1/4211805.jpg",294
-"31313-1",4211807,4,"Medium Stone Grey","Technic: Connectors",3673,"Connector Peg","http://cache.lego.com/media/bricks/5/1/4211807.jpg",557
-"31313-1",4211815,22,"Medium Stone Grey","Technic: Connectors",4519,"Cross Axle 3M","http://cache.lego.com/media/bricks/5/1/4211815.jpg",748
-"31313-1",4211888,4,"Medium Stone Grey","Technic: Connectors",32138,"Module Bush","http://cache.lego.com/media/bricks/5/1/4211888.jpg",29
-"31313-1",4502595,1,"Medium Stone Grey","Technic: Connectors",57585,"3-Branch Cross Axle W/Cross H.","http://cache.lego.com/media/bricks/5/1/4502595.jpg",79
-"31313-1",4526985,2,"Medium Stone Grey","Technic: Connectors",62462,"Tube W/Double Ø4.85","http://cache.lego.com/media/bricks/5/1/4526985.jpg",128
-"31313-1",4535768,1,"Medium Stone Grey","Technic: Connectors",60485,"Cross Axle 9M","http://cache.lego.com/media/bricks/5/1/4535768.jpg",107
-"31313-1",4211510,2,"Medium Stone Grey","Technic: Functional Elements, Gear Wheels And Racks",4716,"Worm","http://cache.lego.com/media/bricks/5/1/4211510.jpg",80
-"31313-1",4211566,1,"Medium Stone Grey","Technic: Half Beams",6632,"Technic Lever 3M","http://cache.lego.com/media/bricks/5/1/4211566.jpg",85
-"31313-1",4630114,2,"Medium Stone Grey","Technic: Half Beams, Special",92907,"Cross Block/Form 2X2X2","http://cache.lego.com/media/bricks/5/1/4630114.jpg",18
-"31313-1",6013936,4,"Medium Stone Grey","Technic: Transportation Means, Vehicles",32068,"Technic Steering-Gear 3M","http://cache.lego.com/media/bricks/5/1/6013936.jpg",2
-"31313-1",4494222,3,"Medium Stone Grey","Technic: Tyres And Rims, Special",4185,"Wedge-Belt Wheel Ø24","http://cache.lego.com/media/bricks/5/1/4494222.jpg",69
-"31313-1",6132629,1,"Medium Stone Grey","Various: Category Not Known",95654,"Ms-Ev3, Ir Sensor","http://cache.lego.com/media/bricks/5/1/6132629.jpg",2
-"31313-1",4657296,6,"Multicombination","Constraction: Figure, Weapons",98568,"Sword","http://cache.lego.com/media/bricks/5/1/4657296.jpg",2
-"31313-1",6031821,4,"Sand Yellow","Technic: Connectors",13670,"Crossaxle 3M With Knob","http://cache.lego.com/media/bricks/5/1/6031821.jpg",228
-"31313-1",4656205,4,"White","Constraction: Figure, Weapons",98347,"Blade W. Technic Hole 1","http://cache.lego.com/media/bricks/5/1/4656205.jpg",2
-"31313-1",6014051,1,"White","Mindstorms: Electric Parts",72156,"Ms-Ev3, Ir Beacon","http://cache.lego.com/media/bricks/5/1/6014051.jpg",2
-"31313-1",6009996,1,"White","System: Electric Parts",95646,"Ms-Ev3, P-Brick","http://cache.lego.com/media/bricks/5/1/6009996.jpg",3
-"31313-1",4547581,3,"White","Technic: Beams W/ Shapes",64683,"Left Panel 3X7","http://cache.lego.com/media/bricks/5/1/4547581.jpg",11
-"31313-1",4547582,3,"White","Technic: Beams W/ Shapes",64391,"Right Panel 3X7","http://cache.lego.com/media/bricks/5/1/4547582.jpg",11
-"31313-1",4558797,3,"White","Technic: Beams W/ Shapes",64393,"Right Panel 3X11","http://cache.lego.com/media/bricks/5/1/4558797.jpg",9
-"31313-1",4558802,3,"White","Technic: Beams W/ Shapes",64681,"Left Panel 3X11","http://cache.lego.com/media/bricks/5/1/4558802.jpg",9
-"31313-1",4173941,4,"White","Technic: Decoration Elements",41669,"Bion. Eye","http://cache.lego.com/media/bricks/5/1/4173941.jpg",23
-"31313-1",4540100,1,"White","Technic: Decoration Elements",61070,"Right Screen Ø 4.85 4X7X4","http://cache.lego.com/media/bricks/5/1/4540100.jpg",4
-"31313-1",6015596,1,"White","Technic: Decoration Elements",61070,"Right Screen Ø 4.85 4X7X4","http://cache.lego.com/media/bricks/5/1/6015596.jpg",3
-"31313-1",6015597,1,"White","Technic: Decoration Elements",61071,"Left Screen Ø 4.85 4X7X4","http://cache.lego.com/media/bricks/5/1/6015597.jpg",3
-
-
-
-
+SetNumber	PartID	Quantity	Colour	Category	DesignID	PartName	ImageURL	SetCount
+31313-1	6024581	4	Black	System: Bricks, Special Circles And Angles	11145	Cable 250 Mm	http://cache.lego.com/media/bricks/4/1/6024581.jpg	2
+31313-1	6024583	2	Black	System: Bricks, Special Circles And Angles	11146	Cable 350 Mm	http://cache.lego.com/media/bricks/4/1/6024583.jpg	2
+31313-1	6024585	1	Black	System: Bricks, Special Circles And Angles	11147	Cabel 500 Mm	http://cache.lego.com/media/bricks/4/1/6024585.jpg	2
+31313-1	4246901	2	Black	System: Tyres And Rims For Snap Ø3,2	50951	Tyre Low Narrow Ø14.58 X 6.24	http://cache.lego.com/media/bricks/5/1/4246901.jpg	109
+31313-1	4184286	4	Black	System: Tyres And Rims For/To Snap Ø4,85 W. Cross	44309	Tyre Normal Wide Ø43,2 X 22	http://cache.lego.com/media/bricks/5/1/4184286.jpg	47
+31313-1	4299389	4	Black	System: Tyres And Rims For/To Snap Ø4,85 W. Cross	56145	Rim Wide W.Cross 30/20	http://cache.lego.com/media/bricks/5/1/4299389.jpg	49
+31313-1	4502834	2	Black	System: Wheel Base	53992	Caterpillar Track	http://cache.lego.com/media/bricks/5/1/4502834.jpg	11
+31313-1	4111998	12	Black	Technic: Beams	32009	Double Angular Beam 3X7 45°	http://cache.lego.com/media/bricks/5/1/4111998.jpg	111
+31313-1	4120017	8	Black	Technic: Beams	32140	Technic Ang. Beam 4X2 90 Deg	http://cache.lego.com/media/bricks/5/1/4120017.jpg	209
+31313-1	4128593	4	Black	Technic: Beams	32348	Technic Angular Beam 4X4	http://cache.lego.com/media/bricks/5/1/4128593.jpg	68
+31313-1	4140327	12	Black	Technic: Beams	32271	Technic Angular Beam 3X7	http://cache.lego.com/media/bricks/5/1/4140327.jpg	81
+31313-1	4142135	10	Black	Technic: Beams	32316	Technic 5M Beam	http://cache.lego.com/media/bricks/5/1/4142135.jpg	193
+31313-1	4142822	12	Black	Technic: Beams	32523	Technic 3M Beam	http://cache.lego.com/media/bricks/5/1/4142822.jpg	160
+31313-1	4142823	6	Black	Technic: Beams	32526	Technic Ang. Beam 3X5 90 Deg.	http://cache.lego.com/media/bricks/5/1/4142823.jpg	120
+31313-1	4495935	6	Black	Technic: Beams	32524	Technic 7M Beam	http://cache.lego.com/media/bricks/5/1/4495935.jpg	136
+31313-1	4522933	4	Black	Technic: Beams	41239	Technic 13M Beam	http://cache.lego.com/media/bricks/5/1/4522933.jpg	75
+31313-1	4542573	4	Black	Technic: Beams	64871	Technic 15M Beam	http://cache.lego.com/media/bricks/5/1/4542573.jpg	115
+31313-1	4552347	4	Black	Technic: Beams	60484	T-Beam 3X3 W/Hole Ø4.8	http://cache.lego.com/media/bricks/5/1/4552347.jpg	55
+31313-1	4645732	8	Black	Technic: Beams	64289	Technic 9M Beam	http://cache.lego.com/media/bricks/5/1/4645732.jpg	63
+31313-1	6006140	10	Black	Technic: Beams, Special	74695	Beam 1X2 W/Cross And Hole	http://cache.lego.com/media/bricks/5/1/6006140.jpg	74
+31313-1	370626	9	Black	Technic: Connectors	3706	Cross Axle 6M	http://cache.lego.com/media/bricks/5/1/370626.jpg	692
+31313-1	4121715	95	Black	Technic: Connectors	2780	Connector Peg W. Friction	http://cache.lego.com/media/bricks/5/1/4121715.jpg	1491
+31313-1	4184169	6	Black	Technic: Connectors	6628	Ball With Friction Snap	http://cache.lego.com/media/bricks/5/1/4184169.jpg	276
+31313-1	4141300	4	Black	Technic: Functional Elements	32293	Lt Steering Gear	http://cache.lego.com/media/bricks/5/1/4141300.jpg	33
+31313-1	4530733	2	Black	Technic: Functional Elements	32005	Track Rod 6M,	http://cache.lego.com/media/bricks/5/1/4530733.jpg	24
+31313-1	4629921	2	Black	Technic: Functional Elements	32005	Track Rod 6M,	http://cache.lego.com/media/bricks/5/1/4629921.jpg	18
+31313-1	6024106	1	Black	Technic: Functional Elements	54271	Shooter	http://cache.lego.com/media/bricks/5/1/6024106.jpg	1
+31313-1	6024109	1	Black	Technic: Functional Elements	53550	Magasine For Balls Ø16.5	http://cache.lego.com/media/bricks/5/1/6024109.jpg	7
+31313-1	4177431	2	Black	Technic: Functional Elements, Gear Wheels And Racks	32270	Double Conical Wheel Z12 1M	http://cache.lego.com/media/bricks/5/1/4177431.jpg	216
+31313-1	4248204	4	Black	Technic: Functional Elements, Gear Wheels And Racks	32072	Technic Angular Wheel	http://cache.lego.com/media/bricks/5/1/4248204.jpg	65
+31313-1	4255563	5	Black	Technic: Functional Elements, Gear Wheels And Racks	32498	Double Conical Wheel Z36	http://cache.lego.com/media/bricks/5/1/4255563.jpg	32
+31313-1	6093977	4	Black	Technic: Functional Elements, Gear Wheels And Racks	18575	Double Conical Wheel Z20 1M	http://cache.lego.com/media/bricks/5/1/6093977.jpg	35
+31313-1	4143187	2	Black	Technic: Half Beams	6575	Comb Wheel	http://cache.lego.com/media/bricks/5/1/4143187.jpg	31
+31313-1	4558692	1	Black	Technic: Half Beams, Special	87408	Beam 3M Ø4.85 W. Fork	http://cache.lego.com/media/bricks/5/1/4558692.jpg	29
+31313-1	6028041	3	Black	Technic: Tyres And Rims, Special	2815	Tyre For Wedge-Belt Wheel	http://cache.lego.com/media/bricks/5/1/6028041.jpg	48
+31313-1	4514554	4	Brick Yellow	Technic: Connectors	32556	3M Connector Peg	http://cache.lego.com/media/bricks/5/1/4514554.jpg	197
+31313-1	4666999	3	Brick Yellow	Technic: Connectors	99008	Krydsaksel M/Stop 4M	http://cache.lego.com/media/bricks/5/1/4666999.jpg	28
+31313-1	4514557	1	Brick Yellow	Technic: Functional Elements, Gear Wheels And Racks	32198	Bevel Gear Z20	http://cache.lego.com/media/bricks/5/1/4514557.jpg	36
+31313-1	4565452	1	Brick Yellow	Technic: Functional Elements, Gear Wheels And Racks	6589	Conical Wheel Z12	http://cache.lego.com/media/bricks/5/1/4565452.jpg	122
+31313-1	6031962	1	Brick Yellow	Technic: Functional Elements, Gear Wheels And Racks	32198	Bevel Gear Z20	http://cache.lego.com/media/bricks/5/1/6031962.jpg	28
+31313-1	4206482	28	Bright Blue	Technic: Connectors	43093	Conn.Bush W.Fric./Crossale	http://cache.lego.com/media/bricks/5/1/4206482.jpg	1024
+31313-1	4514553	38	Bright Blue	Technic: Connectors	6558	Connector Peg W. Friction 3M	http://cache.lego.com/media/bricks/5/1/4514553.jpg	464
+31313-1	4100396	1	Bright Red	System: Rubbers And Strings	71321	V-Belt Ø24  / Clear Red	http://cache.lego.com/media/bricks/5/1/4100396.jpg	54
+31313-1	4544143	1	Bright Red	System: Rubbers And Strings	85544	V-Belt Ø 24, Red	http://cache.lego.com/media/bricks/5/1/4544143.jpg	32
+31313-1	4562805	4	Bright Red	Technic: Beams	64290	Technic 11M Beam	http://cache.lego.com/media/bricks/5/1/4562805.jpg	39
+31313-1	4128594	2	Bright Red	Technic: Beams, Special	32291	Technic Cross Block 2X1	http://cache.lego.com/media/bricks/5/1/4128594.jpg	31
+31313-1	4128598	17	Bright Red	Technic: Beams, Special	32184	Double Cross Block	http://cache.lego.com/media/bricks/5/1/4128598.jpg	41
+31313-1	4175442	14	Bright Red	Technic: Beams, Special	42003	Cross Blok 3M	http://cache.lego.com/media/bricks/5/1/4175442.jpg	38
+31313-1	4188298	8	Bright Red	Technic: Beams, Special	6536	Cross Block 90°	http://cache.lego.com/media/bricks/5/1/4188298.jpg	55
+31313-1	4140806	10	Bright Red	Technic: Connectors	32054	2M Fric. Snap W/Cross Hole	http://cache.lego.com/media/bricks/5/1/4140806.jpg	170
+31313-1	4142865	12	Bright Red	Technic: Connectors	32062	2M Cross Axle W. Groove	http://cache.lego.com/media/bricks/5/1/4142865.jpg	816
+31313-1	4189131	1	Bright Red	Technic: Connectors	32014	Angle Element, 90 Degrees [6]	http://cache.lego.com/media/bricks/5/1/4189131.jpg	26
+31313-1	4189936	4	Bright Red	Technic: Connectors	32192	Angle Element 135 Deg. [4]	http://cache.lego.com/media/bricks/5/1/4189936.jpg	23
+31313-1	4227155	9	Bright Red	Technic: Connectors	6590	Bush For Cross Axle	http://cache.lego.com/media/bricks/5/1/4227155.jpg	228
+31313-1	4234429	6	Bright Red	Technic: Connectors	32034	Angle Element, 180 Degrees [2]	http://cache.lego.com/media/bricks/5/1/4234429.jpg	37
+31313-1	4254606	4	Bright Red	Technic: Connectors	32013	Angle Element, 0 Degrees [1]	http://cache.lego.com/media/bricks/5/1/4254606.jpg	46
+31313-1	4513174	3	Bright Red	Technic: Connectors	59443	Cross Axle, Extension, 2M	http://cache.lego.com/media/bricks/5/1/4513174.jpg	94
+31313-1	4185661	6	Bright Red	Technic: Decoration Elements	41669	Bion. Eye	http://cache.lego.com/media/bricks/5/1/4185661.jpg	20
+31313-1	4545430	3	Bright Red	Technic: Functional Elements	54821	Ball Ø16,5	http://cache.lego.com/media/bricks/5/1/4545430.jpg	11
+31313-1	4173975	4	Bright Red	Technic: Half Beams, Special	41678	Technic Cross Block/Fork 2X2	http://cache.lego.com/media/bricks/5/1/4173975.jpg	19
+31313-1	4239601	11	Bright Yellow	Technic: Connectors	32123	1/2 Bush	http://cache.lego.com/media/bricks/5/1/4239601.jpg	267
+31313-1	4499858	6	Dark Stone Grey	Technic: Connectors	55013	Cross Axle 8M With End Stop	http://cache.lego.com/media/bricks/5/1/4499858.jpg	187
+31313-1	4508553	2	Dark Stone Grey	Technic: Connectors	59426	Cross Axle 5,5  With Stop 1M.	http://cache.lego.com/media/bricks/5/1/4508553.jpg	312
+31313-1	6083620	4	Dark Stone Grey	Technic: Connectors	87083	Cross Axle 4M With End Stop	http://cache.lego.com/media/bricks/5/1/6083620.jpg	221
+31313-1	4514558	2	Dark Stone Grey	Technic: Functional Elements, Gear Wheels And Racks	3648	Gear Wheel Z24	http://cache.lego.com/media/bricks/5/1/4514558.jpg	90
+31313-1	6008472	1	Medium Stone Grey	Mindstorms: Electric Parts	95648	Ms, Ev3, Touch Sensor	http://cache.lego.com/media/bricks/5/1/6008472.jpg	3
+31313-1	6008577	1	Medium Stone Grey	Mindstorms: Electric Parts	99455	Ms-Ev3, Medium Motor	http://cache.lego.com/media/bricks/5/1/6008577.jpg	3
+31313-1	6008919	1	Medium Stone Grey	Mindstorms: Electric Parts	95650	Ms, Ev3, Sensor, Colour	http://cache.lego.com/media/bricks/5/1/6008919.jpg	3
+31313-1	6009811	1	Medium Stone Grey	Mindstorms: Electric Parts	95654	Ms-Ev3, Ir Sensor	http://cache.lego.com/media/bricks/5/1/6009811.jpg	2
+31313-1	4225033	12	Medium Stone Grey	Technic: Beams, Special	48989	Beam 3 M. W/4 Snaps	http://cache.lego.com/media/bricks/5/1/4225033.jpg	157
+31313-1	4538007	2	Medium Stone Grey	Technic: Beams, Special	63869	Cross Block 3X2	http://cache.lego.com/media/bricks/5/1/4538007.jpg	56
+31313-1	4539880	2	Medium Stone Grey	Technic: Beams, Special	64179	Beam Frame 5X7 Ø 4.85	http://cache.lego.com/media/bricks/5/1/4539880.jpg	38
+31313-1	4540797	2	Medium Stone Grey	Technic: Beams, Special	64178	Beam R. Frame 5X11 Ø4.85	http://cache.lego.com/media/bricks/5/1/4540797.jpg	29
+31313-1	4560175	6	Medium Stone Grey	Technic: Beams, Special	87082	Double Bush 3M Ø4.9	http://cache.lego.com/media/bricks/5/1/4560175.jpg	69
+31313-1	4211375	6	Medium Stone Grey	Technic: Connectors	2736	Ball W. Cross Axle	http://cache.lego.com/media/bricks/5/1/4211375.jpg	162
+31313-1	4211553	2	Medium Stone Grey	Technic: Connectors	32039	Catch W. Cross Hole	http://cache.lego.com/media/bricks/5/1/4211553.jpg	127
+31313-1	4211639	9	Medium Stone Grey	Technic: Connectors	32073	Cross Axle 5M	http://cache.lego.com/media/bricks/5/1/4211639.jpg	445
+31313-1	4211758	4	Medium Stone Grey	Technic: Connectors	42610	Hub Ø11,2 X 7,84	http://cache.lego.com/media/bricks/5/1/4211758.jpg	185
+31313-1	4211805	2	Medium Stone Grey	Technic: Connectors	44294	Cross Axle 7M	http://cache.lego.com/media/bricks/5/1/4211805.jpg	294
+31313-1	4211807	4	Medium Stone Grey	Technic: Connectors	3673	Connector Peg	http://cache.lego.com/media/bricks/5/1/4211807.jpg	557
+31313-1	4211815	22	Medium Stone Grey	Technic: Connectors	4519	Cross Axle 3M	http://cache.lego.com/media/bricks/5/1/4211815.jpg	748
+31313-1	4211888	4	Medium Stone Grey	Technic: Connectors	32138	Module Bush	http://cache.lego.com/media/bricks/5/1/4211888.jpg	29
+31313-1	4502595	1	Medium Stone Grey	Technic: Connectors	57585	3-Branch Cross Axle W/Cross H.	http://cache.lego.com/media/bricks/5/1/4502595.jpg	79
+31313-1	4526985	2	Medium Stone Grey	Technic: Connectors	62462	Tube W/Double Ø4.85	http://cache.lego.com/media/bricks/5/1/4526985.jpg	128
+31313-1	4535768	1	Medium Stone Grey	Technic: Connectors	60485	Cross Axle 9M	http://cache.lego.com/media/bricks/5/1/4535768.jpg	107
+31313-1	4211510	2	Medium Stone Grey	Technic: Functional Elements, Gear Wheels And Racks	4716	Worm	http://cache.lego.com/media/bricks/5/1/4211510.jpg	80
+31313-1	4211566	1	Medium Stone Grey	Technic: Half Beams	6632	Technic Lever 3M	http://cache.lego.com/media/bricks/5/1/4211566.jpg	85
+31313-1	4630114	2	Medium Stone Grey	Technic: Half Beams, Special	92907	Cross Block/Form 2X2X2	http://cache.lego.com/media/bricks/5/1/4630114.jpg	18
+31313-1	6013936	4	Medium Stone Grey	Technic: Transportation Means, Vehicles	32068	Technic Steering-Gear 3M	http://cache.lego.com/media/bricks/5/1/6013936.jpg	2
+31313-1	4494222	3	Medium Stone Grey	Technic: Tyres And Rims, Special	4185	Wedge-Belt Wheel Ø24	http://cache.lego.com/media/bricks/5/1/4494222.jpg	69
+31313-1	6132629	1	Medium Stone Grey	Various: Category Not Known	95654	Ms-Ev3, Ir Sensor	http://cache.lego.com/media/bricks/5/1/6132629.jpg	2
+31313-1	4657296	6	Multicombination	Constraction: Figure, Weapons	98568	Sword	http://cache.lego.com/media/bricks/5/1/4657296.jpg	2
+31313-1	6031821	4	Sand Yellow	Technic: Connectors	13670	Crossaxle 3M With Knob	http://cache.lego.com/media/bricks/5/1/6031821.jpg	228
+31313-1	4656205	4	White	Constraction: Figure, Weapons	98347	Blade W. Technic Hole 1	http://cache.lego.com/media/bricks/5/1/4656205.jpg	2
+31313-1	6014051	1	White	Mindstorms: Electric Parts	72156	Ms-Ev3, Ir Beacon	http://cache.lego.com/media/bricks/5/1/6014051.jpg	2
+31313-1	6009996	1	White	System: Electric Parts	95646	Ms-Ev3, P-Brick	http://cache.lego.com/media/bricks/5/1/6009996.jpg	3
+31313-1	4547581	3	White	Technic: Beams W/ Shapes	64683	Left Panel 3X7	http://cache.lego.com/media/bricks/5/1/4547581.jpg	11
+31313-1	4547582	3	White	Technic: Beams W/ Shapes	64391	Right Panel 3X7	http://cache.lego.com/media/bricks/5/1/4547582.jpg	11
+31313-1	4558797	3	White	Technic: Beams W/ Shapes	64393	Right Panel 3X11	http://cache.lego.com/media/bricks/5/1/4558797.jpg	9
+31313-1	4558802	3	White	Technic: Beams W/ Shapes	64681	Left Panel 3X11	http://cache.lego.com/media/bricks/5/1/4558802.jpg	9
+31313-1	4173941	4	White	Technic: Decoration Elements	41669	Bion. Eye	http://cache.lego.com/media/bricks/5/1/4173941.jpg	23
+31313-1	4540100	1	White	Technic: Decoration Elements	61070	Right Screen Ø 4.85 4X7X4	http://cache.lego.com/media/bricks/5/1/4540100.jpg	4
+31313-1	6015596	1	White	Technic: Decoration Elements	61070	Right Screen Ø 4.85 4X7X4	http://cache.lego.com/media/bricks/5/1/6015596.jpg	3
+31313-1	6015597	1	White	Technic: Decoration Elements	61071	Left Screen Ø 4.85 4X7X4	http://cache.lego.com/media/bricks/5/1/6015597.jpg	3
