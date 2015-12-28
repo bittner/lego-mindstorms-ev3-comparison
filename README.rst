@@ -40,7 +40,7 @@ Resources
 * LEGO Mindstorms, `31313 EV3 Home Edition`_, User Guide (look for "User Guide" button)
 * LEGO Mindstorms Education, `45544 EV3 Core Set`_, Element Overview
 * LEGO Mindstorms Education, `45560 EV3 Expansion Set`_, Element Overview
-* BrickSet inventory lists: 31313-1_, 45544-1_, 45560-1_
+* Brickset inventory lists: 31313-1_, 45544-1_, 45560-1_
 * `The Difference Between LEGO MINDSTORMS EV3 Home Edition (#31313) and LEGO MINDSTORMS Education EV3 (#45544)`_
 * `LEGO Answers`_ question (Bricks, a StackExchange site)
 

@@ -44,6 +44,7 @@ Part no.	Brickset-inventory-31313-1.csv	Brickset-inventory-45544-1.csv	Brickset-
 4173941	4	4	1	Bion. Eye
 4173975	4	0	0	Technic Cross Block/Fork 2X2
 4175442	14	0	0	Cross Blok 3M
+4177430	4	2	1	Double bevel gear, 20-tooth
 4177431	2	2	2	Double Conical Wheel Z12 1M
 4178398	0	0	2	Brick 2X2 Round Ii
 4184169	6	0	8	Ball With Friction Snap
@@ -78,6 +79,7 @@ Part no.	Brickset-inventory-31313-1.csv	Brickset-inventory-45544-1.csv	Brickset-
 4211805	2	5	2	Cross Axle 7M
 4211807	4	10	0	Connector Peg
 4211815	22	14	12	Cross Axle 3M
+4211845	0	0	4	Rim Extra-Wide
 4211862	0	0	3	Technic 2M Beam
 4211866	0	6	7	Technic 9M Beam
 4211888	4	0	0	Module Bush
@@ -151,6 +153,7 @@ Part no.	Brickset-inventory-31313-1.csv	Brickset-inventory-45544-1.csv	Brickset-
 4558797	3	0	0	Right Panel 3X11
 4558802	3	0	0	Left Panel 3X11
 4560175	6	4	2	Double Bush 3M Ø4.9
+4560177	4	2	8	Axle with stop, 4-module
 4562805	4	0	0	Technic 11M Beam
 4563044	0	2	1	2X1X3 Steering Knuckle Arm
 4565452	1	2	3	Conical Wheel Z12
@@ -165,6 +168,7 @@ Part no.	Brickset-inventory-31313-1.csv	Brickset-inventory-45544-1.csv	Brickset-
 4610379	0	0	1	Power Joint Ballpart
 4610380	0	1	1	Power Joint
 4611705	0	4	6	Technic 11M Beam
+4614801	0	0	4	Tire Extra-Wide
 4624645	0	0	1	Turntable Ø4.85
 4629920	0	0	2	Track Rod 6M,
 4629921	2	0	0	Track Rod 6M,
@@ -192,10 +196,13 @@ Part no.	Brickset-inventory-31313-1.csv	Brickset-inventory-45544-1.csv	Brickset-
 6008577	1	1	0	Ms-Ev3, Medium Motor
 6008916	0	1	0	Ms, Ev3, Gyro Sensor
 6008919	1	1	0	Ms, Ev3, Sensor, Colour
+6008924	0	1	0	Ms-Ev3, Ultrasonic Sensor
 6009019	0	4	5	Triangel
+6009430	2	2	0	Ms-Ev3, Large Motor
 6009811	1	0	0	Ms-Ev3, Ir Sensor
 6009996	1	1	0	Ms-Ev3, P-Brick
 6012451	0	4	2	Gear Wheel T=8, M=1
+6012820	0	1	0	Rechargeable Battery
 6013936	4	0	0	Technic Steering-Gear 3M
 6013938	0	0	6	1 1/2 M Connecting Bush
 6014051	1	0	0	Ms-Ev3, Ir Beacon
@@ -204,11 +211,12 @@ Part no.	Brickset-inventory-31313-1.csv	Brickset-inventory-45544-1.csv	Brickset-
 6015597	1	0	0	Left Screen Ø 4.85 4X7X4
 6022750	0	0	2	Right Panel 2X5 (N0 21)
 6022752	0	0	2	Left Panel 2X5 (Nr 22)
+6023956	0	1	0	Steel Ball
 6024106	1	0	0	Shooter
 6024109	1	0	0	Magasine For Balls Ø16.5
 6024581	4	4	0	Cable 250 Mm
 6024583	2	2	0	Cable 350 Mm
-6024585	1	1	0	Cabel 500 Mm
+6024585	1	1	0	Cable 500 Mm
 6027626	0	0	2	Half Spike Ball
 6028041	3	4	0	Tyre For Wedge-Belt Wheel
 6030286	0	0	4	Lever 5M
@@ -217,7 +225,9 @@ Part no.	Brickset-inventory-31313-1.csv	Brickset-inventory-45544-1.csv	Brickset-
 6031962	1	0	1	Bevel Gear Z20
 6035364	0	2	2	Tyre Low Wide Ø56 X 28
 6036424	0	0	28	Rubber Attachment For Track Element
+6036901	1	1	0	USB Cable
 6044636	0	0	2	Flex Hose 19M W/3. 18 Stick
+6044688	2	0	0	Caterpillar Track
 6044729	0	0	1	Rim Narrow Ø18X7 W Hole Ø4.8
 6045310	0	0	4	Rim Ø 56 X 34
 6062225	0	0	4	Tyre Low Wide Ø68,8 X 36

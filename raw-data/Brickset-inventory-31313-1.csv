@@ -1,11 +1,13 @@
 SetNumber	PartID	Quantity	Colour	Category	DesignID	PartName	ImageURL	SetCount
 31313-1	6024581	4	Black	System: Bricks, Special Circles And Angles	11145	Cable 250 Mm	http://cache.lego.com/media/bricks/4/1/6024581.jpg	2
 31313-1	6024583	2	Black	System: Bricks, Special Circles And Angles	11146	Cable 350 Mm	http://cache.lego.com/media/bricks/4/1/6024583.jpg	2
-31313-1	6024585	1	Black	System: Bricks, Special Circles And Angles	11147	Cabel 500 Mm	http://cache.lego.com/media/bricks/4/1/6024585.jpg	2
+31313-1	6024585	1	Black	System: Bricks, Special Circles And Angles	11147	Cable 500 Mm	http://cache.lego.com/media/bricks/4/1/6024585.jpg	2
+31313-1	6036901	1	Black	System: Bricks, Special Circles And Angles	?????	USB Cable	http://cache.lego.com/media/bricks/4/1/6036901.jpg	??
 31313-1	4246901	2	Black	System: Tyres And Rims For Snap Ø3,2	50951	Tyre Low Narrow Ø14.58 X 6.24	http://cache.lego.com/media/bricks/5/1/4246901.jpg	109
 31313-1	4184286	4	Black	System: Tyres And Rims For/To Snap Ø4,85 W. Cross	44309	Tyre Normal Wide Ø43,2 X 22	http://cache.lego.com/media/bricks/5/1/4184286.jpg	47
 31313-1	4299389	4	Black	System: Tyres And Rims For/To Snap Ø4,85 W. Cross	56145	Rim Wide W.Cross 30/20	http://cache.lego.com/media/bricks/5/1/4299389.jpg	49
 31313-1	4502834	2	Black	System: Wheel Base	53992	Caterpillar Track	http://cache.lego.com/media/bricks/5/1/4502834.jpg	11
+31313-1	6044688	2	Black	System: Wheel Base	?????	Caterpillar Track	http://cache.lego.com/media/bricks/5/1/6044688.jpg	??
 31313-1	4111998	12	Black	Technic: Beams	32009	Double Angular Beam 3X7 45°	http://cache.lego.com/media/bricks/5/1/4111998.jpg	111
 31313-1	4120017	8	Black	Technic: Beams	32140	Technic Ang. Beam 4X2 90 Deg	http://cache.lego.com/media/bricks/5/1/4120017.jpg	209
 31313-1	4128593	4	Black	Technic: Beams	32348	Technic Angular Beam 4X4	http://cache.lego.com/media/bricks/5/1/4128593.jpg	68
@@ -66,6 +68,7 @@ SetNumber	PartID	Quantity	Colour	Category	DesignID	PartName	ImageURL	SetCount
 31313-1	4514558	2	Dark Stone Grey	Technic: Functional Elements, Gear Wheels And Racks	3648	Gear Wheel Z24	http://cache.lego.com/media/bricks/5/1/4514558.jpg	90
 31313-1	6008472	1	Medium Stone Grey	Mindstorms: Electric Parts	95648	Ms, Ev3, Touch Sensor	http://cache.lego.com/media/bricks/5/1/6008472.jpg	3
 31313-1	6008577	1	Medium Stone Grey	Mindstorms: Electric Parts	99455	Ms-Ev3, Medium Motor	http://cache.lego.com/media/bricks/5/1/6008577.jpg	3
+31313-1	6009430	2	Medium Stone Grey	Mindstorms: Electric Parts	?????	Ms-Ev3, Large Motor	http://cache.lego.com/media/bricks/5/1/6009430.jpg	??
 31313-1	6008919	1	Medium Stone Grey	Mindstorms: Electric Parts	95650	Ms, Ev3, Sensor, Colour	http://cache.lego.com/media/bricks/5/1/6008919.jpg	3
 31313-1	6009811	1	Medium Stone Grey	Mindstorms: Electric Parts	95654	Ms-Ev3, Ir Sensor	http://cache.lego.com/media/bricks/5/1/6009811.jpg	2
 31313-1	4225033	12	Medium Stone Grey	Technic: Beams, Special	48989	Beam 3 M. W/4 Snaps	http://cache.lego.com/media/bricks/5/1/4225033.jpg	157
@@ -103,3 +106,5 @@ SetNumber	PartID	Quantity	Colour	Category	DesignID	PartName	ImageURL	SetCount
 31313-1	4540100	1	White	Technic: Decoration Elements	61070	Right Screen Ø 4.85 4X7X4	http://cache.lego.com/media/bricks/5/1/4540100.jpg	4
 31313-1	6015596	1	White	Technic: Decoration Elements	61070	Right Screen Ø 4.85 4X7X4	http://cache.lego.com/media/bricks/5/1/6015596.jpg	3
 31313-1	6015597	1	White	Technic: Decoration Elements	61071	Left Screen Ø 4.85 4X7X4	http://cache.lego.com/media/bricks/5/1/6015597.jpg	3
+31313-1	4177430	4	Black	Technic: Functional Elements, Gear Wheels And Racks	?????	Double bevel gear, 20-tooth	http://cache.lego.com/media/bricks/5/1/4177430.jpg	??
+31313-1	4560177	4	Dark Stone Grey	Technic: Connectors	?????	Axle with stop, 4-module	http://cache.lego.com/media/bricks/5/1/4560177.jpg	??
