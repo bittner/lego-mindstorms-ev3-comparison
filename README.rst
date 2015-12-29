@@ -85,12 +85,15 @@ Inspiration for LEGO EV3 Robots
   #. Elephant
   #. Spinner Factory
 
+* `Wall-EV3`_ (Disney's cute `WALL-E robot`_ built with EV3)
 * `Self-balancing robot tutorial`_ (a gyro sensor application)
 * `Walking robots`_
 
 
 .. _Education Edition Core Set robots: http://robotsquare.com/2013/10/01/education-ev3-45544-instruction/
 .. _Education Edition Expansion Set robots: http://robotsquare.com/2013/10/01/lego-mindstorms-ev3-education-expansion-set-45560-instructions/
+.. _Wall-EV3: http://robotics.benedettelli.com/lego-wall-e/
+.. _WALL-E robot: https://en.wikipedia.org/wiki/WALL-E
 .. _Self-balancing robot tutorial: http://robotsquare.com/2014/07/01/tutorial-ev3-self-balancing-robot/
 .. _Walking robots: http://www.legoengineering.com/walking-robots/
 
@@ -99,7 +102,7 @@ Programming EV3 on Linux
 
 * `Boot Linux from SDCard`_
 * `Python programming on EV3`_
-* `MindBOARDS community`_ (several project enabling programming on LEGO bricks)
+* `MindBOARDS community`_ (several projects enabling programming on LEGO bricks)
 * `Lego Mindstorm with Linux Mini-HOWTO`_ (a bit aged information, probably for the NXT brick)
 * `Lego Mindstorms IDE on WINE?`_ (and other dev environment alternatives)
 
