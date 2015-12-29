@@ -93,7 +93,7 @@ Inspiration for LEGO EV3 Robots
 .. _Education Edition Core Set robots: http://robotsquare.com/2013/10/01/education-ev3-45544-instruction/
 .. _Education Edition Expansion Set robots: http://robotsquare.com/2013/10/01/lego-mindstorms-ev3-education-expansion-set-45560-instructions/
 .. _Wall-EV3: http://robotics.benedettelli.com/lego-wall-e/
-.. _WALL-E robot: https://en.wikipedia.org/wiki/WALL-E
+.. _WALL-E robot: https://ideas.lego.com/projects/52042/updates
 .. _Self-balancing robot tutorial: http://robotsquare.com/2014/07/01/tutorial-ev3-self-balancing-robot/
 .. _Walking robots: http://www.legoengineering.com/walking-robots/
 
