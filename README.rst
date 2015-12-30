@@ -69,6 +69,13 @@ Inspiration for LEGO EV3 Robots
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * `Home Edition robots`_ (build instructions for 5 official and many more robots)
+
+  #. Track3r
+  #. Spik3r
+  #. R3ptar
+  #. Gripp3r
+  #. Ev3rstorm
+
 * `Education Edition Core Set robots`_ (build instructions for 5 robots)
 
   #. Educator Vehicle
