@@ -68,6 +68,7 @@ Where To Go From Here?
 Inspiration for LEGO EV3 Robots
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+* `Home Edition robots`_ (build instructions for 5 official and many more robots)
 * `Education Edition Core Set robots`_ (build instructions for 5 robots)
 
   #. Educator Vehicle
@@ -90,6 +91,7 @@ Inspiration for LEGO EV3 Robots
 * `Walking robots`_
 
 
+.. _Home Edition robots: http://www.lego.com/en-us/mindstorms/build-a-robot
 .. _Education Edition Core Set robots: http://robotsquare.com/2013/10/01/education-ev3-45544-instruction/
 .. _Education Edition Expansion Set robots: http://robotsquare.com/2013/10/01/lego-mindstorms-ev3-education-expansion-set-45560-instructions/
 .. _Wall-EV3: http://robotics.benedettelli.com/lego-wall-e/
