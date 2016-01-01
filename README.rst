@@ -109,8 +109,9 @@ Inspiration for LEGO EV3 Robots
 Programming EV3 on Linux
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* `Boot Linux from SDCard`_
+* `Boot Linux from SDCard`_ (ev3dev)
 * `Python programming on EV3`_
+* `Open Roberta Lab`_ (Web IDE for robotics, `source code`_)
 * `MindBOARDS community`_ (several projects enabling programming on LEGO bricks)
 * `Lego Mindstorm with Linux Mini-HOWTO`_ (a bit aged information, probably for the NXT brick)
 * `Lego Mindstorms IDE on WINE?`_ (and other dev environment alternatives)
@@ -121,6 +122,8 @@ Programming EV3 on Linux
 .. _MindBOARDS community: https://github.com/mindboards
 .. _Lego Mindstorm with Linux Mini-HOWTO: http://tldp.org/HOWTO/Lego/index.html
 .. _Lego Mindstorms IDE on WINE?: http://www.linuxquestions.org/questions/linux-software-2/lego-mindstorms-on-wine-154292/
+.. _Open Roberta Lab: http://lab.open-roberta.org/
+.. _source code: https://github.com/OpenRoberta/robertalab
 
 Your Contribution
 -----------------
