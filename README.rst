@@ -133,6 +133,9 @@ If you find a typo, an error, a critical mistake or feel there's some enhancemen
 needed please feel free to `open an issue`_, or even better clone the repository,
 apply your changes, and `place a pull request`_.  Your contribution is welcome!
 
+Step by Step
+~~~~~~~~~~~~
+
 If you make changes to the raw data, e.g. ``raw-data/Brickset-inventory-*.csv``,
 in a pull request please also regenerate the combined list and update the Calc
 spread sheet as follows::
