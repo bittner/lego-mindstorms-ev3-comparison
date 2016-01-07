@@ -109,7 +109,7 @@ Inspiration for LEGO EV3 Robots
 Programming EV3 on Linux
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* `Boot Linux from SDCard`_ (ev3dev)
+* `Boot Linux from SDCard`_ (ev3dev, `language bindings`_)
 * `Python programming on EV3`_
 * `Open Roberta Lab`_ (Web IDE for robotics, `source code`_)
 * `MindBOARDS community`_ (several projects enabling programming on LEGO bricks)
@@ -118,6 +118,7 @@ Programming EV3 on Linux
 
 
 .. _Boot Linux from SDCard: http://www.ev3dev.org/
+.. _language bindings: https://github.com/ev3dev/ev3dev-lang
 .. _Python programming on EV3: http://bitsandbricks.no/2014/01/19/getting-started-with-python-on-ev3/
 .. _MindBOARDS community: https://github.com/mindboards
 .. _Lego Mindstorm with Linux Mini-HOWTO: http://tldp.org/HOWTO/Lego/index.html
@@ -131,6 +132,21 @@ Your Contribution
 If you find a typo, an error, a critical mistake or feel there's some enhancement
 needed please feel free to `open an issue`_, or even better clone the repository,
 apply your changes, and `place a pull request`_.  Your contribution is welcome!
+
+If you make changes to the raw data, e.g. ``raw-data/Brickset-inventory-*.csv``,
+in a pull request please also regenerate the combined list and update the Calc
+spread sheet as follows::
+
+   $ cd raw-data/
+   $ python3 ../lego-mindstorms-pieces.py Brickset-inventory-* > "Lego Mindstorms EV3 combined list.csv"
+
+Then open ``Lego-Mindstorms-Editions-Comparison.ods`` and copy the contents of
+the regenerated ``Lego Mindstorms EV3 combined list.csv`` from a text editor
+into the spread sheet as follows:
+
+#. Highlight the first 5 columns and press the ``Del`` key to clear the cells.
+#. Place the cursor onto the first left upper cell and press ``Ctrl`` + ``v``.
+#. The "Text Import" dialog pops up.  Choose "Unicode" and "Tab" separation.
 
 
 .. _open an issue: https://github.com/bittner/lego-mindstorms-ev3-comparison/issues
