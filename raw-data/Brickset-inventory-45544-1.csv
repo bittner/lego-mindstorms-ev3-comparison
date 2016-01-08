@@ -3,7 +3,7 @@ SetNumber	PartID	Quantity	Colour	Category	DesignID	PartName	ImageURL	SetCount
 45544-1	6024581	4	Black	System: Bricks, Special Circles And Angles	11145	Cable 250 Mm	http://cache.lego.com/media/bricks/4/1/6024581.jpg	2
 45544-1	6024583	2	Black	System: Bricks, Special Circles And Angles	11146	Cable 350 Mm	http://cache.lego.com/media/bricks/4/1/6024583.jpg	2
 45544-1	6024585	1	Black	System: Bricks, Special Circles And Angles	11147	Cable 500 Mm	http://cache.lego.com/media/bricks/4/1/6024585.jpg	2
-45544-1	6036901	1	Black	System: Bricks, Special Circles And Angles	?????	USB Cable	http://cache.lego.com/media/bricks/4/1/6036901.jpg	??
+45544-1	6036901	1	Black	System: Bricks, Special Circles And Angles	10916	USB Cable	http://cache.lego.com/media/bricks/4/1/6036901.jpg	??
 45544-1	4112282	4	Black	Technic: Beams	6629	Technic Angular Beam 4X6	http://cache.lego.com/media/bricks/5/1/4112282.jpg	101
 45544-1	4142822	2	Black	Technic: Beams	32523	Technic 3M Beam	http://cache.lego.com/media/bricks/5/1/4142822.jpg	160
 45544-1	4552347	4	Black	Technic: Beams	60484	T-Beam 3X3 W/Hole Ø4.8	http://cache.lego.com/media/bricks/5/1/4552347.jpg	55
@@ -29,7 +29,7 @@ SetNumber	PartID	Quantity	Colour	Category	DesignID	PartName	ImageURL	SetCount
 45544-1	4248204	4	Black	Technic: Functional Elements, Gear Wheels And Racks	32072	Technic Angular Wheel	http://cache.lego.com/media/bricks/5/1/4248204.jpg	65
 45544-1	4255563	2	Black	Technic: Functional Elements, Gear Wheels And Racks	32498	Double Conical Wheel Z36	http://cache.lego.com/media/bricks/5/1/4255563.jpg	32
 45544-1	6093977	2	Black	Technic: Functional Elements, Gear Wheels And Racks	18575	Double Conical Wheel Z20 1M	http://cache.lego.com/media/bricks/5/1/6093977.jpg	35
-45544-1	4177430	2	Black	Technic: Functional Elements, Gear Wheels And Racks	?????	Double bevel gear, 20-tooth	http://cache.lego.com/media/bricks/5/1/4177430.jpg	??
+45544-1	4177430	2	Black	Technic: Functional Elements, Gear Wheels And Racks	32269	Double bevel gear, 20-tooth	http://cache.lego.com/media/bricks/5/1/4177430.jpg	??
 45544-1	4142236	2	Black	Technic: Half Beams	32449	Lever 1X4, Without Notch	http://cache.lego.com/media/bricks/5/1/4142236.jpg	109
 45544-1	4162857	4	Black	Technic: Half Beams, Special	41678	Technic Cross Block/Fork 2X2	http://cache.lego.com/media/bricks/5/1/4162857.jpg	103
 45544-1	4563044	2	Black	Technic: Half Beams, Special	33299	2X1X3 Steering Knuckle Arm	http://cache.lego.com/media/bricks/5/1/4563044.jpg	74
@@ -55,19 +55,17 @@ SetNumber	PartID	Quantity	Colour	Category	DesignID	PartName	ImageURL	SetCount
 45544-1	4610380	1	Dark Stone Grey	Technic: Beams, Special	92911	Power Joint	http://cache.lego.com/media/bricks/5/1/4610380.jpg	7
 45544-1	4499858	2	Dark Stone Grey	Technic: Connectors	55013	Cross Axle 8M With End Stop	http://cache.lego.com/media/bricks/5/1/4499858.jpg	187
 45544-1	6083620	2	Dark Stone Grey	Technic: Connectors	87083	Cross Axle 4M With End Stop	http://cache.lego.com/media/bricks/5/1/6083620.jpg	221
-45544-1	4560177	2	Dark Stone Grey	Technic: Connectors	?????	Axle with stop, 4-module	http://cache.lego.com/media/bricks/5/1/4560177.jpg	??
 45544-1	4514558	4	Dark Stone Grey	Technic: Functional Elements, Gear Wheels And Racks	3648	Gear Wheel Z24	http://cache.lego.com/media/bricks/5/1/4514558.jpg	90
 45544-1	6012451	4	Dark Stone Grey	Technic: Functional Elements, Gear Wheels And Racks	10928	Gear Wheel T=8, M=1	http://cache.lego.com/media/bricks/5/1/6012451.jpg	100
 45544-1	4587275	4	Dark Stone Grey	Technic: Tyres And Rims, Special	4185	Wedge-Belt Wheel Ø24	http://cache.lego.com/media/bricks/5/1/4587275.jpg	14
 45544-1	4634091	2	Medium Stone Grey	Constraction: Tyres And Rims For/To Snap Ø4,85 W. Cross	56908	Rim Wide 43,2X26 W 6 Hol.Ø 4.8	http://cache.lego.com/media/bricks/5/1/4634091.jpg	18
 45544-1	6008472	2	Medium Stone Grey	Mindstorms: Electric Parts	95648	Ms, Ev3, Touch Sensor	http://cache.lego.com/media/bricks/5/1/6008472.jpg	3
 45544-1	6008577	1	Medium Stone Grey	Mindstorms: Electric Parts	99455	Ms-Ev3, Medium Motor	http://cache.lego.com/media/bricks/5/1/6008577.jpg	3
-45544-1	6009430	2	Medium Stone Grey	Mindstorms: Electric Parts	?????	Ms-Ev3, Large Motor	http://cache.lego.com/media/bricks/5/1/6009430.jpg	??
+45544-1	6009430	2	Medium Stone Grey	Mindstorms: Electric Parts	95658	Ms-Ev3, Large Motor	http://cache.lego.com/media/bricks/5/1/6009430.jpg	??
 45544-1	6008916	1	Medium Stone Grey	Mindstorms: Electric Parts	99380	Ms, Ev3, Gyro Sensor	http://cache.lego.com/media/bricks/5/1/6008916.jpg	2
 45544-1	6008919	1	Medium Stone Grey	Mindstorms: Electric Parts	95650	Ms, Ev3, Sensor, Colour	http://cache.lego.com/media/bricks/5/1/6008919.jpg	3
-45544-1	6008924	1	Medium Stone Grey	Mindstorms: Electric Parts	?????	Ms-Ev3, Ultrasonic Sensor	http://cache.lego.com/media/bricks/5/1/6008924.jpg	??
 45544-1	6063629	1	Medium Stone Grey	Mindstorms: Electric Parts	95652	Ms-Ev3, Ultrasonic Sensor	http://cache.lego.com/media/bricks/5/1/6063629.jpg	1
-45544-1	6012820	1	Medium Stone Grey	Mindstorms: Electric Parts	?????	Rechargeable Battery	http://cache.lego.com/media/bricks/5/1/6012820.jpg	??
+45544-1	6012820	1	Medium Stone Grey	Mindstorms: Electric Parts	95656	Rechargeable Battery	http://cache.lego.com/media/bricks/5/1/6012820.jpg	??
 45544-1	4156151	4	Medium Stone Grey	Technic: Beams	32525	Technic 11M Beam	http://cache.lego.com/media/bricks/5/1/4156151.jpg	44
 45544-1	4211624	4	Medium Stone Grey	Technic: Beams	32271	Technic Angular Beam 3X7	http://cache.lego.com/media/bricks/5/1/4211624.jpg	28
 45544-1	4211651	4	Medium Stone Grey	Technic: Beams	32316	Technic 5M Beam	http://cache.lego.com/media/bricks/5/1/4211651.jpg	79
@@ -97,7 +95,6 @@ SetNumber	PartID	Quantity	Colour	Category	DesignID	PartName	ImageURL	SetCount
 45544-1	4285634	2	Medium Stone Grey	Technic: Functional Elements, Gear Wheels And Racks	3649	Gear Wheel 40T	http://cache.lego.com/media/bricks/5/1/4285634.jpg	51
 45544-1	4640536	4	Medium Stone Grey	Technic: Functional Elements, Gear Wheels And Racks	94925	Gear Wheel Z16	http://cache.lego.com/media/bricks/5/1/4640536.jpg	73
 45544-1	6009019	4	Medium Stone Grey	Technic: Half Beams	99773	Triangel	http://cache.lego.com/media/bricks/5/1/6009019.jpg	12
-45544-1	6023956	1	Not specified	System: Electric Parts	?????	Steel Ball	http://cache.lego.com/media/bricks/5/1/6023956.jpg	??
 45544-1	6079570	1	Not specified	System: Electric Parts	99948	Steel Ball	http://cache.lego.com/media/bricks/5/1/6079570.jpg	1
 45544-1	6031821	2	Sand Yellow	Technic: Connectors	13670	Crossaxle 3M With Knob	http://cache.lego.com/media/bricks/5/1/6031821.jpg	228
 45544-1	6009996	1	White	System: Electric Parts	95646	Ms-Ev3, P-Brick	http://cache.lego.com/media/bricks/5/1/6009996.jpg	3
