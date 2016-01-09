@@ -69,7 +69,7 @@ LEGO Parts Research, Shopping And Other Resources
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * `LEGO Pick a Brick`_ (official parts shop)
-* `LEGO Bricks & Pieces`_ (official customer service)
+* `LEGO Bricks & Pieces`_ (official customer service) [#note]_
 * Rebrickable:
 
   * compare `Mindstorms vs. Edu Core`_
@@ -88,6 +88,10 @@ LEGO Parts Research, Shopping And Other Resources
 * `Brick Owl`_ (parts and store search)
 * `LEGO parts drawing program`_ (LDraw.org)
 
+
+.. [#note] Spare parts you want to buy in addition are usually available here.
+   Use the 5-digit number of the set you did *not* buy (31313 or 45544) when
+   the shop asks you for a set number.
 
 .. _LEGO Pick a Brick: http://shop.lego.com/en-DE/Pick-A-Brick-ByTheme
 .. _LEGO Bricks & Pieces: https://wwwsecure.us.lego.com/en-gb/service/replacementparts/order
