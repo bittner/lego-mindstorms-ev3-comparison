@@ -34,7 +34,7 @@ Usage
    LEGO pieces from the three separate inventory lists.  It takes three file names as
    an argument, e.g. ::
 
-    $ python3 lego-mindstorms-pieces.py raw-data/Brickset-inventory-* > combined-list.csv
+    $ python3 lego-mindstorms-pieces.py parse raw-data/Brickset-inventory-* > combined-list.csv
 
    You only need this script if you change the source data (inventory lists) to create
    a new combined list, in order to re-integrate the changes into the spread sheet.
@@ -183,7 +183,7 @@ in a pull request please also regenerate the combined list and update the Calc
 spread sheet as follows::
 
    $ cd raw-data/
-   $ python3 ../lego-mindstorms-pieces.py Brickset-inventory-* > "Lego Mindstorms EV3 combined list.csv"
+   $ python3 ../lego-mindstorms-pieces.py parse Brickset-inventory-* > "Lego Mindstorms EV3 combined list.csv"
 
 Then open ``Lego-Mindstorms-Editions-Comparison.ods`` and copy the contents of
 the regenerated ``Lego Mindstorms EV3 combined list.csv`` from a text editor
