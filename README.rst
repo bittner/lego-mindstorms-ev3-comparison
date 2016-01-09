@@ -20,7 +20,7 @@ Usage
 -----
 
 #. ``Lego-Mindstorms-Editions-Comparison.ods``, a LibreOffice Calc spread sheet, lists
-   the pieces of all sets combined.  Columns ``F`` and ``I`` tell you which pieces to
+   the pieces of all sets combined.  Columns ``H`` and ``K`` tell you which pieces to
    buy if you have either Home Edition + Expansion Set or Education Edition + Expansion
    Set.  You can filter the columns using the "Auto Filter" in the first row.
 

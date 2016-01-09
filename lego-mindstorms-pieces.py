@@ -28,6 +28,7 @@ files = sys.argv[1:]
 part_list = {}
 part_names = {}
 part_designids = {}
+part_imageurls = {}
 NO_PARTS = [0 for a in range(len(files))]
 
 for file_count, name in enumerate(files):
@@ -46,6 +47,7 @@ for file_count, name in enumerate(files):
                     part_list[part_no] = NO_PARTS.copy()
                     part_names[part_no] = part_name
                     part_designids[part_no] = design_id
+                    part_imageurls[part_no] = image_url
 
                 part_list[part_no][file_count] = quantity
             except ValueError as err:
@@ -55,9 +57,17 @@ for file_count, name in enumerate(files):
 part_numbers = list(part_list.keys())
 part_numbers.sort()
 
-print('Part no.\tLegoId\t%s\tPart name' % '\t'.join(files))
+print('Part no.\tLego ID\t%s\tPart name\tImage' % '\t'.join(files))
 for part_no in part_numbers:
-    part_counts = '\t'.join([str(a) for a in part_list[part_no]])
-    part_name = part_names[part_no]
-    part_legoid = part_designids[part_no]
-    print('%s\t%s\t%s\t%s' % (part_no, part_legoid, part_counts, part_name))
+    part_data = {
+        'partno': part_no,
+        'legoid': part_designids[part_no],
+        'counts': '\t'.join([str(a) for a in part_list[part_no]]),
+        'name': part_names[part_no],
+        'image': part_imageurls[part_no],
+    }
+    print('%(partno)s\t'
+          '%(legoid)s\t'
+          '%(counts)s\t'
+          '%(name)s\t'
+          '%(image)s' % part_data)
