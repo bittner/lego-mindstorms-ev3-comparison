@@ -70,7 +70,20 @@ LEGO Parts Research, Shopping And Other Resources
 
 * `LEGO Pick a Brick`_ (official parts shop)
 * `LEGO Bricks & Pieces`_ (official customer service)
-* `Rebrickable sets search`_, `Rebrickable parts search`_
+* Rebrickable:
+
+  * compare `Mindstorms vs. Edu Core`_
+  * compare `Mindstorms vs. Edu Expansion`_
+  * compare `Edu Core vs. Edu Expansion`_
+  * search `sets`_
+  * search `parts`_
+
+* Brickset:
+
+  * `Mindstorms EV3`_
+  * `Edu EV3 Core`_
+  * `Edu EV3 Expansion`_
+
 * `BrickLink > Catalog Search`_ (parts, shops, marketplace)
 * `Brick Owl`_ (parts and store search)
 * `LEGO parts drawing program`_ (LDraw.org)
@@ -78,8 +91,14 @@ LEGO Parts Research, Shopping And Other Resources
 
 .. _LEGO Pick a Brick: http://shop.lego.com/en-DE/Pick-A-Brick-ByTheme
 .. _LEGO Bricks & Pieces: https://wwwsecure.us.lego.com/en-gb/service/replacementparts/order
-.. _Rebrickable sets search: http://rebrickable.com/pick_set
-.. _Rebrickable parts search: http://rebrickable.com/search?po=1
+.. _Mindstorms vs. Edu Core: http://rebrickable.com/compare/31313-1/45544-1
+.. _Mindstorms vs. Edu Expansion: http://rebrickable.com/compare/31313-1/45560-1
+.. _Edu Core vs. Edu Expansion: http://rebrickable.com/compare/45544-1/45560-1
+.. _sets: http://rebrickable.com/pick_set
+.. _parts: http://rebrickable.com/search?po=1
+.. _Mindstorms EV3: http://brickset.com/sets/31313-1/Mindstorms-EV3
+.. _Edu EV3 Core: http://brickset.com/sets/45544-1/Education-EV3-Core-Set
+.. _Edu EV3 Expansion: http://brickset.com/sets/45560-1/Education-EV3-Expansion-Set
 .. _BrickLink > Catalog Search: http://www.bricklink.com/catalogSearch.asp
 .. _Brick Owl: http://www.brickowl.com/
 .. _LEGO parts drawing program: http://www.ldraw.org/
