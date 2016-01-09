@@ -65,6 +65,25 @@ Resources
 Where To Go From Here?
 ----------------------
 
+LEGO Parts Research, Shopping And Other Resources
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* `LEGO Pick a Brick`_ (official parts shop)
+* `LEGO Bricks & Pieces`_ (official customer service)
+* `Rebrickable sets search`_, `Rebrickable parts search`_
+* `BrickLink > Catalog Search`_ (parts, shops, marketplace)
+* `Brick Owl`_ (parts and store search)
+* `LEGO parts drawing program`_ (LDraw.org)
+
+
+.. _LEGO Pick a Brick: http://shop.lego.com/en-DE/Pick-A-Brick-ByTheme
+.. _LEGO Bricks & Pieces: https://wwwsecure.us.lego.com/en-gb/service/replacementparts/order
+.. _Rebrickable sets search: http://rebrickable.com/pick_set
+.. _Rebrickable parts search: http://rebrickable.com/search?po=1
+.. _BrickLink > Catalog Search: http://www.bricklink.com/catalogSearch.asp
+.. _Brick Owl: http://www.brickowl.com/
+.. _LEGO parts drawing program: http://www.ldraw.org/
+
 Inspiration for LEGO EV3 Robots
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -147,7 +166,7 @@ Then open ``Lego-Mindstorms-Editions-Comparison.ods`` and copy the contents of
 the regenerated ``Lego Mindstorms EV3 combined list.csv`` from a text editor
 into the spread sheet as follows:
 
-#. Highlight the first 5 columns and press the ``Del`` key to clear the cells.
+#. Highlight the first 7 columns and press the ``Del`` key to clear the cells.
 #. Place the cursor onto the first left upper cell and press ``Ctrl`` + ``v``.
 #. The "Text Import" dialog pops up.  Choose "Unicode" and "Tab" separation.
 
