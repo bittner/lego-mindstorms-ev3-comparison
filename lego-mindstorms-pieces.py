@@ -31,14 +31,26 @@ def main():
     commands = parser.add_subparsers(metavar='command', dest='command')
     commands.required = True
     cmd = commands.add_parser(
-            'parse', help="Parse 3 inventory data files and combine them into a single data list."
-                          " You can redirect the output into a text file on the command line.")
+        'parse', help="Parse 3 inventory data files and combine them into a single data list."
+                      " You can redirect the output into a text file on the command line.")
     cmd.add_argument('datafiles', nargs=3, help="3 inventory data files for the 3 LEGO sets")
     cmd = commands.add_parser(
-            'order', help="Add the LEGO parts you need to the shopping bag on LEGO's customer service platform.")
-    cmd.add_argument('--lego-shop', dest='shop', default='en-us',
+        'order', help="Add the LEGO parts you need to the shopping bag on LEGO's customer service platform.")
+    cmd.add_argument('--shop', default='en-us',
+                     choices=['nl-be', 'fr-be', 'cs-cz', 'da-dk', 'de-de', 'es-es', 'fr-fr',
+                              'it-it', 'es-ar', 'hu-hu', 'nl-nl', 'nb-no', 'pl-pl', 'fi-fi',
+                              'sv-se', 'en-gb', 'en-us', 'ru-ru', 'ko-kr', 'zh-cn', 'ja-jp'],
                      help="<language-country> identifier of the LEGO shop (language and geographic region)"
                           " you want to use for ordering. Default: en-us")
+    cmd.add_argument('--browser', default='firefox', choices=['chrome', 'firefox'],
+                     help="Web browser that will be used to open the LEGO shop. Default: firefox")
+    cmd.add_argument('--lego-set', default='45544', choices=['31313', '45544', '45560'],
+                     help="The LEGO set you did *not* buy, which you need the bricks from."
+                          " 31313 = Mindstorms EV3, 45544 = Edu Core, 45560 = Edu Expansion."
+                          " Default: 45544 (Edu Core)")
+    cmd.add_argument('order_list',
+                     help="A list of LEGO part_number:quantity you want to buy, separated by comma signs."
+                          " Example: 370526:4,370726:2,4107085:4,4107767:2")
 
     # avoid intimidating the user ("error: ... required") with no arguments
     if len(sys.argv) == 1:
@@ -70,8 +82,8 @@ def parse(datafiles):
             for line in data_lines:
                 line = line.strip()
                 try:
-                    set_no, part_no, quantity, color, category, design_id, \
-                    part_name, image_url, set_count = line.split('\t')
+                    (set_no, part_no, quantity, color, category, design_id,
+                     part_name, image_url, set_count) = line.split('\t')
 
                     part_no, quantity = int(part_no), int(quantity)
 
@@ -105,11 +117,86 @@ def parse(datafiles):
               '%(image)s' % part_data)
 
 
-def order():
+def order(shop=None, browser=None, lego_set=None, order_list=None):
     """
     Fill in LEGO parts to be ordered in LEGO's customer service shop.
     """
-    pass
+    from selenium.common.exceptions import NoSuchElementException
+    from selenium.webdriver import Firefox
+    from selenium.webdriver.common.keys import Keys
+    from selenium.webdriver.support.select import Select
+    from time import sleep
+
+    order_list = order_list.split(',')
+
+    shop_url = 'https://wwwsecure.us.lego.com/{shop}/service/replacementparts/order'.format(shop=shop)
+    browser = Firefox()
+    browser.implicitly_wait(4)
+    browser.get(shop_url)
+
+    print("Sometimes they ask you to fill in a survey.")
+    try:
+        survey_layer = browser.find_element_by_id('ipeL104230')
+        survey_layer.send_keys(Keys.ESCAPE)
+    except NoSuchElementException:
+        print("We're lucky, no survey on the LEGO shop today!")
+
+    print("They want to know how old we are.")
+    age_field = browser.find_element_by_id('How old are you?')
+    age_field.send_keys('55')
+    age_field.send_keys(Keys.RETURN)
+
+    print("We need to tell them which set we want to buy parts from.")
+    setno_field = browser.find_element_by_id('Set number')
+    setno_field.send_keys(lego_set)
+    setno_field.send_keys(Keys.RETURN)
+
+    print("Let's scroll the page down a bit, so we can see things better.")
+    browser.execute_script("window.scroll(0, 750);")
+
+    print("That's gonna be crazy: {count} elements to order! Let's rock.".format(count=len(order_list)))
+    element_field = browser.find_element_by_id('element-filter')
+    print()
+
+    for brick in order_list:
+        part_no, quantity = brick.split(':')
+        print("- {qty}x #{pn} ".format(qty=quantity, pn=part_no), end='')
+
+        element_field.clear()
+        element_field.send_keys(part_no)
+        element_field.send_keys(Keys.RETURN)
+        sleep(.3)  # seconds
+
+        try:
+            add_button = browser.find_element_by_css_selector('.element-details + button')
+            add_button.click()
+            sleep(.2)  # seconds
+        except NoSuchElementException:
+            print("OOOPS! No LEGO part with that number found in set #{set}. :-(".format(set=lego_set))
+            continue
+
+        try:
+            warn_msg = browser.find_element_by_css_selector('.alert-warning .sold-out-info')
+            if warn_msg.is_displayed():
+                print("NOTE: item out of stock. ", end='')
+                add_anyway = browser.find_element_by_css_selector('.alert-warning + .clearfix button')
+                add_anyway.click()
+        except NoSuchElementException:
+            pass
+
+        amount_select = browser.find_elements_by_css_selector('.bag-item select')[-1]
+        amount_select.send_keys(quantity)
+        amount_select.send_keys(Keys.TAB)
+
+        selected = Select(amount_select).first_selected_option
+        if quantity != selected.text:
+            print("WARNING: Could not select desired quantity. {} != {}".format(quantity, selected.text))
+        else:
+            print()
+
+    browser.execute_script("window.scroll(0, 0);")
+    print()
+    print("We're done. You can finalize your order now. Thanks for watching!")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,5 @@
+# Python Project Requirements (package dependencies)
+# --------------------------------------------------
+# Usage: run `pip install -r requirements.txt` to install the dependencies of this project
+
+selenium==2.48.0
