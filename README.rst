@@ -30,15 +30,25 @@ Usage
    Specifically, the document will make the latter section less vague with regards to
    the *"you’ll need to purchase [...] certain Technic building elements"* statement.
 
-#. ``lego-mindstorms-pieces.py`` is a Python3 script to generate the combined list of
-   LEGO pieces from the three separate inventory lists.  It takes three file names as
-   an argument, e.g. ::
+#. ``lego-mindstorms-pieces.py`` is a Python3 script to help with calculating and
+   ordering required LEGO Mindstorms EV3 spare parts.  It has two functions:
 
-    $ python3 lego-mindstorms-pieces.py parse raw-data/Brickset-inventory-* > combined-list.csv
+   ``parse``
+      Generate the combined list of LEGO pieces from the 3 separate inventory
+      lists.  The combined list is what the above mentioned spread sheet is made
+      of.  It takes three file names as an argument.  Output is sent to ``stdout``.
+      You can redirect it to a text file using the ``>`` operator on the command
+      line.
 
-   You only need this script if you change the source data (inventory lists) to create
-   a new combined list, in order to re-integrate the changes into the spread sheet.
-   That said, chances are you won't need to use this script ever.
+   ``order``
+      Fill in a list of LEGO parts and their quantity on LEGO's customer service
+      platform.  A browser window will be opened, you'll be able to watch the
+      browser while the part numbers are filled in, and execution will stop after
+      all pieces have been added to the 'Shopping Bag', so you can review and
+      finalize your order.  (This is just to help you save time on entering 60+
+      pieces manually.  Nothing is ordered on your behalf!)
+
+   For full usage instructions run: ``python3 lego-mindstorms-pieces.py order --help``
 
 Resources
 ---------
@@ -183,7 +193,7 @@ in a pull request please also regenerate the combined list and update the Calc
 spread sheet as follows::
 
    $ cd raw-data/
-   $ python3 ../lego-mindstorms-pieces.py parse Brickset-inventory-* > "Lego Mindstorms EV3 combined list.csv"
+   $ python3 ../lego-mindstorms-pieces.py parse Brickset-* > "Lego Mindstorms EV3 combined list.csv"
 
 Then open ``Lego-Mindstorms-Editions-Comparison.ods`` and copy the contents of
 the regenerated ``Lego Mindstorms EV3 combined list.csv`` from a text editor
