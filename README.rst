@@ -16,6 +16,19 @@ If you one day want to upgrade your set you'll be wondering if you can combine t
 two.  The data elaborated in this project may help you with your decision on what
 pieces to buy.
 
+Reading
+-------
+
+* `The Difference Between LEGO MINDSTORMS EV3 Home Edition (#31313) and LEGO MINDSTORMS Education EV3 (#45544)`_
+* `LEGO Answers question`_ (Bricks, a StackExchange site)
+
+
+.. _The Difference Between LEGO MINDSTORMS EV3 Home Edition (#31313) and LEGO MINDSTORMS Education EV3 (#45544):
+    http://robotsquare.com/2013/11/25/difference-between-ev3-home-edition-and-education-ev3/
+.. _Laurens Valk: http://robotsquare.com/about/
+.. _LEGO Answers question:
+    http://bricks.stackexchange.com/questions/1819/what-is-different-between-the-ev3-home-and-educational-sets/
+
 Usage
 -----
 
@@ -31,7 +44,7 @@ Usage
    the *"you’ll need to purchase [...] certain Technic building elements"* statement.
 
 #. ``lego-mindstorms-pieces.py`` is a Python3 script to help with calculating and
-   ordering required LEGO Mindstorms EV3 spare parts.  It has two functions:
+   ordering required LEGO Mindstorms EV3 spare parts.  It has three commands:
 
    ``parse``
       Generate the combined list of LEGO pieces from the 3 separate inventory
@@ -40,37 +53,36 @@ Usage
       You can redirect it to a text file using the ``>`` operator on the command
       line.
 
+   ``missing``
+      Generate a list of LEGO parts missing in the remaining two LEGO sets.
+      The output has the format 'part:quantity,...' and is sent to ``stdout``.
+      You can use the result as order list for the ``order`` command.
+
    ``order``
-      Fill in a list of LEGO parts and their quantity on LEGO's customer service
-      platform.  A browser window will be opened, you'll be able to watch the
-      browser while the part numbers are filled in, and execution will stop after
-      all pieces have been added to the 'Shopping Bag', so you can review and
-      finalize your order.  (This is just to help you save time on entering 60+
-      pieces manually.  Nothing is ordered on your behalf!)
+      Add a list of LEGO parts and their quantity to the 'Shopping Bag' of LEGO's
+      customer service platform.  A browser window will be opened, you'll be able
+      to watch the browser do what you would normally do by hand, and execution
+      will stop after all pieces have been added, so you can review and finalize
+      your order.  (This is just to help you save time on entering 60+ pieces
+      manually.  Nothing is ordered on your behalf!)
 
-   For full usage instructions run: ``python3 lego-mindstorms-pieces.py order --help``
+   For full instructions run: ``python3 lego-mindstorms-pieces.py {command} --help``
 
-Resources
----------
+Data Sources
+~~~~~~~~~~~~
 
 * LEGO Mindstorms, `31313 EV3 Home Edition`_, User Guide (look for "User Guide" button)
 * LEGO Mindstorms Education, `45544 EV3 Core Set`_, Element Overview
 * LEGO Mindstorms Education, `45560 EV3 Expansion Set`_, Element Overview
 * Brickset inventory lists: 31313-1_, 45544-1_, 45560-1_
-* `The Difference Between LEGO MINDSTORMS EV3 Home Edition (#31313) and LEGO MINDSTORMS Education EV3 (#45544)`_
-* `LEGO Answers`_ question (Bricks, a StackExchange site)
 
 
-.. _The Difference Between LEGO MINDSTORMS EV3 Home Edition (#31313) and LEGO MINDSTORMS Education EV3 (#45544):
-    http://robotsquare.com/2013/11/25/difference-between-ev3-home-edition-and-education-ev3/
-.. _Laurens Valk: http://robotsquare.com/about/
 .. _31313 EV3 Home Edition: http://www.lego.com/en-us/mindstorms/downloads
 .. _45544 EV3 Core Set: https://education.lego.com/en-us/lego-education-product-database/mindstorms-ev3/45544-lego-mindstorms-education-ev3-core-set
 .. _45560 EV3 Expansion Set: https://education.lego.com/en-us/lego-education-product-database/mindstorms-ev3/45560-lego-mindstorms-education-ev3-expansion-set
 .. _31313-1: http://brickset.com/inventories/31313-1
 .. _45544-1: http://brickset.com/inventories/45544-1
 .. _45560-1: http://brickset.com/inventories/45560-1
-.. _LEGO Answers: http://bricks.stackexchange.com/questions/1819/what-is-different-between-the-ev3-home-and-educational-sets/
 
 Where To Go From Here?
 ----------------------

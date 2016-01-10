@@ -22,18 +22,36 @@ you have bought LEGO Mindstorms EV3 Home Edition (31313) and the Education
 Expansion Set (45560).  So you can make all robots that can be made with
 the Education Core Set (45544) + Education Expansion Set.
 """
+import os.path
 import sys
 from argparse import ArgumentParser
+
+SET_EV3HOME = '31313'
+SET_EDUCORE = '45544'
+SET_EDUEXPA = '45560'
 
 
 def main():
     parser = ArgumentParser(description="Help with calculating and ordering required LEGO Mindstorms EV3 spare parts.")
     commands = parser.add_subparsers(metavar='command', dest='command')
     commands.required = True
+
     cmd = commands.add_parser(
         'parse', help="Parse 3 inventory data files and combine them into a single data list."
                       " You can redirect the output into a text file on the command line.")
     cmd.add_argument('datafiles', nargs=3, help="3 inventory data files for the 3 LEGO sets")
+
+    cmd = commands.add_parser(
+        'missing', help="Calculate the LEGO pieces missing in the combination of the Edu"
+                        " Expansion set + Home or Edu Core, that only the other (omitted)"
+                        " set would have.")
+    cmd.add_argument('omitted_set', choices=[SET_EV3HOME, SET_EDUCORE],
+                     help="The LEGO set you did *not* buy, which you need the bricks from."
+                          " 31313 = Mindstorms EV3, 45544 = Edu Core, 45560 = Edu Expansion.")
+    datafile_default = os.path.join('raw-data', 'Lego Mindstorms EV3 combined list.csv')
+    cmd.add_argument('--datafile', '-f', default=datafile_default,
+                     help="The combined list data file. Default: {}".format(datafile_default))
+
     cmd = commands.add_parser(
         'order', help="Add the LEGO parts you need to the shopping bag on LEGO's customer service platform.")
     cmd.add_argument('--shop', '-s', default='en-us',
@@ -46,7 +64,7 @@ def main():
                      help="Web browser that will be used to open the LEGO shop. Default: firefox")
     cmd.add_argument('--username', '-u', help="User name for your LEGO ID account")
     cmd.add_argument('--password', '-p', help="Password for your LEGO ID account")
-    cmd.add_argument('--lego-set', '-l', default='45544', choices=['31313', '45544', '45560'],
+    cmd.add_argument('--lego-set', '-l', default=SET_EDUCORE, choices=[SET_EV3HOME, SET_EDUCORE, SET_EDUEXPA],
                      help="The LEGO set you did *not* buy, which you need the bricks from."
                           " 31313 = Mindstorms EV3, 45544 = Edu Core, 45560 = Edu Expansion."
                           " Default: 45544 (Edu Core)")
@@ -119,12 +137,34 @@ def parse(datafiles):
               '%(image)s' % part_data)
 
 
+def missing(omitted_set, datafile):
+    """
+    Generate a list of LEGO parts missing in the remaining two LEGO sets.
+    """
+    order_list = []
+
+    with open(datafile) as f:
+        data_lines = f.readlines()[1:]
+        for line in data_lines:
+            (partno, legoid, count_home, count_core, count_expa, name, image) = line.split('\t')
+            difference = \
+                int(count_home) - int(count_core) if omitted_set == SET_EV3HOME else (
+                    int(count_core) - int(count_home) if omitted_set == SET_EDUCORE else (
+                        None  # undefined (will cause an error)
+                    )
+                )
+            if difference > 0:
+                order_list += ['{pn}:{qty}'.format(pn=partno, qty=difference)]
+
+    print(','.join(order_list))
+
+
 def order(shop=None, browser=None, lego_set=None, order_list=None, username=None, password=None):
     """
     Fill in LEGO parts to be ordered in LEGO's customer service shop.
     """
     from selenium.common.exceptions import NoSuchElementException
-    from selenium.webdriver import Firefox
+    from selenium.webdriver import Chrome, Firefox
     from selenium.webdriver.common.keys import Keys
     from selenium.webdriver.support.select import Select
     from time import sleep
@@ -132,7 +172,7 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     order_list = order_list.split(',')
 
     shop_url = 'https://wwwsecure.us.lego.com/{shop}/service/replacementparts/order'.format(shop=shop)
-    browser = Firefox()
+    browser = Chrome() if browser == 'chrome' else Firefox()
     browser.implicitly_wait(4)
     browser.get(shop_url)
 
