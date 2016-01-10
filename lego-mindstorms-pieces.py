@@ -36,15 +36,17 @@ def main():
     cmd.add_argument('datafiles', nargs=3, help="3 inventory data files for the 3 LEGO sets")
     cmd = commands.add_parser(
         'order', help="Add the LEGO parts you need to the shopping bag on LEGO's customer service platform.")
-    cmd.add_argument('--shop', default='en-us',
+    cmd.add_argument('--shop', '-s', default='en-us',
                      choices=['nl-be', 'fr-be', 'cs-cz', 'da-dk', 'de-de', 'es-es', 'fr-fr',
                               'it-it', 'es-ar', 'hu-hu', 'nl-nl', 'nb-no', 'pl-pl', 'fi-fi',
                               'sv-se', 'en-gb', 'en-us', 'ru-ru', 'ko-kr', 'zh-cn', 'ja-jp'],
                      help="<language-country> identifier of the LEGO shop (language and geographic region)"
                           " you want to use for ordering. Default: en-us")
-    cmd.add_argument('--browser', default='firefox', choices=['chrome', 'firefox'],
+    cmd.add_argument('--browser', '-b', default='firefox', choices=['chrome', 'firefox'],
                      help="Web browser that will be used to open the LEGO shop. Default: firefox")
-    cmd.add_argument('--lego-set', default='45544', choices=['31313', '45544', '45560'],
+    cmd.add_argument('--username', '-u', help="User name for your LEGO ID account")
+    cmd.add_argument('--password', '-p', help="Password for your LEGO ID account")
+    cmd.add_argument('--lego-set', '-l', default='45544', choices=['31313', '45544', '45560'],
                      help="The LEGO set you did *not* buy, which you need the bricks from."
                           " 31313 = Mindstorms EV3, 45544 = Edu Core, 45560 = Edu Expansion."
                           " Default: 45544 (Edu Core)")
@@ -117,7 +119,7 @@ def parse(datafiles):
               '%(image)s' % part_data)
 
 
-def order(shop=None, browser=None, lego_set=None, order_list=None):
+def order(shop=None, browser=None, lego_set=None, order_list=None, username=None, password=None):
     """
     Fill in LEGO parts to be ordered in LEGO's customer service shop.
     """
@@ -142,12 +144,28 @@ def order(shop=None, browser=None, lego_set=None, order_list=None):
         print("We're lucky, no survey on the LEGO shop today!")
 
     print("They want to know how old we are.")
-    age_field = browser.find_element_by_id('How old are you?')
+    age_field = browser.find_element_by_name('rpAgeAndCountryAgeField')
     age_field.send_keys('55')
     age_field.send_keys(Keys.RETURN)
 
+    if username and password:
+        print("Let's log in with LEGO ID {user}.".format(user=username))
+        login_link = browser.find_element_by_css_selector('.legoid .links > a')
+        login_link.click()
+
+        browser.switch_to.frame('legoid-iframe')
+
+        user_input = browser.find_element_by_id('fieldUsername')
+        user_input.send_keys(username)
+        passwd_input = browser.find_element_by_id('fieldPassword')
+        passwd_input.send_keys(password)
+        login_button = browser.find_element_by_id('buttonSubmitLogin')
+        login_button.click()
+
+        browser.switch_to.default_content()
+
     print("We need to tell them which set we want to buy parts from.")
-    setno_field = browser.find_element_by_id('Set number')
+    setno_field = browser.find_element_by_css_selector('.product-search input[ng-model=productNumber]')
     setno_field.send_keys(lego_set)
     setno_field.send_keys(Keys.RETURN)
 
