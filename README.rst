@@ -111,8 +111,7 @@ LEGO Parts Research, Shopping And Other Resources
   * compare `Mindstorms vs. Edu Core`_
   * compare `Mindstorms vs. Edu Expansion`_
   * compare `Edu Core vs. Edu Expansion`_
-  * search `sets`_
-  * search `parts`_
+  * search `sets`_, search `parts`_
 
 * Brickset:
 
