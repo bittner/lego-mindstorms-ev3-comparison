@@ -69,6 +69,19 @@ Usage
 
    For full instructions run: ``python3 lego-mindstorms-pieces.py {command} --help``
 
+Documentation, Examples, Hints
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+See the `docs folder`_ for sample output of the ``order`` command, and screenshots
+of prepared orders at LEGO's customer service platform.
+
+The order process at LEGO is highly automated.  This usually means that orders
+with items out of stock, or orders that are too large will not be processed.
+LEGO notifies you with an automatic email in such a case.
+
+
+.. _docs folder: https://github.com/bittner/lego-mindstorms-ev3-comparison/tree/master/docs
+
 Data Sources
 ~~~~~~~~~~~~
 
