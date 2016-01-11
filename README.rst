@@ -48,15 +48,16 @@ Usage
 
    ``parse``
       Generate the combined list of LEGO pieces from the 3 separate inventory
-      lists.  The combined list is what the above mentioned spread sheet is made
-      of.  It takes three file names as an argument.  Output is sent to ``stdout``.
+      lists (the combined list is what the above mentioned spread sheet is made of).
+      It takes three file names as an argument.  Output is sent to ``stdout``.
       You can redirect it to a text file using the ``>`` operator on the command
       line.
 
    ``missing``
-      Generate a list of LEGO parts missing in the remaining two LEGO sets.
-      The output has the format 'part:quantity,...' and is sent to ``stdout``.
-      You can use the result as order list for the ``order`` command.
+      Generate a list of LEGO parts missing in the combination of the Edu Expansion
+      set + Home or Edu Core, that only the other (omitted) set would have.
+      The output has the format ``part:quantity,...`` and is sent to ``stdout``.
+      You can use the result as a shopping list in the ``order`` command.
 
    ``order``
       Add a list of LEGO parts and their quantity to the 'Shopping Bag' of LEGO's
