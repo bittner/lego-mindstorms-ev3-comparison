@@ -166,14 +166,16 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     from selenium.common.exceptions import NoSuchElementException
     from selenium.webdriver import Chrome, Firefox
     from selenium.webdriver.common.keys import Keys
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support import expected_conditions as EC
     from selenium.webdriver.support.select import Select
+    from selenium.webdriver.support.wait import WebDriverWait
     from time import sleep
 
     order_list = order_list.split(',')
 
     shop_url = 'https://wwwsecure.us.lego.com/{shop}/service/replacementparts/order'.format(shop=shop)
     browser = Chrome() if browser == 'chrome' else Firefox()
-    browser.implicitly_wait(4)
     browser.get(shop_url)
 
     print("Sometimes they ask you to fill in a survey.")
@@ -196,16 +198,22 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
         browser.switch_to.frame('legoid-iframe')
 
         user_input = browser.find_element_by_id('fieldUsername')
+        user_input.click()
         user_input.send_keys(username)
         passwd_input = browser.find_element_by_id('fieldPassword')
+        passwd_input.click()
         passwd_input.send_keys(password)
         login_button = browser.find_element_by_id('buttonSubmitLogin')
         login_button.click()
 
         browser.switch_to.default_content()
 
-    print("We need to tell them which set we want to buy parts from.")
-    setno_field = browser.find_element_by_css_selector('.product-search input[ng-model=productNumber]')
+    sleep(4)  # seconds
+    wait = WebDriverWait(browser, 5)
+
+    print("We need to tell them which set we want to buy parts from: {lego_set}".format(lego_set=lego_set))
+    setno_field = wait.until(EC.element_to_be_clickable(
+        (By.CSS_SELECTOR, '.product-search input[ng-model=productNumber]')))
     setno_field.send_keys(lego_set)
     setno_field.send_keys(Keys.RETURN)
 
@@ -213,7 +221,8 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     browser.execute_script("window.scroll(0, 750);")
 
     print("That's gonna be crazy: {count} elements to order! Let's rock.".format(count=len(order_list)))
-    element_field = browser.find_element_by_id('element-filter')
+    element_field = wait.until(EC.element_to_be_clickable(
+        (By.ID, 'element-filter')))
     print()
 
     for brick in order_list:
