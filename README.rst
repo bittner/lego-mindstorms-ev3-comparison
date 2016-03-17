@@ -43,6 +43,14 @@ Usage
    Specifically, the document will make the latter section less vague with regards to
    the *"you’ll need to purchase [...] certain Technic building elements"* statement.
 
+   .. note::
+
+      If you can't or don't want to install `LibreOffice`_ here are some free services
+      that display or convert the spread sheet: `convert-doc`_ (view), `Zamzar`_ (convert),
+      `convertfiles`_ (convert).  Some let you specify the `raw document url`_ directly.
+      `Google Docs`_ and `Zoho Docs`_ also import the spread sheet.
+
+
 #. ``lego-mindstorms-pieces.py`` is a Python3 script to help with calculating and
    ordering required LEGO Mindstorms EV3 spare parts.  It has three commands:
 
@@ -68,6 +76,16 @@ Usage
       manually.  Nothing is ordered on your behalf!)
 
    For full instructions run: ``python3 lego-mindstorms-pieces.py {command} --help``
+
+
+.. _LibreOffice: http://www.libreoffice.org/download/
+.. _convert-doc: http://www.convert-doc.com/viewer/ods.html
+.. _Zamzar: http://www.zamzar.com/convert/ods-to-xlsx/
+.. _convertfiles: http://www.convertfiles.com/convert/document/ODS-to-XLS.html
+.. _raw document url:
+    https://github.com/bittner/lego-mindstorms-ev3-comparison/raw/master/Lego-Mindstorms-Editions-Comparison.ods
+.. _Google Docs: https://docs.google.com/
+.. _Zoho Docs: https://docs.zoho.com/sheet/
 
 Documentation, Examples, Hints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
