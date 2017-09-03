@@ -163,8 +163,12 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     """
     Fill in LEGO parts to be ordered in LEGO's customer service shop.
     """
+    from selenium import webdriver
+
     from selenium.common.exceptions import NoSuchElementException
-    from selenium.webdriver import Chrome, Firefox
+    from selenium.common.exceptions import TimeoutException
+
+    from selenium.webdriver import Chrome, Firefox, ChromeOptions
     from selenium.webdriver.common.keys import Keys
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support import expected_conditions as EC
@@ -174,11 +178,38 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
 
     order_list = order_list.split(',')
 
-    shop_url = 'https://wwwsecure.us.lego.com/{shop}/service/replacementparts/order'.format(shop=shop)
-    browser = Chrome() if browser == 'chrome' else Firefox()
+    print("Using Selenium version : ",webdriver.__version__)
+
+    shop_url = 'https://wwwsecure.us.lego.com/{shop}/service/replacementparts/sale'.format(shop=shop)
+
+    print("Browser URL : ",shop_url)
+
+    ## detect browser choice
+    if browser == 'chrome':
+        opts = ChromeOptions()
+        # With selenium version above this one, chrome is closed at the end without the "quit()" method !
+        # Here is a fix to detach Chrome from python.
+        if webdriver.__version__ > '2.48.0':
+          print("Apply experimental detach option for Chrome")
+          opts.add_experimental_option("detach", True)
+
+        browser = Chrome(chrome_options=opts)
+    else:
+        browser = Firefox()
+
+    print("Browser capabilities")
+    print(browser.capabilities)
+
+    # Selenium can't find some elements otherwise
+    browser.maximize_window()
+
     browser.get(shop_url)
 
+    # will wait to 5 sec for and ExpectedCondition success, otherwise exception TimeoutException
+    wait = WebDriverWait(browser, 5)
+
     print("Sometimes they ask you to fill in a survey.")
+
     try:
         survey_layer = browser.find_element_by_id('ipeL104230')
         survey_layer.send_keys(Keys.ESCAPE)
@@ -190,26 +221,42 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     age_field.send_keys('55')
     age_field.send_keys(Keys.RETURN)
 
+    # wait for age_field's DOM element to be removed
+    wait.until(EC.staleness_of(age_field))
+
+    ## login stuff
     if username and password:
+
         print("Let's log in with LEGO ID {user}.".format(user=username))
-        login_link = browser.find_element_by_css_selector('.legoid .links > a')
+        login_link = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,".legoid .links > a[data-uitest = 'login-link']")))
         login_link.click()
 
         browser.switch_to.frame('legoid-iframe')
 
-        user_input = browser.find_element_by_id('fieldUsername')
+        user_input = wait.until(EC.element_to_be_clickable((By.ID,'fieldUsername')))
         user_input.click()
         user_input.send_keys(username)
-        passwd_input = browser.find_element_by_id('fieldPassword')
+
+        passwd_input = wait.until(EC.element_to_be_clickable((By.ID,'fieldPassword')))
         passwd_input.click()
         passwd_input.send_keys(password)
+
         login_button = browser.find_element_by_id('buttonSubmitLogin')
         login_button.click()
 
         browser.switch_to.default_content()
 
-    sleep(4)  # seconds
-    wait = WebDriverWait(browser, 5)
+        # ensure the user/password are good
+        try:
+          wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,".legoid .links > a[data-uitest = 'logout-link']")))
+          print("login success !")
+        except TimeoutException:
+          print("login failed !")
+          # close the browser and stop here
+          browser.quit()
+          return
+
+    ## product selection
 
     print("We need to tell them which set we want to buy parts from: {lego_set}".format(lego_set=lego_set))
     setno_field = wait.until(EC.element_to_be_clickable(
@@ -221,14 +268,23 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     browser.execute_script("window.scroll(0, 750);")
 
     print("That's gonna be crazy: {count} elements to order! Let's rock.".format(count=len(order_list)))
-    element_field = wait.until(EC.element_to_be_clickable(
-        (By.ID, 'element-filter')))
     print()
+
+    counter = 0
+    counter_outOfStock = 0
+    counter_notInSet = 0
+    counter_found = 0
+
+    total_elements=len(order_list)
 
     for brick in order_list:
         part_no, quantity = brick.split(':')
-        print("- {qty}x #{pn} ".format(qty=quantity, pn=part_no), end='')
 
+        counter += 1
+
+        print("- [{counter}/{total_elements}] {qty}x #{pn} ".format(qty=quantity, pn=part_no,counter=counter,total_elements=total_elements), end='')
+
+        element_field = wait.until(EC.element_to_be_clickable((By.ID, 'element-filter')))
         element_field.clear()
         element_field.send_keys(part_no)
         element_field.send_keys(Keys.RETURN)
@@ -236,34 +292,43 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
 
         try:
             add_button = browser.find_element_by_css_selector('.element-details + button')
-            add_button.click()
-            sleep(.2)  # seconds
+            if add_button.is_enabled():
+              add_button.click()
+              sleep(.2)  # seconds
+            else:
+              counter_outOfStock += 1
+              print("NOTE: item out of stock. ")
+              continue
+
+            print("Found ", end='')
+
+            # set the value for item's quantity drop-down menu
+            amount_select = browser.find_elements_by_css_selector('.bag-item select')[-1]
+            Select(amount_select).select_by_visible_text(quantity)
+
+            # ensure the value is correct
+            selected = Select(amount_select).first_selected_option
+
+            if quantity != selected.text:
+              print("WARNING: Could not select desired quantity. {} != {}".format(quantity, selected.text))
+            else:
+              counter_found +=1
+              print()
+
         except NoSuchElementException:
             print("OOOPS! No LEGO part with that number found in set #{set}. :-(".format(set=lego_set))
+            counter_notInSet += 1
             continue
 
-        try:
-            warn_msg = browser.find_element_by_css_selector('.alert-warning .sold-out-info')
-            if warn_msg.is_displayed():
-                print("NOTE: item out of stock. ", end='')
-                add_anyway = browser.find_element_by_css_selector('.alert-warning + .clearfix button')
-                add_anyway.click()
-        except NoSuchElementException:
-            pass
-
-        amount_select = browser.find_elements_by_css_selector('.bag-item select')[-1]
-        amount_select.send_keys(quantity)
-        amount_select.send_keys(Keys.TAB)
-
-        selected = Select(amount_select).first_selected_option
-        if quantity != selected.text:
-            print("WARNING: Could not select desired quantity. {} != {}".format(quantity, selected.text))
-        else:
-            print()
 
     browser.execute_script("window.scroll(0, 0);")
     print()
     print("We're done. You can finalize your order now. Thanks for watching!")
+    print()
+    print("Stats :")
+    print("Elements found          : {s}/{total_elements}".format(s=counter_found,total_elements=total_elements))
+    print("Elements not in set     : {s}".format(s=counter_notInSet))
+    print("Elements out of stock   : {s}".format(s=counter_outOfStock))
 
 
 if __name__ == "__main__":
