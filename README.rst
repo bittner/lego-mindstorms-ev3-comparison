@@ -77,12 +77,6 @@ Usage
 
    For full instructions run: ``python3 lego-mindstorms-pieces.py {command} --help``
 
-   **Requirements** :
-
-   * Python Selenium (see requirements.txt)
-   * `geckodriver`_
-   * `chromedriver`_
-
 .. _LibreOffice: http://www.libreoffice.org/download/
 .. _convert-doc: http://www.convert-doc.com/viewer/ods.html
 .. _Zamzar: http://www.zamzar.com/convert/ods-to-xlsx/
@@ -91,6 +85,16 @@ Usage
     https://github.com/bittner/lego-mindstorms-ev3-comparison/raw/master/Lego-Mindstorms-Editions-Comparison.ods
 .. _Google Docs: https://docs.google.com/
 .. _Zoho Docs: https://docs.zoho.com/sheet/
+
+Requirements
+~~~~~~~~~~~~
+
+#. ``lego-mindstorms-pieces.py``
+
+  * Python Selenium (see requirements.txt)
+  * `geckodriver`_
+  * `chromedriver`_
+
 .. _geckodriver: https://github.com/mozilla/geckodriver/releases
 .. _chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
 

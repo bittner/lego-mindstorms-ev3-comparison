@@ -159,7 +159,9 @@ def missing(omitted_set, datafile):
     print(','.join(order_list))
 
 
-def order(shop=None, browser=None, lego_set=None, order_list=None, username=None, password=None):
+def order(
+    shop=None, browser=None, lego_set=None, order_list=None,
+        username=None, password=None):
     """
     Fill in LEGO parts to be ordered in LEGO's customer service shop.
     """
@@ -178,20 +180,21 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
 
     order_list = order_list.split(',')
 
-    print("Using Selenium version : ",webdriver.__version__)
+    print("Using Selenium version : ", webdriver.__version__)
 
     shop_url = 'https://wwwsecure.us.lego.com/{shop}/service/replacementparts/sale'.format(shop=shop)
 
-    print("Browser URL : ",shop_url)
+    print("Browser URL : {url}".format(url=shop_url))
 
-    ## detect browser choice
+    # detect browser choice #
     if browser == 'chrome':
         opts = ChromeOptions()
-        # With selenium version above this one, chrome is closed at the end without the "quit()" method !
+        # With selenium version above this one, chrome is closed
+        # at the end without the "quit()" method!
         # Here is a fix to detach Chrome from python.
         if webdriver.__version__ > '2.48.0':
-          print("Apply experimental detach option for Chrome")
-          opts.add_experimental_option("detach", True)
+            print("Apply experimental detach option for Chrome")
+            opts.add_experimental_option("detach", True)
 
         browser = Chrome(chrome_options=opts)
     else:
@@ -205,7 +208,8 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
 
     browser.get(shop_url)
 
-    # will wait to 5 sec for and ExpectedCondition success, otherwise exception TimeoutException
+    # will wait to 5 sec for and ExpectedCondition success,
+    # otherwise exception TimeoutException
     wait = WebDriverWait(browser, 5)
 
     print("Sometimes they ask you to fill in a survey.")
@@ -217,27 +221,31 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
         print("We're lucky, no survey on the LEGO shop today!")
 
     print("They want to know how old we are.")
-    age_field = browser.find_element_by_name('rpAgeAndCountryAgeField')
+    age_field = wait.until(EC.element_to_be_clickable(
+        (By.NAME, 'rpAgeAndCountryAgeField')))
     age_field.send_keys('55')
     age_field.send_keys(Keys.RETURN)
 
     # wait for age_field's DOM element to be removed
     wait.until(EC.staleness_of(age_field))
 
-    ## login stuff
+    # login stuff #
     if username and password:
 
         print("Let's log in with LEGO ID {user}.".format(user=username))
-        login_link = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,".legoid .links > a[data-uitest = 'login-link']")))
+        login_link = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, ".legoid .links > a[data-uitest='login-link']")))
         login_link.click()
 
         browser.switch_to.frame('legoid-iframe')
 
-        user_input = wait.until(EC.element_to_be_clickable((By.ID,'fieldUsername')))
+        user_input = wait.until(EC.element_to_be_clickable(
+            (By.ID, 'fieldUsername')))
         user_input.click()
         user_input.send_keys(username)
 
-        passwd_input = wait.until(EC.element_to_be_clickable((By.ID,'fieldPassword')))
+        passwd_input = wait.until(EC.element_to_be_clickable(
+            (By.ID, 'fieldPassword')))
         passwd_input.click()
         passwd_input.send_keys(password)
 
@@ -248,19 +256,26 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
 
         # ensure the user/password are good
         try:
-          wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,".legoid .links > a[data-uitest = 'logout-link']")))
-          print("login success !")
-        except TimeoutException:
-          print("login failed !")
-          # close the browser and stop here
-          browser.quit()
-          return
+            wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR,
+                    ".legoid .links > a[data-uitest='logout-link']")
+            ))
 
-    ## product selection
+            print("login success!")
+        except TimeoutException:
+            print("login failed!")
+            # close the browser and stop here
+            browser.quit()
+            return
+
+    # product selection #
 
     print("We need to tell them which set we want to buy parts from: {lego_set}".format(lego_set=lego_set))
-    setno_field = wait.until(EC.element_to_be_clickable(
-        (By.CSS_SELECTOR, '.product-search input[ng-model=productNumber]')))
+    setno_field = wait.until(
+        EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, '.product-search input[ng-model=productNumber]'))
+    )
+
     setno_field.send_keys(lego_set)
     setno_field.send_keys(Keys.RETURN)
 
@@ -271,20 +286,26 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     print()
 
     counter = 0
-    counter_outOfStock = 0
-    counter_notInSet = 0
-    counter_found = 0
+    out_of_stock_counter = 0
+    not_in_set_counter = 0
+    found_counter = 0
 
-    total_elements=len(order_list)
+    total_elements = len(order_list)
 
     for brick in order_list:
         part_no, quantity = brick.split(':')
 
         counter += 1
 
-        print("- [{counter}/{total_elements}] {qty}x #{pn} ".format(qty=quantity, pn=part_no,counter=counter,total_elements=total_elements), end='')
+        print("- [{counter}/{total_elements}] {qty}x #{pn} ".format(
+            qty=quantity,
+            pn=part_no,
+            counter=counter,
+            total_elements=total_elements), end='')
 
-        element_field = wait.until(EC.element_to_be_clickable((By.ID, 'element-filter')))
+        element_field = wait.until(EC.element_to_be_clickable(
+            (By.ID, 'element-filter')))
+
         element_field.clear()
         element_field.send_keys(part_no)
         element_field.send_keys(Keys.RETURN)
@@ -293,14 +314,15 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
         try:
             add_button = browser.find_element_by_css_selector('.element-details + button')
             if add_button.is_enabled():
-              add_button.click()
-              sleep(.2)  # seconds
+                add_button.click()
+                sleep(.2)  # seconds
             else:
-              counter_outOfStock += 1
-              print("NOTE: item out of stock. ")
-              continue
+                out_of_stock_counter += 1
+                print("NOTE: item out of stock.")
+                continue
 
-            print("Found ", end='')
+            print("Found", end='')
+            found_counter += 1
 
             # set the value for item's quantity drop-down menu
             amount_select = browser.find_elements_by_css_selector('.bag-item select')[-1]
@@ -310,25 +332,24 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
             selected = Select(amount_select).first_selected_option
 
             if quantity != selected.text:
-              print("WARNING: Could not select desired quantity. {} != {}".format(quantity, selected.text))
+                print("WARNING: Could not select desired quantity. {} != {}".format(quantity, selected.text))
             else:
-              counter_found +=1
-              print()
+                print()
 
         except NoSuchElementException:
             print("OOOPS! No LEGO part with that number found in set #{set}. :-(".format(set=lego_set))
-            counter_notInSet += 1
+            not_in_set_counter += 1
             continue
-
 
     browser.execute_script("window.scroll(0, 0);")
     print()
     print("We're done. You can finalize your order now. Thanks for watching!")
     print()
-    print("Stats :")
-    print("Elements found          : {s}/{total_elements}".format(s=counter_found,total_elements=total_elements))
-    print("Elements not in set     : {s}".format(s=counter_notInSet))
-    print("Elements out of stock   : {s}".format(s=counter_outOfStock))
+    print("Statistics :")
+    print("- {s} Wanted elements".format(s=total_elements))
+    print("- {s} Elements found".format(s=found_counter))
+    print("- {s} Elements not in set".format(s=not_in_set_counter))
+    print("- {s} Elements out of stock".format(s=out_of_stock_counter))
 
 
 if __name__ == "__main__":
