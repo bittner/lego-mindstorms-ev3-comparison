@@ -89,9 +89,9 @@ Usage
 Requirements
 ~~~~~~~~~~~~
 
-#. ``lego-mindstorms-pieces.py``
+To run ``lego-mindstorms-pieces.py`` you need:
 
-* Python Selenium (see requirements.txt)
+* Python Selenium (see ``requirements.txt``)
 * `geckodriver`_
 * `chromedriver`_
 
