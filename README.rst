@@ -91,9 +91,9 @@ Requirements
 
 #. ``lego-mindstorms-pieces.py``
 
-  * Python Selenium (see requirements.txt)
-  * `geckodriver`_
-  * `chromedriver`_
+* Python Selenium (see requirements.txt)
+* `geckodriver`_
+* `chromedriver`_
 
 .. _geckodriver: https://github.com/mozilla/geckodriver/releases
 .. _chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
@@ -238,6 +238,9 @@ Your Contribution
 If you find a typo, an error, a critical mistake or feel there's some enhancement
 needed please feel free to `open an issue`_, or even better clone the repository,
 apply your changes, and `place a pull request`_.  Your contribution is welcome!
+
+Please run ``flake8`` over the Python code to make sure it follows PEP8.
+A line length of 100 is okay (``flake8 --max-line-length=100``).
 
 Step by Step
 ~~~~~~~~~~~~

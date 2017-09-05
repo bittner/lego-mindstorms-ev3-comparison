@@ -32,7 +32,8 @@ SET_EDUEXPA = '45560'
 
 
 def main():
-    parser = ArgumentParser(description="Help with calculating and ordering required LEGO Mindstorms EV3 spare parts.")
+    parser = ArgumentParser(description="Help with calculating and ordering required"
+                                        " LEGO Mindstorms EV3 spare parts.")
     commands = parser.add_subparsers(metavar='command', dest='command')
     commands.required = True
 
@@ -52,25 +53,26 @@ def main():
     cmd.add_argument('--datafile', '-f', default=datafile_default,
                      help="The combined list data file. Default: {}".format(datafile_default))
 
-    cmd = commands.add_parser(
-        'order', help="Add the LEGO parts you need to the shopping bag on LEGO's customer service platform.")
+    cmd = commands.add_parser('order', help="Add the LEGO parts you need to the shopping bag"
+                                            " on LEGO's customer service platform.")
     cmd.add_argument('--shop', '-s', default='en-us',
                      choices=['nl-be', 'fr-be', 'cs-cz', 'da-dk', 'de-de', 'es-es', 'fr-fr',
                               'it-it', 'es-ar', 'hu-hu', 'nl-nl', 'nb-no', 'pl-pl', 'fi-fi',
                               'sv-se', 'en-gb', 'en-us', 'ru-ru', 'ko-kr', 'zh-cn', 'ja-jp'],
-                     help="<language-country> identifier of the LEGO shop (language and geographic region)"
-                          " you want to use for ordering. Default: en-us")
+                     help="<language-country> identifier of the LEGO shop (language and"
+                          " geographic region) you want to use for ordering. Default: en-us")
     cmd.add_argument('--browser', '-b', default='firefox', choices=['chrome', 'firefox'],
                      help="Web browser that will be used to open the LEGO shop. Default: firefox")
     cmd.add_argument('--username', '-u', help="User name for your LEGO ID account")
     cmd.add_argument('--password', '-p', help="Password for your LEGO ID account")
-    cmd.add_argument('--lego-set', '-l', default=SET_EDUCORE, choices=[SET_EV3HOME, SET_EDUCORE, SET_EDUEXPA],
+    cmd.add_argument('--lego-set', '-l', default=SET_EDUCORE,
+                     choices=[SET_EV3HOME, SET_EDUCORE, SET_EDUEXPA],
                      help="The LEGO set you did *not* buy, which you need the bricks from."
                           " 31313 = Mindstorms EV3, 45544 = Edu Core, 45560 = Edu Expansion."
                           " Default: 45544 (Edu Core)")
     cmd.add_argument('order_list',
-                     help="A list of LEGO part_number:quantity you want to buy, separated by comma signs."
-                          " Example: 370526:4,370726:2,4107085:4,4107767:2")
+                     help="A list of LEGO part_number:quantity you want to buy, separated by"
+                          " comma signs. Example: 370526:4,370726:2,4107085:4,4107767:2")
 
     # avoid intimidating the user ("error: ... required") with no arguments
     if len(sys.argv) == 1:
@@ -159,9 +161,7 @@ def missing(omitted_set, datafile):
     print(','.join(order_list))
 
 
-def order(
-    shop=None, browser=None, lego_set=None, order_list=None,
-        username=None, password=None):
+def order(shop=None, browser=None, lego_set=None, order_list=None, username=None, password=None):
     """
     Fill in LEGO parts to be ordered in LEGO's customer service shop.
     """
@@ -180,10 +180,10 @@ def order(
 
     order_list = order_list.split(',')
 
+    shop_url = 'https://wwwsecure.us.lego.com/{shop}/service/replacementparts/sale'.format(
+        shop=shop)
+
     print("Using Selenium version : ", webdriver.__version__)
-
-    shop_url = 'https://wwwsecure.us.lego.com/{shop}/service/replacementparts/sale'.format(shop=shop)
-
     print("Browser URL : {url}".format(url=shop_url))
 
     # detect browser choice #
@@ -270,7 +270,8 @@ def order(
 
     # product selection #
 
-    print("We need to tell them which set we want to buy parts from: {lego_set}".format(lego_set=lego_set))
+    print("We need to tell them which set we want to buy parts from: {lego_set}".format(
+        lego_set=lego_set))
     setno_field = wait.until(
         EC.element_to_be_clickable(
             (By.CSS_SELECTOR, '.product-search input[ng-model=productNumber]'))
@@ -282,7 +283,8 @@ def order(
     print("Let's scroll the page down a bit, so we can see things better.")
     browser.execute_script("window.scroll(0, 750);")
 
-    print("That's gonna be crazy: {count} elements to order! Let's rock.".format(count=len(order_list)))
+    print("That's gonna be crazy: {count} elements to order! Let's rock.".format(
+        count=len(order_list)))
     print()
 
     counter = 0
@@ -332,12 +334,14 @@ def order(
             selected = Select(amount_select).first_selected_option
 
             if quantity != selected.text:
-                print("WARNING: Could not select desired quantity. {} != {}".format(quantity, selected.text))
+                print("WARNING: Could not select desired quantity. {} != {}".format(
+                    quantity, selected.text))
             else:
                 print()
 
         except NoSuchElementException:
-            print("OOOPS! No LEGO part with that number found in set #{set}. :-(".format(set=lego_set))
+            print("OOOPS! No LEGO part with that number found in set #{set}. :-(".format(
+                set=lego_set))
             not_in_set_counter += 1
             continue
 
