@@ -30,6 +30,8 @@ SET_EV3HOME = '31313'
 SET_EDUCORE = '45544'
 SET_EDUEXPA = '45560'
 
+SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__))
+
 
 def main():
     parser = ArgumentParser(description="Help with calculating and ordering required"
@@ -49,7 +51,8 @@ def main():
     cmd.add_argument('omitted_set', choices=[SET_EV3HOME, SET_EDUCORE],
                      help="The LEGO set you did *not* buy, which you need the bricks from."
                           " 31313 = Mindstorms EV3, 45544 = Edu Core, 45560 = Edu Expansion.")
-    datafile_default = os.path.join('raw-data', 'Lego Mindstorms EV3 combined list.csv')
+    datafile_default = os.path.join(SCRIPT_PATH,
+                                    'raw-data', 'Lego Mindstorms EV3 combined list.csv')
     cmd.add_argument('--datafile', '-f', default=datafile_default,
                      help="The combined list data file. Default: {}".format(datafile_default))
 
@@ -161,10 +164,40 @@ def missing(omitted_set, datafile):
     print(','.join(order_list))
 
 
+def is_electric_part(wanted_part_no, print_set_link=False):
+    """
+    Detect if part is in EV3 Electric parts file, print link to standalone Set if wanted
+
+    return boolean
+    """
+
+    wanted_part_no = str(wanted_part_no)
+    datafile = os.path.join(SCRIPT_PATH, 'raw-data', 'Electric Parts.csv')
+
+    exit_code = False
+
+    with open(datafile) as f:
+        data_lines = f.readlines()[1:]
+        for line in data_lines:
+            (partno, legoid, legoshop_set) = line.split('\t')
+
+            if wanted_part_no == partno:
+                exit_code = True
+                if print_set_link is True:
+                    print("#{partno} : standalone set URL "
+                          "https://shop.lego.com/en-US/search/{legoshop_set}"
+                          .format(partno=wanted_part_no, legoshop_set=legoshop_set), end='')
+                break
+
+    return exit_code
+
+
 def order(shop=None, browser=None, lego_set=None, order_list=None, username=None, password=None):
     """
     Fill in LEGO parts to be ordered in LEGO's customer service shop.
     """
+    electric_part_list = []
+
     from selenium import webdriver
 
     from selenium.common.exceptions import NoSuchElementException
@@ -291,6 +324,7 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     out_of_stock_counter = 0
     not_in_set_counter = 0
     found_counter = 0
+    electric_part_counter = 0
 
     total_elements = len(order_list)
 
@@ -340,9 +374,16 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
                 print()
 
         except NoSuchElementException:
-            print("OOOPS! No LEGO part with that number found in set #{set}. :-(".format(
-                set=lego_set))
-            not_in_set_counter += 1
+
+            if is_electric_part(part_no) is True:
+                print("For Lego, Electric part are not in set #{set}, see note at the end.".format(
+                    set=lego_set))
+                electric_part_list.append(part_no)
+                electric_part_counter += 1
+            else:
+                print("OOOPS! No LEGO part with that number found in set #{set}. :-(".format(
+                    set=lego_set))
+                not_in_set_counter += 1
             continue
 
     browser.execute_script("window.scroll(0, 0);")
@@ -354,6 +395,14 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     print("- {s} Elements found".format(s=found_counter))
     print("- {s} Elements not in set".format(s=not_in_set_counter))
     print("- {s} Elements out of stock".format(s=out_of_stock_counter))
+    print("- {s} Elements of type 'Electric part'".format(s=electric_part_counter))
+
+    if electric_part_counter > 0:
+        print()
+        print("Electric parts you can add to your bag once you've added your order :")
+
+        for item in electric_part_list:
+            is_electric_part(item, True)
 
 
 if __name__ == "__main__":
