@@ -172,7 +172,7 @@ def is_electric_part(wanted_part_no, print_set_link=False):
     """
 
     wanted_part_no = str(wanted_part_no)
-    datafile = os.path.join(SCRIPT_PATH, 'raw-data', 'Electric Parts.csv')
+    datafile = os.path.join(SCRIPT_PATH, 'raw-data', 'Electric-parts.csv')
 
     exit_code = False
 
@@ -183,8 +183,8 @@ def is_electric_part(wanted_part_no, print_set_link=False):
 
             if wanted_part_no == partno:
                 exit_code = True
-                if print_set_link is True:
-                    print("#{partno} : standalone set URL "
+                if print_set_link:
+                    print("#{partno}: standalone set URL "
                           "https://shop.lego.com/en-US/search/{legoshop_set}"
                           .format(partno=wanted_part_no, legoshop_set=legoshop_set), end='')
                 break
@@ -375,7 +375,7 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
 
         except NoSuchElementException:
 
-            if is_electric_part(part_no) is True:
+            if is_electric_part(part_no):
                 print("For Lego, Electric part are not in set #{set}, see note at the end.".format(
                     set=lego_set))
                 electric_part_list.append(part_no)
