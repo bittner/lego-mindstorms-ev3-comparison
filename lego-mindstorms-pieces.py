@@ -179,7 +179,7 @@ def is_electric_part(wanted_part_no, print_set_link=False):
     with open(datafile) as f:
         data_lines = f.readlines()[1:]
         for line in data_lines:
-            (partno, legoid, legoshop_set) = line.split('\t')
+            partno, legoid, legoshop_set = line.split('\t')
 
             if wanted_part_no == partno:
                 exit_code = True
@@ -376,7 +376,7 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
         except NoSuchElementException:
 
             if is_electric_part(part_no):
-                print("For Lego, Electric part are not in set #{set}, see note at the end.".format(
+                print("The LEGO Group provides electric part out of set #{set}, see note at the end.".format(
                     set=lego_set))
                 electric_part_list.append(part_no)
                 electric_part_counter += 1
