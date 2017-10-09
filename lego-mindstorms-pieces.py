@@ -90,6 +90,28 @@ def main():
     function(**kwargs)
 
 
+def load_new_element_ids():
+    """
+    load list of new element IDs
+    """
+    global newelementid_map
+    global newelementid_comment
+
+    newelementid_map = {}
+    newelementid_comment = {}
+
+    datafile = os.path.join(SCRIPT_PATH, 'raw-data', 'elementid-refresh.csv')
+
+    with open(datafile) as f:
+        data_lines = f.readlines()[1:]
+        for line in data_lines:
+            line = line.strip()
+            eid_origin, eid_chain, eid_comment = line.split(';')
+            # convert each new element id of eid_chain as number
+            newelementid_map[int(eid_origin)] = list(map(int, eid_chain.split(",")))
+            newelementid_comment[int(eid_origin)] = eid_comment
+
+
 def parse(datafiles):
     """
     Parse LEGO inventory files and combine them into a single list.
@@ -196,6 +218,8 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     """
     Fill in LEGO parts to be ordered in LEGO's customer service shop.
     """
+    load_new_element_ids()
+
     electric_part_list = []
 
     from selenium import webdriver
@@ -325,12 +349,14 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     not_in_set_counter = 0
     found_counter = 0
     electric_part_counter = 0
+    duplicate_part_counter = 0
 
     total_elements = len(order_list)
 
+    added_part = {}
     for brick in order_list:
         part_no, quantity = brick.split(':')
-
+        part_no = int(part_no)
         counter += 1
 
         print("- [{counter}/{total_elements}] {qty}x #{pn} ".format(
@@ -339,52 +365,113 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
             counter=counter,
             total_elements=total_elements), end='')
 
-        element_field = wait.until(EC.element_to_be_clickable(
-            (By.ID, 'element-filter')))
+        original_part_no = int(part_no)
 
-        element_field.clear()
-        element_field.send_keys(part_no)
-        element_field.send_keys(Keys.RETURN)
-        sleep(.3)  # seconds
-
-        try:
-            add_button = browser.find_element_by_css_selector('.element-details + button')
-            if add_button.is_enabled():
-                add_button.click()
-                sleep(.2)  # seconds
-            else:
-                out_of_stock_counter += 1
-                print("NOTE: item out of stock.")
-                continue
-
-            print("Found", end='')
-            found_counter += 1
-
-            # set the value for item's quantity drop-down menu
-            amount_select = browser.find_elements_by_css_selector('.bag-item select')[-1]
-            Select(amount_select).select_by_visible_text(quantity)
-
-            # ensure the value is correct
-            selected = Select(amount_select).first_selected_option
-
-            if quantity != selected.text:
-                print("WARNING: Could not select desired quantity. {} != {}".format(
-                    quantity, selected.text))
-            else:
-                print()
-
-        except NoSuchElementException:
-
-            if is_electric_part(part_no):
-                print("The LEGO Group provides electric part out of set #{set}, see note at the end.".format(
-                    set=lego_set))
-                electric_part_list.append(part_no)
-                electric_part_counter += 1
-            else:
-                print("OOOPS! No LEGO part with that number found in set #{set}. :-(".format(
-                    set=lego_set))
-                not_in_set_counter += 1
+        # never add the same part twice,
+        # otherwise the quantity will be set to the previous part
+        if part_no in added_part.keys():
+            duplicate_part_counter += 1
+            print("IGNORE: Already added !".format(pn=part_no))
+            if part_no != added_part[part_no]:
+                print("\t- #{}'s updated Element ID ".format(added_part[part_no]))
             continue
+        elif part_no in electric_part_list:
+            # an electric part is managed out of added part
+            duplicate_part_counter += 1
+            print("IGNORE: Electric part already mentioned")
+            continue
+
+        new_part_no_list = []
+
+        if original_part_no in newelementid_map.keys():
+            new_part_no_list = newelementid_map[original_part_no]
+
+        part_found = False
+        partno_list = list([original_part_no] + new_part_no_list)
+
+        for idx, part_no in enumerate(partno_list):
+
+            # idx 0 has the original part_no
+            if idx > 0:
+                print("\t>> Trying to replace with #{pn} ".format(pn=part_no), end='')
+
+            element_field = wait.until(EC.element_to_be_clickable((By.ID, 'element-filter')))
+            element_field.clear()
+            element_field.send_keys(part_no)
+            element_field.send_keys(Keys.RETURN)
+            sleep(.3)  # seconds
+
+            try:
+                # tip : count results to ensure the wanted part_no return nothing or one
+                results_count = len(
+                    browser.find_elements_by_css_selector('.element-details + button'))
+
+                if results_count == 0:
+
+                    if is_electric_part(part_no):
+                        print("Not Found, but electric part:")
+                        print("\t!! The LEGO Group provides electric part out of set #{set}, "
+                              .format(set=lego_set), end='')
+                        print("see note at the end.")
+                        electric_part_list.append(part_no)
+                        electric_part_counter += 1
+                        # quit the part_no loop
+                        break
+
+                    # we're on the original part, and we've a list of new Element ID
+                    if idx == 0 and len(partno_list) > 1:
+                        print("Not Found, but has a chain of other Element ID:")
+                        # a comment about the mapping
+                        if part_no in newelementid_comment.keys():
+                            print("\tcomment: {comment}".
+                                  format(comment=newelementid_comment[original_part_no]))
+
+                    else:
+                        print("Not Found!")
+
+                elif results_count == 1:
+                    # only one result, perfect !
+                    part_found = True
+                    added_part[part_no] = original_part_no
+                    print("Found!")
+
+                    add_button = browser.find_element_by_css_selector('.element-details + button')
+
+                    if add_button.is_enabled():
+                        add_button.click()
+                        sleep(.2)  # seconds
+                        found_counter += 1
+
+                        # quit the part_no chain loop
+                        break
+                    else:
+                        out_of_stock_counter += 1
+                        print("\t!! NOTE: item out of stock.")
+
+                else:
+                    print("More than one result with that part_no, bad number !")
+
+            except NoSuchElementException:
+                print("Selenium error: CSS element not found")
+
+        if not part_found and not is_electric_part(part_no):
+            print("\t!! OOOPS! No LEGO part with that number found in set #{set}. :-(".format(
+                  set=lego_set))
+            not_in_set_counter += 1
+            continue
+
+        # At this point, the part_no is found
+
+        # set the value for item's quantity drop-down menu
+        amount_select = browser.find_elements_by_css_selector('.bag-item select')[-1]
+        Select(amount_select).select_by_visible_text(quantity)
+
+        # ensure the value is correct
+        selected = Select(amount_select).first_selected_option
+
+        if quantity != selected.text:
+            print("\t!! WARNING: Could not select desired quantity. {} != {}".format(
+                quantity, selected.text))
 
     browser.execute_script("window.scroll(0, 0);")
     print()
@@ -393,13 +480,17 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     print("Statistics :")
     print("- {s} Wanted elements".format(s=total_elements))
     print("- {s} Elements found".format(s=found_counter))
+    print("- {s} Elements ignored (duplicated)".format(s=duplicate_part_counter))
     print("- {s} Elements not in set".format(s=not_in_set_counter))
     print("- {s} Elements out of stock".format(s=out_of_stock_counter))
     print("- {s} Elements of type 'Electric part'".format(s=electric_part_counter))
 
+    if out_of_stock_counter > 0:
+        print("\nTake care about out of stock elements!")
+
     if electric_part_counter > 0:
         print()
-        print("Electric parts you can add to your bag once you've added your order :")
+        print("Electric parts you can add to your bag once you've added your order:")
 
         for item in electric_part_list:
             is_electric_part(item, True)
