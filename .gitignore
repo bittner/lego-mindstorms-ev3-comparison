@@ -3,3 +3,6 @@
 
 # LibreOffice
 .~lock.*.ods#
+
+# firefox
+geckodriver.log
