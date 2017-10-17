@@ -94,8 +94,6 @@ def load_new_element_ids():
     """
     load list of new element IDs
     """
-    global newelementid_map
-    global newelementid_comment
 
     newelementid_map = {}
     newelementid_comment = {}
@@ -110,6 +108,8 @@ def load_new_element_ids():
             # convert each new element id of eid_chain as number
             newelementid_map[int(eid_origin)] = list(map(int, eid_chain.split(",")))
             newelementid_comment[int(eid_origin)] = eid_comment
+
+    return newelementid_map, newelementid_comment
 
 
 def parse(datafiles):
@@ -218,7 +218,8 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     """
     Fill in LEGO parts to be ordered in LEGO's customer service shop.
     """
-    load_new_element_ids()
+
+    newelementid_map, newelementid_comment = load_new_element_ids()
 
     electric_part_list = []
 
@@ -237,11 +238,14 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
 
     order_list = order_list.split(',')
 
-    shop_url = 'https://wwwsecure.us.lego.com/{shop}/service/replacementparts/sale'.format(
-        shop=shop)
+    shop_url = "https://wwwsecure.us.lego.com/{shop}/service/replacementparts/sale".format(
+                shop=shop)
+    # The querystring will fix the age survey.
+    # simulate click to the third button ('Buy Bricks')
+    shop_url += "?chosenFlow=3"
 
     print("Using Selenium version : ", webdriver.__version__)
-    print("Browser URL : {url}".format(url=shop_url))
+    print("Browser wanted URL : {url}".format(url=shop_url))
 
     # detect browser choice #
     if browser == 'chrome':
@@ -264,6 +268,7 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     browser.maximize_window()
 
     browser.get(shop_url)
+    print("Browser current URL: {url}".format(url=browser.current_url))
 
     # will wait to 5 sec for and ExpectedCondition success,
     # otherwise exception TimeoutException
@@ -277,14 +282,17 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     except NoSuchElementException:
         print("We're lucky, no survey on the LEGO shop today!")
 
-    print("They want to know how old we are.")
-    age_field = wait.until(EC.element_to_be_clickable(
-        (By.NAME, 'rpAgeAndCountryAgeField')))
-    age_field.send_keys('55')
-    age_field.send_keys(Keys.RETURN)
+    try:
+        print("They want to know how old we are.")
+        age_field = wait.until(EC.element_to_be_clickable(
+            (By.NAME, 'rpAgeAndCountryAgeField')))
+        age_field.send_keys('55')
+        age_field.send_keys(Keys.RETURN)
 
-    # wait for age_field's DOM element to be removed
-    wait.until(EC.staleness_of(age_field))
+        # wait for age_field's DOM element to be removed
+        wait.until(EC.staleness_of(age_field))
+    except TimeoutException:
+        print("Something's wrong with the survey")
 
     # login stuff #
     if username and password:
@@ -371,7 +379,7 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
         # otherwise the quantity will be set to the previous part
         if part_no in added_part.keys():
             duplicate_part_counter += 1
-            print("IGNORE: Already added !".format(pn=part_no))
+            print("IGNORE: Already added!".format(pn=part_no))
             if part_no != added_part[part_no]:
                 print("\t- #{}'s updated Element ID ".format(added_part[part_no]))
             continue
@@ -387,6 +395,8 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
             new_part_no_list = newelementid_map[original_part_no]
 
         part_found = False
+        part_is_electric = False
+
         partno_list = list([original_part_no] + new_part_no_list)
 
         for idx, part_no in enumerate(partno_list):
@@ -409,58 +419,56 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
                 if results_count == 0:
 
                     if is_electric_part(part_no):
-                        print("Not Found, but electric part:")
-                        print("\t!! The LEGO Group provides electric part out of set #{set}, "
-                              .format(set=lego_set), end='')
-                        print("see note at the end.")
-                        electric_part_list.append(part_no)
-                        electric_part_counter += 1
-                        # quit the part_no loop
+                        part_is_electric = True
                         break
 
-                    # we're on the original part, and we've a list of new Element ID
                     if idx == 0 and len(partno_list) > 1:
+                        # we're on the original part, and we've a list of new Element ID
                         print("Not Found, but has a chain of other Element ID:")
                         # a comment about the mapping
                         if part_no in newelementid_comment.keys():
                             print("\tcomment: {comment}".
                                   format(comment=newelementid_comment[original_part_no]))
-
                     else:
                         print("Not Found!")
 
                 elif results_count == 1:
-                    # only one result, perfect !
                     part_found = True
-                    added_part[part_no] = original_part_no
-                    print("Found!")
-
-                    add_button = browser.find_element_by_css_selector('.element-details + button')
-
-                    if add_button.is_enabled():
-                        add_button.click()
-                        sleep(.2)  # seconds
-                        found_counter += 1
-
-                        # quit the part_no chain loop
-                        break
-                    else:
-                        out_of_stock_counter += 1
-                        print("\t!! NOTE: item out of stock.")
+                    break
 
                 else:
-                    print("More than one result with that part_no, bad number !")
+                    print("Too many results with that part_no, bad number !")
 
             except NoSuchElementException:
                 print("Selenium error: CSS element not found")
 
-        if not part_found and not is_electric_part(part_no):
+        if part_found:
+            print("Found!")
+            added_part[part_no] = original_part_no
+
+            add_button = browser.find_element_by_css_selector('.element-details + button')
+
+            if add_button.is_enabled():
+                add_button.click()
+                sleep(.2)  # seconds
+                found_counter += 1
+            else:
+                out_of_stock_counter += 1
+                print("\t!! NOTE: item out of stock.")
+
+        elif part_is_electric:
+            print("Not Found, but electric part:")
+            print("\t!! The LEGO Group provides electric part out of set #{set}, "
+                  .format(set=lego_set), end='')
+            print("see note at the end.")
+
+            electric_part_list.append(part_no)
+            electric_part_counter += 1
+        else:
             print("\t!! OOOPS! No LEGO part with that number found in set #{set}. :-(".format(
                   set=lego_set))
             not_in_set_counter += 1
             continue
-
-        # At this point, the part_no is found
 
         # set the value for item's quantity drop-down menu
         amount_select = browser.find_elements_by_css_selector('.bag-item select')[-1]
