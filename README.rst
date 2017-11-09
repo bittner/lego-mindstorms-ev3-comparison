@@ -89,14 +89,14 @@ Usage
 Requirements
 ~~~~~~~~~~~~
 
-To run ``lego-mindstorms-pieces.py`` you need:
+To run ``lego-mindstorms-pieces.py order`` you need:
 
 * Python Selenium (see ``requirements.txt``)
 * `geckodriver`_
 * `chromedriver`_
 
 .. _geckodriver: https://github.com/mozilla/geckodriver/releases
-.. _chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
+.. _chromedriver: https://sites.google.com/a/chromium.org/chromedriver/ (you must use version 2.33 for Chrome 62.0)
 
 Documentation, Examples, Hints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
