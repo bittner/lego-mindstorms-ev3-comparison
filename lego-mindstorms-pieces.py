@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 #    LEGO Mindstorms Editions Pieces Comparison
-#    Copyright (C) 2015-2016  Peter Bittner <django@bittner.it>
+#    Copyright (C) 2015-2017  Peter Bittner <django@bittner.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@ the Education Core Set (45544) + Education Expansion Set.
 import os.path
 import sys
 from argparse import ArgumentParser
+
 
 SET_EV3HOME = '31313'
 SET_EDUCORE = '45544'
@@ -88,28 +89,6 @@ def main():
 
     function = globals()[args.command]
     function(**kwargs)
-
-
-def load_new_element_ids():
-    """
-    load list of new element IDs
-    """
-
-    newelementid_map = {}
-    newelementid_comment = {}
-
-    datafile = os.path.join(SCRIPT_PATH, 'raw-data', 'elementid-refresh.csv')
-
-    with open(datafile) as f:
-        data_lines = f.readlines()[1:]
-        for line in data_lines:
-            line = line.strip()
-            eid_origin, eid_chain, eid_comment = line.split(';')
-            # convert each new element id of eid_chain as number
-            newelementid_map[int(eid_origin)] = list(map(int, eid_chain.split(",")))
-            newelementid_comment[int(eid_origin)] = eid_comment
-
-    return newelementid_map, newelementid_comment
 
 
 def parse(datafiles):
@@ -186,322 +165,18 @@ def missing(omitted_set, datafile):
     print(','.join(order_list))
 
 
-def is_electric_part(wanted_part_no, print_set_link=False):
-    """
-    Detect if part is in EV3 Electric parts file, print link to standalone Set if wanted
-
-    return boolean
-    """
-
-    wanted_part_no = str(wanted_part_no)
-    datafile = os.path.join(SCRIPT_PATH, 'raw-data', 'Electric-parts.csv')
-
-    exit_code = False
-
-    with open(datafile) as f:
-        data_lines = f.readlines()[1:]
-        for line in data_lines:
-            partno, legoid, legoshop_set = line.split('\t')
-
-            if wanted_part_no == partno:
-                exit_code = True
-                if print_set_link:
-                    print("#{partno}: standalone set URL "
-                          "https://shop.lego.com/en-US/search/{legoshop_set}"
-                          .format(partno=wanted_part_no, legoshop_set=legoshop_set), end='')
-                break
-
-    return exit_code
-
-
 def order(shop=None, browser=None, lego_set=None, order_list=None, username=None, password=None):
     """
     Fill in LEGO parts to be ordered in LEGO's customer service shop.
     """
-
-    newelementid_map, newelementid_comment = load_new_element_ids()
-
-    electric_part_list = []
-
-    from selenium import webdriver
-
-    from selenium.common.exceptions import NoSuchElementException
-    from selenium.common.exceptions import TimeoutException
-
-    from selenium.webdriver import Chrome, Firefox, ChromeOptions
-    from selenium.webdriver.common.keys import Keys
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support import expected_conditions as EC
-    from selenium.webdriver.support.select import Select
-    from selenium.webdriver.support.wait import WebDriverWait
-    from time import sleep
-
-    order_list = order_list.split(',')
-
-    shop_url = "https://wwwsecure.us.lego.com/{shop}/service/replacementparts/sale".format(
-                shop=shop)
-    # The querystring will fix the age survey.
-    # simulate click to the third button ('Buy Bricks')
-    shop_url += "?chosenFlow=3"
-
-    print("Using Selenium version : ", webdriver.__version__)
-    print("Browser wanted URL : {url}".format(url=shop_url))
-
-    # detect browser choice #
-    if browser == 'chrome':
-        opts = ChromeOptions()
-        # With selenium version above this one, chrome is closed
-        # at the end without the "quit()" method!
-        # Here is a fix to detach Chrome from python.
-        if webdriver.__version__ > '2.48.0':
-            print("Apply experimental detach option for Chrome")
-            opts.add_experimental_option("detach", True)
-
-        browser = Chrome(chrome_options=opts)
-    else:
-        browser = Firefox()
-
-    print("Browser capabilities")
-    print(browser.capabilities)
-
-    # Selenium can't find some elements otherwise
-    browser.maximize_window()
-
-    browser.get(shop_url)
-    print("Browser current URL: {url}".format(url=browser.current_url))
-
-    # will wait to 5 sec for and ExpectedCondition success,
-    # otherwise exception TimeoutException
-    wait = WebDriverWait(browser, 5)
-
-    print("Sometimes they ask you to fill in a survey.")
-
-    try:
-        survey_layer = browser.find_element_by_id('ipeL104230')
-        survey_layer.send_keys(Keys.ESCAPE)
-    except NoSuchElementException:
-        print("We're lucky, no survey on the LEGO shop today!")
-
-    try:
-        print("They want to know how old we are.")
-        age_field = wait.until(EC.element_to_be_clickable(
-            (By.NAME, 'rpAgeAndCountryAgeField')))
-        age_field.send_keys('55')
-        age_field.send_keys(Keys.RETURN)
-
-        # wait for age_field's DOM element to be removed
-        wait.until(EC.staleness_of(age_field))
-    except TimeoutException:
-        print("Something's wrong with the survey")
-
-    # login stuff #
-    if username and password:
-
-        print("Let's log in with LEGO ID {user}.".format(user=username))
-        login_link = wait.until(EC.element_to_be_clickable(
-            (By.CSS_SELECTOR, ".legoid .links > a[data-uitest='login-link']")))
-        login_link.click()
-
-        browser.switch_to.frame('legoid-iframe')
-
-        user_input = wait.until(EC.element_to_be_clickable(
-            (By.ID, 'fieldUsername')))
-        user_input.click()
-        user_input.send_keys(username)
-
-        passwd_input = wait.until(EC.element_to_be_clickable(
-            (By.ID, 'fieldPassword')))
-        passwd_input.click()
-        passwd_input.send_keys(password)
-
-        login_button = browser.find_element_by_id('buttonSubmitLogin')
-        login_button.click()
-
-        browser.switch_to.default_content()
-
-        # ensure the user/password are good
-        try:
-            wait.until(EC.element_to_be_clickable(
-                (By.CSS_SELECTOR,
-                    ".legoid .links > a[data-uitest='logout-link']")
-            ))
-
-            print("login success!")
-        except TimeoutException:
-            print("login failed!")
-            # close the browser and stop here
-            browser.quit()
-            return
-
-    # product selection #
-
-    print("We need to tell them which set we want to buy parts from: {lego_set}".format(
-        lego_set=lego_set))
-    setno_field = wait.until(
-        EC.element_to_be_clickable(
-            (By.CSS_SELECTOR, '.product-search input[ng-model=productNumber]'))
-    )
-
-    setno_field.send_keys(lego_set)
-    setno_field.send_keys(Keys.RETURN)
-
-    print("Let's scroll the page down a bit, so we can see things better.")
-    browser.execute_script("window.scroll(0, 750);")
-
-    print("That's gonna be crazy: {count} elements to order! Let's rock.".format(
-        count=len(order_list)))
-    print()
-
-    counter = 0
-    out_of_stock_counter = 0
-    not_in_set_counter = 0
-    found_counter = 0
-    electric_part_counter = 0
-    duplicate_part_counter = 0
-
-    total_elements = len(order_list)
-
-    added_part = {}
-    for brick in order_list:
-        part_no, quantity = brick.split(':')
-        part_no = int(part_no)
-        counter += 1
-
-        print("- [{counter}/{total_elements}] {qty}x #{pn} ".format(
-            qty=quantity,
-            pn=part_no,
-            counter=counter,
-            total_elements=total_elements), end='')
-
-        original_part_no = int(part_no)
-
-        # never add the same part twice,
-        # otherwise the quantity will be set to the previous part
-        if part_no in added_part.keys():
-            duplicate_part_counter += 1
-            print("IGNORE: Already added!".format(pn=part_no))
-            if part_no != added_part[part_no]:
-                print("\t- #{}'s updated Element ID ".format(added_part[part_no]))
-            continue
-        elif part_no in electric_part_list:
-            # an electric part is managed out of added part
-            duplicate_part_counter += 1
-            print("IGNORE: Electric part already mentioned")
-            continue
-
-        new_part_no_list = []
-
-        if original_part_no in newelementid_map.keys():
-            new_part_no_list = newelementid_map[original_part_no]
-
-        part_found = False
-        part_is_electric = False
-
-        partno_list = list([original_part_no] + new_part_no_list)
-
-        for idx, part_no in enumerate(partno_list):
-
-            # idx 0 has the original part_no
-            if idx > 0:
-                print("\t>> Trying to replace with #{pn} ".format(pn=part_no), end='')
-
-            element_field = wait.until(EC.element_to_be_clickable((By.ID, 'element-filter')))
-            element_field.clear()
-            element_field.send_keys(part_no)
-            element_field.send_keys(Keys.RETURN)
-            sleep(.3)  # seconds
-
-            try:
-                # tip : count results to ensure the wanted part_no return nothing or one
-                results_count = len(
-                    browser.find_elements_by_css_selector('.element-details + button'))
-
-                if results_count == 0:
-
-                    if is_electric_part(part_no):
-                        part_is_electric = True
-                        break
-
-                    if idx == 0 and len(partno_list) > 1:
-                        # we're on the original part, and we've a list of new Element ID
-                        print("Not Found, but has a chain of other Element ID:")
-                        # a comment about the mapping
-                        if part_no in newelementid_comment.keys():
-                            print("\tcomment: {comment}".
-                                  format(comment=newelementid_comment[original_part_no]))
-                    else:
-                        print("Not Found!")
-
-                elif results_count == 1:
-                    part_found = True
-                    break
-
-                else:
-                    print("Too many results with that part_no, bad number !")
-
-            except NoSuchElementException:
-                print("Selenium error: CSS element not found")
-
-        if part_found:
-            print("Found!")
-            added_part[part_no] = original_part_no
-
-            add_button = browser.find_element_by_css_selector('.element-details + button')
-
-            if add_button.is_enabled():
-                add_button.click()
-                sleep(.2)  # seconds
-                found_counter += 1
-            else:
-                out_of_stock_counter += 1
-                print("\t!! NOTE: item out of stock.")
-
-        elif part_is_electric:
-            print("Not Found, but electric part:")
-            print("\t!! The LEGO Group provides electric part out of set #{set}, "
-                  .format(set=lego_set), end='')
-            print("see note at the end.")
-
-            electric_part_list.append(part_no)
-            electric_part_counter += 1
-        else:
-            print("\t!! OOOPS! No LEGO part with that number found in set #{set}. :-(".format(
-                  set=lego_set))
-            not_in_set_counter += 1
-            continue
-
-        # set the value for item's quantity drop-down menu
-        amount_select = browser.find_elements_by_css_selector('.bag-item select')[-1]
-        Select(amount_select).select_by_visible_text(quantity)
-
-        # ensure the value is correct
-        selected = Select(amount_select).first_selected_option
-
-        if quantity != selected.text:
-            print("\t!! WARNING: Could not select desired quantity. {} != {}".format(
-                quantity, selected.text))
-
-    browser.execute_script("window.scroll(0, 0);")
-    print()
-    print("We're done. You can finalize your order now. Thanks for watching!")
-    print()
-    print("Statistics :")
-    print("- {s} Wanted elements".format(s=total_elements))
-    print("- {s} Elements found".format(s=found_counter))
-    print("- {s} Elements ignored (duplicated)".format(s=duplicate_part_counter))
-    print("- {s} Elements not in set".format(s=not_in_set_counter))
-    print("- {s} Elements out of stock".format(s=out_of_stock_counter))
-    print("- {s} Elements of type 'Electric part'".format(s=electric_part_counter))
-
-    if out_of_stock_counter > 0:
-        print("\nTake care about out of stock elements!")
-
-    if electric_part_counter > 0:
-        print()
-        print("Electric parts you can add to your bag once you've added your order:")
-
-        for item in electric_part_list:
-            is_electric_part(item, True)
+    import legoshop
+
+    order = legoshop.ReplacementPart(browser, shop)
+    order.set_new_element_id_datafile(
+        os.path.join(SCRIPT_PATH, 'raw-data', 'elementid-refresh.csv'))
+    order.set_electric_part_datafile(os.path.join(SCRIPT_PATH, 'raw-data', 'Electric-parts.csv'))
+    order.set_credentials(username, password)
+    order.process(lego_set, order_list)
 
 
 if __name__ == "__main__":
