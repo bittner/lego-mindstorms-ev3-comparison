@@ -202,6 +202,7 @@ Inspiration for LEGO EV3 Robots
 * `Wall-EV3`_ (Disney's cute `WALL-E robot`_ built with EV3)
 * `Self-balancing robot tutorial`_ (a gyro sensor application)
 * `Walking robots`_
+* `MindCub3r`_ (solves the Rubik's cube)
 
 
 .. _Home Edition robots: http://www.lego.com/en-us/mindstorms/build-a-robot
@@ -211,6 +212,7 @@ Inspiration for LEGO EV3 Robots
 .. _WALL-E robot: https://ideas.lego.com/projects/52042/updates
 .. _Self-balancing robot tutorial: http://robotsquare.com/2014/07/01/tutorial-ev3-self-balancing-robot/
 .. _Walking robots: http://www.legoengineering.com/walking-robots/
+.. _MindCub3r: http://mindcuber.com/mindcub3r/mindcub3r.html
 
 Programming EV3 on Linux
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -222,6 +224,11 @@ Programming EV3 on Linux
 * `Lego Mindstorm with Linux Mini-HOWTO`_ (a bit aged information, probably for the NXT brick)
 * `Lego Mindstorms IDE on WINE?`_ (and other dev environment alternatives)
 
+ev3dev demos and examples:
+
+* `ev3dev Python demos`_ (BALANC3R, EV3D4, EXPLOR3R, MINDCUB3R, TRACK3R)
+* `MindCub3r (ev3dev edition)`_ (`video <https://www.youtube.com/watch?v=HuKsfp19yF0>`__)
+
 
 .. _Boot Linux from SDCard: http://www.ev3dev.org/
 .. _language bindings: https://github.com/ev3dev/ev3dev-lang
@@ -231,6 +238,8 @@ Programming EV3 on Linux
 .. _Lego Mindstorms IDE on WINE?: http://www.linuxquestions.org/questions/linux-software-2/lego-mindstorms-on-wine-154292/
 .. _Open Roberta Lab: http://lab.open-roberta.org/
 .. _source code: https://github.com/OpenRoberta/robertalab
+.. _ev3dev Python demos: https://github.com/ev3dev/ev3dev-lang-python-demo
+.. _MindCub3r (ev3dev edition): https://github.com/cavenel/ev3dev_examples
 
 Your Contribution
 -----------------
