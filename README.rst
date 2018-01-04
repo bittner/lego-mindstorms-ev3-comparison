@@ -183,7 +183,7 @@ instructions`_), featuring Python under the hood.  Also, if you use `Scratch`_
 you may be interested in `Scratch extensions`_ (for Windows and Mac).
 
 +---------------------------+--------------------------+----------------------------------------------+
-| LEGO firmware             | ev3dev (Python)          | Description                                  |
+| LEGO firmware             | ev3dev (Python) [#API]_  | Description                                  |
 +===========================+==========================+==============================================+
 | **>** `Home Edition robots`_ **(build instructions for 5 official and many more robots)**           |
 +---------------------------+--------------------------+----------------------------------------------+
@@ -255,6 +255,8 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 +---------------------------+--------------------------+----------------------------------------------+
 | More `EV3 Maker and Coding Activities`_              | official LEGO downloads                      |
 +---------------------------+--------------------------+----------------------------------------------+
+
+.. [#API] `Python bindings API docs <http://python-ev3dev.readthedocs.io/en/stable/spec.html>`__
 
 .. _LEGO MINDSTORMS EV3 Software: https://www.lego.com/en-us/mindstorms/downloads/download-software
 .. _ev3dev firmware: http://www.ev3dev.org
