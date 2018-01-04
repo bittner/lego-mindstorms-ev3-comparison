@@ -239,7 +239,7 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 +---------------------------+--------------------------+----------------------------------------------+
 | `Chip & Dale`_ (non-free) | *n/a*                    | Two mecha twin robots that walk and turn     |
 +---------------------------+--------------------------+----------------------------------------------+
-| `NXTurtle`_ (non-free)    | *n/a*                    | An awesome turtle (see also: `EV3 Turtle`_)  |
+| `NXT Turtle`_ (non-free)  | *n/a*                    | An awesome turtle (see also: `EV3 Turtle`_)  |
 +---------------------------+--------------------------+----------------------------------------------+
 | `EV3 Desk Guardian`_      | (easy to write yourself) | A bodyguard shooting robot for your desk     |
 +---------------------------+--------------------------+----------------------------------------------+
@@ -299,7 +299,7 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 .. _Wall-EV3: http://robotics.benedettelli.com/lego-wall-e/
 .. _WALL-E robot: https://ideas.lego.com/projects/52042/updates
 .. _Chip & Dale: http://robotics.benedettelli.com/ev3-mecha-page/
-.. _NXTurtle: http://robotics.benedettelli.com/nxt-turtle-2-0/
+.. _NXT Turtle: http://robotics.benedettelli.com/nxt-turtle-2-0/
 .. _EV3 Turtle: https://www.youtube.com/watch?v=73jwQ8W_6bM
 .. _EV3 Desk Guardian: http://robotics.benedettelli.com/ev3-desk-guardian/
 .. _Clev3r Car: http://buildinst.cz/en/catalog/detail/31
