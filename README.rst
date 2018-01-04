@@ -182,65 +182,79 @@ LEGO robot programs can be written with the `LEGO MINDSTORMS EV3 Software`_
 instructions`_), featuring Python under the hood.  Also, if you use `Scratch`_
 you may be interested in `Scratch extensions`_ (for Windows and Mac).
 
-+------------------------+-----------------------+----------------------------------------------+
-| LEGO firmware          | ev3dev (Python)       | Description                                  |
-+========================+=======================+==============================================+
-| **>** `Home Edition robots`_ **(build instructions for 5 official and many more robots)**     |
-+------------------------+-----------------------+----------------------------------------------+
-|`Track3r (LEGO)`_       | `Track3r (ev3dev)`_   | Crawler-mounted, all-terrain robot           |
-+------------------------+-----------------------+----------------------------------------------+
-| `Spik3r (LEGO)`_       | *n/a*                 | Remote-controlled scorpion robot             |
-+------------------------+-----------------------+----------------------------------------------+
-| `R3ptar (LEGO)`_       | `R3ptar (ev3dev)`_    | Scary cobra snake robot                      |
-+------------------------+-----------------------+----------------------------------------------+
-| `Gripp3r (LEGO)`_      | `Gripp3r (ev3dev)`_   | Heavy-duty lifting robot                     |
-+------------------------+-----------------------+----------------------------------------------+
-| `Ev3rstorm (LEGO)`_    | `Ev3rstorm (ev3dev)`_ | Walking robot firing bullets                 |
-+------------------------+-----------------------+----------------------------------------------+
-| **>** `Education Edition Core Set robots`_ **(build instructions for 5 robots)**              |
-+------------------------+-----------------------+----------------------------------------------+
-| `Educator Vehicle`_    | `Educator`_           | Multi-purpose robot for teaching robotics    |
-+------------------------+-----------------------+----------------------------------------------+
-| `Sorter`_              | *n/a*                 | Sorts LEGO bricks by size and color          |
-+------------------------+-----------------------+----------------------------------------------+
-| `Gyro Boy`_            | `Balanc3r`_           | Self-balancing robots                        |
-+------------------------+-----------------------+----------------------------------------------+
-| `Puppy`_               | *n/a*                 | Looks and behaves like a dog                 |
-+------------------------+-----------------------+----------------------------------------------+
-| `Robot Arm H25`_       | *n/a*                 | Robot arm used for assembly in factories     |
-+------------------------+-----------------------+----------------------------------------------+
-| **>** `Education Edition Expansion Set robots`_ **(build instructions for 6 robots)**         |
-+------------------------+-----------------------+----------------------------------------------+
-| `Znap`_                | *n/a*                 | Crawler-mounted bat-like animal              |
-+------------------------+-----------------------+----------------------------------------------+
-| `Remote Control`_      | *n/a*                 | A remote control for your hand               |
-+------------------------+-----------------------+----------------------------------------------+
-| `Stair Climber`_       | *n/a*                 | Wheel and crawler-mounted vehicle            |
-+------------------------+-----------------------+----------------------------------------------+
-| `Tank Bot`_            | *n/a*                 | Crawler-mounted military vehicle             |
-+------------------------+-----------------------+----------------------------------------------+
-| `Elephant`_            | *n/a*                 | Walking and roaring elephant                 |
-+------------------------+-----------------------+----------------------------------------------+
-| `Spinner Factory`_     | *n/a*                 | Complex assembly line machine                |
-+------------------------+-----------------------+----------------------------------------------+
-| **> Popular robots by other authors**                                                         |
-+------------------------+-----------------------+----------------------------------------------+
-| *n/a*                  | `Explor3r`_           | Self-driving exploring robot                 |
-+------------------------+-----------------------+----------------------------------------------+
-| *n/a*                  | `EV3D4`_              | Remote-controlled Star Wars R2-D2 clone      |
-+------------------------+-----------------------+----------------------------------------------+
-| `MindCub3r`_           | `MindCub3r (ev3dev)`_ | Solves the Rubik's cube                      |
-+------------------------+-----------------------+----------------------------------------------+
-| `Wall-EV3`_            | *n/a*                 | Disney's cute `WALL-E robot`_ built with EV3 |
-+------------------------+-----------------------+----------------------------------------------+
-| *n/a*                  | `Sound & LEDs`_       | Demos to produce sound and activate LEDs     |
-+------------------------+-----------------------+----------------------------------------------+
-| **> Other resources**                                                                         |
-+------------------------+-----------------------+----------------------------------------------+
-| `Walking robots`_                              | just videos of maker creations               |
-+------------------------+-----------------------+----------------------------------------------+
-| More `EV3 Maker and Coding Activities`_        | official LEGO downloads                      |
-+------------------------+-----------------------+----------------------------------------------+
++---------------------------+--------------------------+----------------------------------------------+
+| LEGO firmware             | ev3dev (Python)          | Description                                  |
++===========================+==========================+==============================================+
+| **>** `Home Edition robots`_ **(build instructions for 5 official and many more robots)**           |
++---------------------------+--------------------------+----------------------------------------------+
+|`Track3r (LEGO)`_          | `Track3r (ev3dev)`_      | Crawler-mounted, all-terrain robot           |
++---------------------------+--------------------------+----------------------------------------------+
+| `Spik3r (LEGO)`_          | *n/a*                    | Remote-controlled scorpion robot             |
++---------------------------+--------------------------+----------------------------------------------+
+| `R3ptar (LEGO)`_          | `R3ptar (ev3dev)`_       | Scary cobra snake robot                      |
++---------------------------+--------------------------+----------------------------------------------+
+| `Gripp3r (LEGO)`_         | `Gripp3r (ev3dev)`_      | Heavy-duty lifting robot                     |
++---------------------------+--------------------------+----------------------------------------------+
+| `Ev3rstorm (LEGO)`_       | `Ev3rstorm (ev3dev)`_    | Walking robot firing bullets                 |
++---------------------------+--------------------------+----------------------------------------------+
+| **>** `Education Edition Core Set robots`_ **(build instructions for 5 robots)**                    |
++---------------------------+--------------------------+----------------------------------------------+
+| `Educator Vehicle`_       | `Educator`_              | Multi-purpose robot for teaching robotics    |
++---------------------------+--------------------------+----------------------------------------------+
+| `Sorter`_                 | *n/a*                    | Sorts LEGO bricks by size and color          |
++---------------------------+--------------------------+----------------------------------------------+
+| `Gyro Boy`_               | `Balanc3r`_              | Self-balancing robots                        |
++---------------------------+--------------------------+----------------------------------------------+
+| `Puppy`_                  | *n/a*                    | Looks and `behaves like a dog`_              |
++---------------------------+--------------------------+----------------------------------------------+
+| `Robot Arm H25`_          | *n/a*                    | Robot arm used for assembly in factories     |
++---------------------------+--------------------------+----------------------------------------------+
+| **>** `Education Edition Expansion Set robots`_ **(build instructions for 6 robots)**               |
++---------------------------+--------------------------+----------------------------------------------+
+| `Znap`_                   | *n/a*                    | Crawler-mounted bat-like animal              |
++---------------------------+--------------------------+----------------------------------------------+
+| `Remote Control`_         | *n/a*                    | A remote control for your hand               |
++---------------------------+--------------------------+----------------------------------------------+
+| `Stair Climber`_          | *n/a*                    | Wheel and crawler-mounted vehicle            |
++---------------------------+--------------------------+----------------------------------------------+
+| `Tank Bot`_               | *n/a*                    | Crawler-mounted military vehicle             |
++---------------------------+--------------------------+----------------------------------------------+
+| `Elephant`_               | *n/a*                    | Walking and roaring elephant                 |
++---------------------------+--------------------------+----------------------------------------------+
+| `Spinner Factory`_        | *n/a*                    | Complex assembly line machine                |
++---------------------------+--------------------------+----------------------------------------------+
+| **> Popular (awesome) robots by other authors**                                                     |
++---------------------------+--------------------------+----------------------------------------------+
+| *n/a*                     | `Explor3r`_              | Self-driving exploring robot                 |
++---------------------------+--------------------------+----------------------------------------------+
+| *n/a*                     | `EV3D4`_                 | Remote-controlled Star Wars R2-D2 clone      |
++---------------------------+--------------------------+----------------------------------------------+
+| `MindCub3r`_              | `MindCub3r (ev3dev)`_    | Solves the Rubik's cube                      |
++---------------------------+--------------------------+----------------------------------------------+
+| *n/a*                     | `EV3 Tracked Explor3r`_  | Autonomous crawler-mounted tank vehicle      |
++---------------------------+--------------------------+----------------------------------------------+
+| `EV3 Dancing robot`_      | *n/a*                    | The sweetest LEGO disco dancer ever!         |
++---------------------------+--------------------------+----------------------------------------------+
+| `Wall-EV3`_ (non-free)    | *n/a*                    | Disney's cute `WALL-E robot`_ built with EV3 |
++---------------------------+--------------------------+----------------------------------------------+
+| `Chip & Dale`_ (non-free) | *n/a*                    | Two mecha twin robots that walk and turn     |
++---------------------------+--------------------------+----------------------------------------------+
+| `NXTurtle`_ (non-free)    | *n/a*                    | An awesome turtle (see also: `EV3 Turtle`_)  |
++---------------------------+--------------------------+----------------------------------------------+
+| `EV3 Desk Guardian`_      | (easy to write yourself) | A bodyguard shooting robot for your desk     |
++---------------------------+--------------------------+----------------------------------------------+
+| `Clev3r Car`_             | *n/a*                    | RC or autonomous car that avoids obstacles   |
++---------------------------+--------------------------+----------------------------------------------+
+| `Cleaning Robot`_         | *n/a*                    | Clean your room with this Roomba clone!      |
++---------------------------+--------------------------+----------------------------------------------+
+| *n/a*                     | `Sound & LEDs`_          | Demos to produce sound and activate LEDs     |
++---------------------------+--------------------------+----------------------------------------------+
+| **> Other resources**                                                                               |
++---------------------------+--------------------------+----------------------------------------------+
+| `Walking robots`_                                    | just videos of maker creations               |
++---------------------------+--------------------------+----------------------------------------------+
+| More `EV3 Maker and Coding Activities`_              | official LEGO downloads                      |
++---------------------------+--------------------------+----------------------------------------------+
 
 .. _LEGO MINDSTORMS EV3 Software: https://www.lego.com/en-us/mindstorms/downloads/download-software
 .. _ev3dev firmware: http://www.ev3dev.org
@@ -265,6 +279,7 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 .. _Gyro Boy: http://robotsquare.com/2014/07/01/tutorial-ev3-self-balancing-robot/
 .. _Balanc3r: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/BALANC3R
 .. _Puppy: http://robotsquare.com/wp-content/uploads/2013/10/45544_puppy.pdf
+.. _behaves like a dog: https://www.youtube.com/watch?v=HJ3XLFsd4zI
 .. _Robot Arm H25: http://robotsquare.com/wp-content/uploads/2013/10/45544_robotarmh25.pdf
 .. _Education Edition Expansion Set robots: http://robotsquare.com/2013/10/01/lego-mindstorms-ev3-education-expansion-set-45560-instructions/
 .. _Znap: http://robotsquare.com/wp-content/uploads/2013/10/45544_45560_znap.pdf
@@ -277,8 +292,16 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 .. _EV3D4: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/EV3D4
 .. _MindCub3r: http://mindcuber.com/mindcub3r/mindcub3r.html
 .. _MindCub3r (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/MINDCUB3R
+.. _EV3 Tracked Explor3r: https://www.smallrobots.it/latest-pictures-of-ev3-tracked-explor3r/
+.. _EV3 Dancing robot: http://teachkidsengineering.com/lego-mindstorms-dancing-robot/
 .. _Wall-EV3: http://robotics.benedettelli.com/lego-wall-e/
 .. _WALL-E robot: https://ideas.lego.com/projects/52042/updates
+.. _Chip & Dale: http://robotics.benedettelli.com/ev3-mecha-page/
+.. _NXTurtle: http://robotics.benedettelli.com/nxt-turtle-2-0/
+.. _EV3 Turtle: https://www.youtube.com/watch?v=73jwQ8W_6bM
+.. _EV3 Desk Guardian: http://robotics.benedettelli.com/ev3-desk-guardian/
+.. _Clev3r Car: http://buildinst.cz/en/catalog/detail/31
+.. _Cleaning Robot: https://www.youtube.com/watch?v=Np37j8akW4A
 .. _Sound & LEDs: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/misc
 .. _Walking robots: http://www.legoengineering.com/walking-robots/
 .. _EV3 Maker and Coding Activities: https://education.lego.com/en-us/downloads/mindstorms-ev3
