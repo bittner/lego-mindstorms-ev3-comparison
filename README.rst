@@ -16,12 +16,24 @@ If you one day want to upgrade your set you'll be wondering if you can combine t
 two.  The data elaborated in this project may help you with your decision on what
 pieces to buy.
 
+Did You Know? (Interesting Facts)
+---------------------------------
+
+The Education Edition's `rechargeable battery pack`_ also fits on the EV3 Home Edition
+brick!  This is useful since the `battery piles`_ drain rather fast (10-20 minutes
+playing at average).  Instead of buying `6 or 12 battery piles`_, unmounting and
+charging them regularly you could simply buy a single battery pack and attach the
+charger while playing, whenever needed.
+
+.. _rechargeable battery pack: https://www.youtube.com/watch?v=RD-53VoDLXY
+.. _battery piles: http://cdn.makeuseof.com/wp-content/uploads/2016/11/muo-hardwarereview-legomindstorms-ev3.png
+.. _6 or 12 battery piles: http://www.brickshelf.com/gallery/Cwetqo/31313/ev16.jpg
+
 Reading
 -------
 
 * `The Difference Between LEGO MINDSTORMS EV3 Home Edition (#31313) and LEGO MINDSTORMS Education EV3 (#45544)`_
 * `LEGO Answers question`_ (Bricks, a StackExchange site)
-
 
 .. _The Difference Between LEGO MINDSTORMS EV3 Home Edition (#31313) and LEGO MINDSTORMS Education EV3 (#45544):
     http://robotsquare.com/2013/11/25/difference-between-ev3-home-edition-and-education-ev3/
