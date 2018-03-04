@@ -233,7 +233,7 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 +---------------------------+--------------------------+----------------------------------------------+
 | `Elephant`_               | *n/a*                    | Walking and roaring elephant                 |
 +---------------------------+--------------------------+----------------------------------------------+
-| `Spinner Factory`_        | *n/a*                    | Complex assembly line machine                |
+| `Spinner Factory`_  (1/3) | *n/a*                    | Complex `assembly line machine`_             |
 +---------------------------+--------------------------+----------------------------------------------+
 | **> Popular (awesome) robots by other authors**                                                     |
 +---------------------------+--------------------------+----------------------------------------------+
@@ -278,20 +278,20 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 .. _Scratch extensions: http://kaspesla.github.io/ev3_scratch/
 .. _Home Edition robots: http://www.lego.com/en-us/mindstorms/build-a-robot
 .. _Track3r (LEGO): https://www.lego.com/en-us/mindstorms/build-a-robot/track3r
-.. _Track3r (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/TRACK3R
+.. _Track3r (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/TRACK3R
 .. _Spik3r (LEGO): https://www.lego.com/en-us/mindstorms/build-a-robot/spik3r
 .. _R3ptar (LEGO): https://www.lego.com/en-us/mindstorms/build-a-robot/r3ptar
-.. _R3ptar (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/R3PTAR
+.. _R3ptar (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/R3PTAR
 .. _Gripp3r (LEGO): https://www.lego.com/en-us/mindstorms/build-a-robot/gripp3r
-.. _Gripp3r (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/GRIPP3R
+.. _Gripp3r (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/GRIPP3R
 .. _Ev3rstorm (LEGO): https://www.lego.com/en-us/mindstorms/build-a-robot/ev3rstorm
-.. _Ev3rstorm (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/EV3RSTORM
+.. _Ev3rstorm (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/EV3RSTORM
 .. _Education Edition Core Set robots: http://robotsquare.com/2013/10/01/education-ev3-45544-instruction/
 .. _Educator Vehicle: http://robotsquare.com/wp-content/uploads/2013/10/45544_educator.pdf
-.. _Educator: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/EDUCATOR
+.. _Educator: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/EDUCATOR
 .. _Sorter: http://robotsquare.com/2014/08/22/brick-sorter-sort-lego-bricks-by-color-and-size/
 .. _Gyro Boy: http://robotsquare.com/2014/07/01/tutorial-ev3-self-balancing-robot/
-.. _Balanc3r: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/BALANC3R
+.. _Balanc3r: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/BALANC3R
 .. _Puppy: http://robotsquare.com/wp-content/uploads/2013/10/45544_puppy.pdf
 .. _behaves like a dog: https://www.youtube.com/watch?v=HJ3XLFsd4zI
 .. _Robot Arm H25: http://robotsquare.com/wp-content/uploads/2013/10/45544_robotarmh25.pdf
@@ -301,11 +301,12 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 .. _Stair Climber: http://robotsquare.com/wp-content/uploads/2013/10/45544_45560_stairclimber.pdf
 .. _Tank Bot: http://robotsquare.com/wp-content/uploads/2013/10/45544_45560_tankbot.pdf
 .. _Elephant: http://robotsquare.com/wp-content/uploads/2013/10/45544_45560_elephant.pdf
-.. _Spinner Factory: http://robotsquare.com/wp-content/uploads/2013/10/2x45544_45560_spinnerfactory_part_3.pdf
-.. _Explor3r: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/EXPLOR3R
-.. _EV3D4: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/EV3D4
+.. _Spinner Factory: http://robotsquare.com/wp-content/uploads/2013/10/2x45544_45560_spinnerfactory_part_1.pdf
+.. _assembly line machine: https://www.youtube.com/watch?v=QxaCIyJya1I
+.. _Explor3r: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/EXPLOR3R
+.. _EV3D4: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/EV3D4
 .. _MindCub3r: http://mindcuber.com/mindcub3r/mindcub3r.html
-.. _MindCub3r (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/MINDCUB3R
+.. _MindCub3r (ev3dev): https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/MINDCUB3R
 .. _EV3 Tracked Explor3r: https://www.smallrobots.it/latest-pictures-of-ev3-tracked-explor3r/
 .. _EV3 Dancing robot: http://teachkidsengineering.com/lego-mindstorms-dancing-robot/
 .. _Wall-EV3: http://robotics.benedettelli.com/lego-wall-e/
@@ -316,7 +317,7 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 .. _EV3 Desk Guardian: http://robotics.benedettelli.com/ev3-desk-guardian/
 .. _Clev3r Car: http://buildinst.cz/en/catalog/detail/31
 .. _Cleaning Robot: https://www.youtube.com/watch?v=Np37j8akW4A
-.. _Sound & LEDs: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/master/robots/misc
+.. _Sound & LEDs: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/misc
 .. _Walking robots: http://www.legoengineering.com/walking-robots/
 .. _EV3 Maker and Coding Activities: https://education.lego.com/en-us/downloads/mindstorms-ev3
 
