@@ -187,7 +187,7 @@ Inspiration for LEGO EV3 Robots
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LEGO robot programs can be written with the `LEGO MINDSTORMS EV3 Software`_
-(on Windows and Mac) or with any programming language supported by the
+(on Windows and Mac), the `Windows 10 touch device application`_ (Education Edition), or with any programming language supported by the
 `ev3dev firmware`_ (platform-independent).
 
 `Open Roberta Lab`_ is available as a visual editor for ev3dev (`setup
@@ -271,6 +271,7 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 .. [#API] `Python bindings API docs <http://python-ev3dev.readthedocs.io/en/stable/spec.html>`__
 
 .. _LEGO MINDSTORMS EV3 Software: https://www.lego.com/en-us/mindstorms/downloads/download-software
+.. _Windows 10 touch device application: https://education.lego.com/en-us/downloads/mindstorms-ev3/software
 .. _ev3dev firmware: http://www.ev3dev.org
 .. _Open Roberta Lab: https://lab.open-roberta.org/
 .. _setup instructions: https://github.com/OpenRoberta/robertalab-ev3dev#intro
