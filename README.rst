@@ -267,6 +267,8 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 +---------------------------+--------------------------+----------------------------------------------+
 | More `EV3 Maker and Coding Activities`_              | official LEGO downloads                      |
 +---------------------------+--------------------------+----------------------------------------------+
+| `ev3devlight`_ (ev3dev based on `MicroPython`_)      | Faster, lightweight ev3dev for MicroPython   |
++---------------------------+--------------------------+----------------------------------------------+
 
 .. [#API] `Python bindings API docs <http://python-ev3dev.readthedocs.io/en/stable/spec.html>`__
 
@@ -321,6 +323,8 @@ you may be interested in `Scratch extensions`_ (for Windows and Mac).
 .. _Sound & LEDs: https://github.com/ev3dev/ev3dev-lang-python-demo/tree/jessie/robots/misc
 .. _Walking robots: http://www.legoengineering.com/walking-robots/
 .. _EV3 Maker and Coding Activities: https://education.lego.com/en-us/downloads/mindstorms-ev3
+.. _ev3devlight: https://github.com/laurensvalk/ev3devlight-examples
+.. _MicroPython: https://micropython.org/
 
 Your Contribution
 -----------------
