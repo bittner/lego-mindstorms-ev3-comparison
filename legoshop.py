@@ -233,10 +233,13 @@ class ReplacementPart:
 
             print("Let's log in with LEGO ID {user}.".format(user=self.username))
             login_link = self.wait.until(EC.element_to_be_clickable(
-                (By.CSS_SELECTOR, ".legoid .links > a[data-uitest='login-link']")))
+                (By.CSS_SELECTOR, ".legoid-box .links > a[data-uitest='login-link']")))
             login_link.click()
 
             self.browser.switch_to.frame('legoid-iframe')
+
+            self.wait.until(EC.invisibility_of_element_located(
+                (By.XPATH, "//div[@id='accountLoader']")))
 
             user_input = self.wait.until(EC.element_to_be_clickable(
                 (By.ID, 'fieldUsername')))
@@ -257,7 +260,7 @@ class ReplacementPart:
             try:
                 self.wait.until(EC.element_to_be_clickable(
                     (By.CSS_SELECTOR,
-                        ".legoid .links > a[data-uitest='logout-link']")
+                        ".legoid-box .links > a[data-uitest='logout-link']")
                 ))
 
                 print("login success!")
