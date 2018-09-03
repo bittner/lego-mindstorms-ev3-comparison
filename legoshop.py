@@ -209,6 +209,18 @@ class ReplacementPart:
         except TimeoutException:
             print("Something's wrong with the survey")
 
+    def __process_cookies_accept(self):
+        """
+        accept Lego's cookies
+        """
+        print("Accept Lego's website cookies")
+        try:
+            cookie_button = self.browser.find_elements_by_xpath(
+                "//button[contains(@class,'l-accept__btn')]")
+            cookie_button[0].click()
+        except NoSuchElementException:
+            print("Something's wrong with the cookies button")
+
     def __process_login(self):
         """
         Manage LEGO Shop login form
@@ -392,6 +404,7 @@ class ReplacementPart:
         self.__load_electric_parts()
 
         self.__init_browser(self.browser_name, self.lego_shop)
+        self.__process_cookies_accept()
         self.__process_survey()
 
         if not self.__process_login():
