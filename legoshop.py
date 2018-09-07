@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+"""
 #
 #    LEGO Mindstorms Editions Pieces Comparison
-#    Copyright (C) 2015-2017  Peter Bittner <django@bittner.it>
+#    Copyright (C) 2015-2018  Peter Bittner <django@bittner.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -16,9 +17,10 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+"""
 
 import os.path
-
+from time import sleep
 from selenium import webdriver
 
 from selenium.common.exceptions import NoSuchElementException
@@ -30,57 +32,21 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
-from time import sleep
 
 
-class ReplacementPart:
+class UpdatedPartMapping:
     """
-    Add a list of LEGO parts and their quantity to the 'Shopping Bag' of LEGO's
-    customer service platform.  A browser window will be opened, you'll be able
-    to watch the browser do what you would normally do by hand, and execution
-    will stop after all pieces have been added, so you can review and finalize
-    your order.  (This is just to help you save time on entering 60+ pieces
-    manually.  Nothing is ordered on your behalf!)
+    Manage list of updated partno
     """
 
-    def __init__(self, browser_name=None, shop=None):
-
-        self.browser_name = browser_name
-        self.lego_shop = shop
-        self.username = ""
-        self.password = ""
-
-        self.datafiles = {}
-
-        self.partno_status = {
-            'found': 1,
-            'not_found': 2,
-            'electric': 3,
-        }
-
-    def __reset_stats_counters(self):
+    def __init__(self, datafile=None):
         """
-        set statistics counters to zero
+        Load list of new element IDs
         """
 
-        self.part_stats_counter = {
-              'total_elements': 0,
-              'found': 0,
-              'duplicate_part': 0,
-              'not_in_set': 0,
-              'out_of_stock': 0,
-              'electric_part': 0
-             }
-
-    def __load_new_element_ids(self):
-        """
-        load list of new element IDs
-        """
-
-        self.newelementid_map = {}
+        self.map = {}
 
         try:
-            datafile = self.datafiles['newelementid']
             if not os.path.isfile(datafile):
                 print("{} is not a file".format(datafile))
                 return
@@ -88,25 +54,72 @@ class ReplacementPart:
             print("Datafile for New Element ID not set")
             return
 
-        with open(datafile) as f:
-            data_lines = f.readlines()[1:]
+        with open(datafile) as file_handler:
+            data_lines = file_handler.readlines()[1:]
             for line in data_lines:
                 line = line.strip()
                 eid_origin, eid_chain, eid_comment = line.split(';')
                 # list:  convert each new element id of eid_chain as number
-                self.newelementid_map[int(eid_origin)] = {
+                self.map[int(eid_origin)] = {
                     'list': list(map(int, eid_chain.split(","))),
                     'comment': eid_comment
                 }
 
-    def __load_electric_parts(self):
+    def partno_exists(self, original_part_no):
         """
-        load list of electric part ID
+        Detect if a part has new ID
+
+        return boolean
+        """
+        original_part_no = int(original_part_no)
+        if original_part_no in self.map.keys():
+            return True
+        return False
+
+    def get_part_list(self, original_part_no):
+        """
+        Get list of updated ID(s) for wanted part ID
+
+        return hash
         """
 
-        self.electricpart_map = {}
+        new_part_no_list = []
+
+        original_part_no = int(original_part_no)
+
+        if self.partno_exists(original_part_no):
+            new_part_no_list = self.map[original_part_no]['list']
+
+        return new_part_no_list
+
+    def get_part_comment(self, original_part_no):
+        """
+        Get comment about a part ID
+
+        return string
+        """
+
+        original_part_no = int(original_part_no)
+
+        if self.partno_exists(original_part_no):
+            return self.map[original_part_no]['comment']
+
+        return "<no comment set>"
+
+
+class MindstormsElectricPart:
+    """
+    Manage inventory about Mindstorms electric parts
+    """
+
+    def __init__(self, datafile):
+        """
+        Load list of electric part ID
+        """
+
+        self.map = {}
+
         try:
-            datafile = self.datafiles['electricparts']
             if not os.path.isfile(datafile):
                 print("{} is not a file".format(datafile))
                 return
@@ -114,48 +127,71 @@ class ReplacementPart:
             print("Datafile for Electric Parts not set")
             return
 
-        with open(datafile) as f:
-            data_lines = f.readlines()[1:]
+        with open(datafile) as file_handler:
+            data_lines = file_handler.readlines()[1:]
             for line in data_lines:
-                partno, legoid, legoshop_set = line.split('\t')
-                self.electricpart_map[int(partno)] = int(legoshop_set)
+                partno, dummy_legoid, legoshop_set = line.split('\t')
+                self.map[int(partno)] = int(legoshop_set)
 
-    def __is_electric_part(self, wanted_part_no, print_set_link=False):
+    def partno_exists(self, part_no):
         """
-        Detect if part is in EV3 Electric parts array, print link to standalone Set if wanted
+        Detect if part is in EV3 Electric parts array
 
         return boolean
         """
+        part_no = int(part_no)
 
-        wanted_part_no = int(wanted_part_no)
+        if part_no in self.map.keys():
+            return True
+        return False
 
-        exit_code = False
-
-        if wanted_part_no in self.electricpart_map.keys():
-            exit_code = True
-
-            if print_set_link:
-                lego_shop_set = self.electricpart_map[wanted_part_no]
-                print("#{partno}: standalone set URL "
-                      "https://shop.lego.com/en-US/search/{legoshop_set}"
-                      .format(partno=wanted_part_no,
-                              legoshop_set=lego_shop_set))
-
-        return exit_code
-
-    def __init_browser(self, browser, shop):
+    def get_partno_standalone_link(self, part_no):
         """
-        open browser with LEGO shop URL
+        Print link to standalone Set
         """
 
-        shop_url = "https://wwwsecure.us.lego.com/{shop}/service/replacementparts/sale".format(
-                    shop=shop)
-        # The querystring will fix the age survey.
-        # simulate click to the third button ('Buy Bricks')
-        shop_url += "?chosenFlow=3"
+        part_no = int(part_no)
 
-        print("Using Selenium version: ", webdriver.__version__)
-        print("Browser wanted URL: {url}".format(url=shop_url))
+        if self.partno_exists(part_no):
+            lego_shop_set = self.map[part_no]
+            print("#{part_no}: standalone set URL "
+                  "https://shop.lego.com/en-US/search/{legoshop_set}"
+                  .format(part_no=part_no,
+                          legoshop_set=lego_shop_set))
+
+
+class LegoShopBase:
+    """
+    Simple acces to Lego website: manage cookie acceptance + authentication
+    """
+
+    def __init__(self, browser_name=None, shop=None):
+        self.browser_name = browser_name
+        self.lego_shop = shop
+
+        # Lego's credentials
+        self.username = ""
+        self.password = ""
+
+        # future objects for selenium
+        self.browser = None
+        self.wait = None
+
+        self.shop_url = ""
+
+    def set_credentials(self, username, password):
+        """
+        Set username/password for Lego shop Login
+        """
+        self.username = username
+        self.password = password
+
+    def _init_browser(self, browser, url_path=""):
+        """
+        Open browser with LEGO shop URL (index page if path not set)
+        """
+
+        self.shop_url = "https://www.lego.com/" + url_path
 
         # detect browser choice #
         if browser == 'chrome':
@@ -164,64 +200,66 @@ class ReplacementPart:
             # at the end without the "quit()" method!
             # Here is a fix to detach Chrome from python.
             if webdriver.__version__ > '2.48.0':
-                print("Apply experimental detach option for Chrome")
+                print("* Apply experimental detach option for Chrome")
                 opts.add_experimental_option("detach", True)
 
             self.browser = Chrome(chrome_options=opts)
         else:
             self.browser = Firefox()
 
-        print("Browser capabilities")
-        print(self.browser.capabilities)
-
         # Selenium can't find some elements otherwise
         self.browser.maximize_window()
 
-        self.browser.get(shop_url)
-        print("Browser current URL: {url}".format(url=self.browser.current_url))
+        self.browser.get(self.shop_url)
 
         # will wait to 5 sec for and ExpectedCondition success,
         # otherwise exception TimeoutException
         self.wait = WebDriverWait(self.browser, 5)
 
-    def __process_survey(self):
+        self.browser_info()
+
+    def browser_info(self):
         """
-        validate Lego's survey form
+        Print informations about browser instance
         """
+        print("* Using Selenium version: {}", format(webdriver.__version__))
+        print("* Browser capabilities")
+        print(self.browser.capabilities)
+        print("* Browser wanted URL: {url}".format(url=self.shop_url))
+        print("* Browser current URL: {url}".format(url=self.browser.current_url))
 
-        print("Sometimes they ask you to fill in a survey.")
-
-        try:
-            survey_layer = self.browser.find_element_by_id('ipeL104230')
-            survey_layer.send_keys(Keys.ESCAPE)
-        except NoSuchElementException:
-            print("We're lucky, no survey on the LEGO shop today!")
-
-        try:
-            print("They want to know how old we are.")
-            age_field = self.wait.until(EC.element_to_be_clickable(
-                (By.NAME, 'rpAgeAndCountryAgeField')))
-            age_field.send_keys('55')
-            age_field.send_keys(Keys.RETURN)
-
-            # wait for age_field's DOM element to be removed
-            self.wait.until(EC.staleness_of(age_field))
-        except TimeoutException:
-            print("Something's wrong with the survey")
-
-    def __process_cookies_accept(self):
+    def _process_cookies_accept(self):
         """
-        accept Lego's cookies
+        Accept Lego's cookies
         """
-        print("Accept Lego's website cookies")
+        print("* Accept Lego's website cookies")
         try:
             cookie_button = self.browser.find_elements_by_xpath(
                 "//button[contains(@class,'l-accept__btn')]")
             cookie_button[0].click()
         except NoSuchElementException:
-            print("Something's wrong with the cookies button")
+            print("!!! Something's wrong with the cookies button")
 
-    def __process_login(self):
+    def _process_survey(self):
+        """
+        Validate Lego's survey form
+        """
+
+        print("* Sometimes they ask you to fill in a survey.")
+        try:
+            # FIXME: survey's layer escape key no longer work
+            survey_layer = self.browser.find_element_by_id('ipeL104230')
+            survey_layer.send_keys(Keys.ESCAPE)
+
+            # we should click on the "no" button to close the survey window
+            # no_survey_button = self.browser.find_element_by_xpath(
+            #     "//area[contains(@onclick,'ipe.clWin')]")
+            # no_survey_button.click()
+
+        except NoSuchElementException:
+            print("We're lucky, no survey on the LEGO shop today!")
+
+    def _process_login(self):
         """
         Manage LEGO Shop login form
 
@@ -231,7 +269,7 @@ class ReplacementPart:
         # login stuff #
         if self.username and self.password:
 
-            print("Let's log in with LEGO ID {user}.".format(user=self.username))
+            print("* Let's log in with LEGO ID {user}.".format(user=self.username))
             login_link = self.wait.until(EC.element_to_be_clickable(
                 (By.CSS_SELECTOR, ".legoid-box .links > a[data-uitest='login-link']")))
             login_link.click()
@@ -260,7 +298,7 @@ class ReplacementPart:
             try:
                 self.wait.until(EC.element_to_be_clickable(
                     (By.CSS_SELECTOR,
-                        ".legoid-box .links > a[data-uitest='logout-link']")
+                     ".legoid-box .links > a[data-uitest='logout-link']")
                 ))
 
                 print("login success!")
@@ -271,15 +309,67 @@ class ReplacementPart:
                 self.browser.quit()
                 return False
         else:
-            print("credentials are not defined")
+            print("!!! credentials are not defined")
             return True
+
+
+class ReplacementPart(LegoShopBase):
+    """
+    Add a list of LEGO parts and their quantity to the 'Shopping Bag' of LEGO's
+    customer service platform.  A browser window will be opened, you'll be able
+    to watch the browser do what you would normally do by hand, and execution
+    will stop after all pieces have been added, so you can review and finalize
+    your order.  (This is just to help you save time on entering 60+ pieces
+    manually.  Nothing is ordered on your behalf!)
+    """
+
+    def __init__(self, browser_name=None, shop=None):
+        super().__init__(browser_name, shop)
+
+        self.datafiles = {}
+
+        # future objects to manage elements
+        self.updated_parts = None
+        self.electric_parts = None
+
+        # inventory of added electric parts in order process
+        self.electric_part_list = []
+
+        self.partno_status = {
+            'found': 1,
+            'not_found': 2,
+            'electric': 3,
+        }
+
+        #  set statistics counters to zero
+        self.part_stats_counter = {
+            'total_elements': 0,
+            'found': 0,
+            'duplicate_part': 0,
+            'not_in_set': 0,
+            'out_of_stock': 0,
+            'electric_part': 0
+        }
+
+    def _process_survey_age_country(self):
+        try:
+            print("* They want to know how old we are.")
+            age_field = self.wait.until(EC.element_to_be_clickable(
+                (By.NAME, 'rpAgeAndCountryAgeField')))
+            age_field.send_keys('55')
+            age_field.send_keys(Keys.RETURN)
+
+            # wait for age_field's DOM element to be removed
+            self.wait.until(EC.staleness_of(age_field))
+        except TimeoutException:
+            print("!!! Something's wrong with the survey")
 
     def __process_select_lego_set(self, lego_set):
         """
         Manage Lego's Set choice
         """
 
-        print("We need to tell them which set we want to buy parts from: {lego_set}".format(
+        print("* We need to tell them which set we want to buy parts from: {lego_set}".format(
             lego_set=lego_set))
         setno_field = self.wait.until(
             EC.element_to_be_clickable(
@@ -297,12 +387,12 @@ class ReplacementPart:
 
         return_code = self.partno_status['not_found']
 
-        new_part_no_list = []
         original_part_no = int(original_part_no)
-        if original_part_no in self.newelementid_map.keys():
-            new_part_no_list = self.newelementid_map[original_part_no]['list']
-
+        new_part_no_list = self.updated_parts.get_part_list(original_part_no)
+        # merge original part number with his alternatives
         partno_list = list([original_part_no] + new_part_no_list)
+
+        part_no = None
 
         for idx, part_no in enumerate(partno_list):
 
@@ -311,7 +401,7 @@ class ReplacementPart:
                 print("\t>> Trying to replace with #{pn} ".format(pn=part_no), end='')
 
             element_field = self.wait.until(
-                              EC.element_to_be_clickable((By.ID, 'element-filter')))
+                EC.element_to_be_clickable((By.ID, 'element-filter')))
             element_field.clear()
             element_field.send_keys(part_no)
             element_field.send_keys(Keys.RETURN)
@@ -324,7 +414,7 @@ class ReplacementPart:
 
                 if results_count == 0:
 
-                    if self.__is_electric_part(part_no):
+                    if self.electric_parts.partno_exists(part_no):
                         return_code = self.partno_status['electric']
                         break
 
@@ -332,7 +422,7 @@ class ReplacementPart:
                         # we're on the original part, and we've a list of new Element ID
                         print("Not Found, but has a chain of other Element ID:")
                         # a comment about the mapping
-                        comment = self.newelementid_map[original_part_no]['comment']
+                        comment = self.updated_parts.get_part_comment(original_part_no)
                         print("\tcomment: {}".format(comment))
                     else:
                         print("Not Found!")
@@ -345,7 +435,7 @@ class ReplacementPart:
                     print("Too many results with that part_no, bad number!")
 
             except NoSuchElementException:
-                print("Selenium error: CSS element not found")
+                print("!!! Selenium error: CSS element not found")
 
         return part_no, return_code
 
@@ -354,8 +444,6 @@ class ReplacementPart:
         Print statistics about ordered parts
         """
 
-        print()
-        print("We're done. You can finalize your order now. Thanks for watching!")
         print()
         print("Statistics:")
         print("- {s} Wanted elements".format(s=self.part_stats_counter['total_elements']))
@@ -367,34 +455,30 @@ class ReplacementPart:
         print("- {s} Elements of type 'Electric part'"
               .format(s=self.part_stats_counter['electric_part']))
 
+        print()
+        print("We're done. You can finalize your order now. Thanks for watching!")
+        print()
         if self.part_stats_counter['out_of_stock'] > 0:
-            print("\n!! Take care about out of stock elements")
+            print("!! Take care about out of stock elements")
         if self.part_stats_counter['not_in_set'] > 0:
-            print("\n!! Take care about not in set elements")
+            print("!! Take care about not in set elements")
 
         if self.part_stats_counter['electric_part'] > 0:
             print()
             print("Electric parts you can add to your bag once you've added your order:")
 
             for item in self.electric_part_list:
-                self.__is_electric_part(item, True)
-
-    def set_credentials(self, username, password):
-        """
-        set username/password for Lego shop Login
-        """
-        self.username = username
-        self.password = password
+                self.electric_parts.get_partno_standalone_link(item)
 
     def set_new_element_id_datafile(self, datafile):
         """
-        set path to datafile for New Element ID mapping
+        Set path to datafile for New Element ID mapping
         """
         self.datafiles['newelementid'] = datafile
 
     def set_electric_part_datafile(self, datafile):
         """
-        set path to datafile for Electric part ID mapping
+        Set path to datafile for Electric part ID mapping
         """
         self.datafiles['electricparts'] = datafile
 
@@ -403,14 +487,17 @@ class ReplacementPart:
         Main process to order LEGO's set parts
         """
 
-        self.__load_new_element_ids()
-        self.__load_electric_parts()
+        self.updated_parts = UpdatedPartMapping(self.datafiles['newelementid'])
+        self.electric_parts = MindstormsElectricPart(self.datafiles['electricparts'])
 
-        self.__init_browser(self.browser_name, self.lego_shop)
-        self.__process_cookies_accept()
-        self.__process_survey()
+        # simulate click to the third button ('Buy Bricks')
+        self._init_browser(self.browser_name,
+                           self.lego_shop + "/service/replacementparts/sale?chosenFlow=3")
+        self._process_survey()
+        self._process_cookies_accept()
+        self._process_survey_age_country()
 
-        if not self.__process_login():
+        if not self._process_login():
             return
 
         self.__process_select_lego_set(lego_set)
@@ -418,17 +505,26 @@ class ReplacementPart:
         print("Let's scroll the page down a bit, so we can see things better.")
         self.browser.execute_script("window.scroll(0, 750);")
 
-        self.electric_part_list = []
-
         order_list = order_list.split(',')
 
-        self.__reset_stats_counters()
         self.part_stats_counter['total_elements'] = len(order_list)
 
         print("That's gonna be crazy: {count} elements to order! Let's rock.".format(
             count=self.part_stats_counter['total_elements']))
         print()
 
+        self.__process_order_list(lego_set, order_list)
+        self.browser.execute_script("window.scroll(0, 0);")
+        self.__process_statistics()
+
+    def __process_order_list(self, lego_set, order_list=None):
+        """
+        Add set's parts to the bag
+
+        - Detect duplicated ID, out-of-stock, not-in-set
+        - Manage quantity
+        - Manage separate order link for Mindstorms Electric parts
+        """
         added_part = {}
         counter = 0
 
@@ -487,7 +583,7 @@ class ReplacementPart:
                 self.part_stats_counter['electric_part'] += 1
             else:
                 print("\t!! OOOPS! No LEGO part with that number found in set #{set}. :-(".format(
-                      set=lego_set))
+                    set=lego_set))
                 self.part_stats_counter['not_in_set'] += 1
                 continue
 
@@ -501,7 +597,3 @@ class ReplacementPart:
             if quantity != selected.text:
                 print("\t!! WARNING: Could not select desired quantity. {} != {}".format(
                     quantity, selected.text))
-
-        self.browser.execute_script("window.scroll(0, 0);")
-
-        self.__process_statistics()
