@@ -572,6 +572,18 @@ class ReplacementPart(LegoShopBase):
                 else:
                     self.part_stats_counter['out_of_stock'] += 1
                     print("\t!! NOTE: item out of stock.")
+                    continue
+
+                # set the value for item's quantity drop-down menu
+                amount_select = self.browser.find_elements_by_css_selector('.bag-item select')[-1]
+                Select(amount_select).select_by_visible_text(quantity)
+
+                # ensure the value is correct
+                selected = Select(amount_select).first_selected_option
+
+                if quantity != selected.text:
+                    print("\t!! WARNING: Could not select desired quantity. {} != {}".format(
+                        quantity, selected.text))
 
             elif partno_result == self.partno_status['electric']:
                 print("Not Found, but electric part:")
@@ -585,15 +597,3 @@ class ReplacementPart(LegoShopBase):
                 print("\t!! OOOPS! No LEGO part with that number found in set #{set}. :-(".format(
                     set=lego_set))
                 self.part_stats_counter['not_in_set'] += 1
-                continue
-
-            # set the value for item's quantity drop-down menu
-            amount_select = self.browser.find_elements_by_css_selector('.bag-item select')[-1]
-            Select(amount_select).select_by_visible_text(quantity)
-
-            # ensure the value is correct
-            selected = Select(amount_select).first_selected_option
-
-            if quantity != selected.text:
-                print("\t!! WARNING: Could not select desired quantity. {} != {}".format(
-                    quantity, selected.text))
