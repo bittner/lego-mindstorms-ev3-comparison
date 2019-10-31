@@ -162,7 +162,10 @@ LEGO Parts Research, Shopping And Other Resources
 
 * `BrickLink > Catalog Search`_ (parts, shops, marketplace)
 * `Brick Owl`_ (parts and store search)
-* `LEGO parts drawing program`_ (LDraw.org)
+* LEGO parts drawing programs:
+
+  * `LDraw`_
+  * `LeoCAD`_
 
 
 .. [#note] Spare parts you want to buy in addition are usually available here.
@@ -181,7 +184,8 @@ LEGO Parts Research, Shopping And Other Resources
 .. _Edu EV3 Expansion: http://brickset.com/sets/45560-1/Education-EV3-Expansion-Set
 .. _BrickLink > Catalog Search: http://www.bricklink.com/catalogSearch.asp
 .. _Brick Owl: http://www.brickowl.com/
-.. _LEGO parts drawing program: http://www.ldraw.org/
+.. _LDraw: http://www.ldraw.org/
+.. _LeoCAD: https://www.leocad.org/
 
 Inspiration for LEGO EV3 Robots
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
