@@ -1,5 +1,9 @@
-LEGO Mindstorms EV3 Comparison
+LEGO Mindstorms EV3 Comparison |status|
 ==============================
+
+.. |status| image:: http://unmaintained.tech/badge.svg
+  :target: http://unmaintained.tech
+  :alt: No Maintenance Intended
 
 This project is meant to complement the comparison made in
 `The Difference Between LEGO MINDSTORMS EV3 Home Edition (#31313) and LEGO MINDSTORMS Education EV3 (#45544)`_,
