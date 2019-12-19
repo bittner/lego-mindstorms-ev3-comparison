@@ -20,12 +20,15 @@
 """
 
 import os.path
+import sys
+import textwrap
+
 from time import sleep
 from selenium import webdriver
 
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import TimeoutException
-
+from selenium.common.exceptions import (
+    NoSuchElementException, TimeoutException, WebDriverException
+)
 from selenium.webdriver import Chrome, Firefox, ChromeOptions
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -190,22 +193,9 @@ class LegoShopBase:
         """
         Open browser with LEGO shop URL (index page if path not set)
         """
+        self.shop_url = "https://www.lego.com/%s" % url_path
 
-        self.shop_url = "https://www.lego.com/" + url_path
-
-        # detect browser choice #
-        if browser == 'chrome':
-            opts = ChromeOptions()
-            # With selenium version above this one, chrome is closed
-            # at the end without the "quit()" method!
-            # Here is a fix to detach Chrome from python.
-            if webdriver.__version__ > '2.48.0':
-                print("* Apply experimental detach option for Chrome")
-                opts.add_experimental_option("detach", True)
-
-            self.browser = Chrome(chrome_options=opts)
-        else:
-            self.browser = Firefox()
+        self._load_driver(browser)
 
         # Selenium can't find some elements otherwise
         self.browser.maximize_window()
@@ -218,9 +208,62 @@ class LegoShopBase:
 
         self.browser_info()
 
+    def _load_driver(self, browser):
+        """
+        Loads the browser driver binary handling loading errors
+        """
+        installers = {
+            'chrome': {
+                'linux': 'sudo apt-get install chromium-chromedriver',
+                'linux2': 'sudo apt-get install chromium-chromedriver',
+                'darwin': 'brew install chromedriver',
+                # for Windows add 'win32' and 'cygwin'
+            },
+            'firefox': {
+                'linux': 'sudo apt-get install firefox-geckodriver',
+                'linux2': 'sudo apt-get install firefox-geckodriver',
+                'darwin': 'brew install geckodriver',
+                # for Windows add 'win32' and 'cygwin'
+            },
+        }
+        try:
+            install_instructions = textwrap.dedent("""\
+                If you have not installed your Web browser driver yet try:
+                %s""" % installers[browser][sys.platform])
+        except KeyError:
+            install_instructions = textwrap.dedent("""\
+                See the README for details:
+                https://github.com/bittner/lego-mindstorms-ev3-comparison#requirements
+                """).strip()
+
+        if browser == 'chrome':
+            # With selenium version above this one, chrome is closed
+            # at the end without the "quit()" method!
+            # Here is a fix to detach Chrome from python.
+            opts = ChromeOptions()
+            if webdriver.__version__ > '2.48.0':
+                print("* Apply experimental detach option for Chrome")
+                opts.add_experimental_option("detach", True)
+
+        try:
+            if browser == 'chrome':
+                self.browser = Chrome(chrome_options=opts)
+            else:
+                self.browser = Firefox()
+        except WebDriverException as err:
+            message = textwrap.dedent("""\
+                There was a problem when loading the driver for your Web browser:
+                %(exception)s
+
+                %(installer)s""") % dict(
+                    exception=err.msg,
+                    installer=install_instructions,
+                )
+            raise SystemExit(message)
+
     def browser_info(self):
         """
-        Print informations about browser instance
+        Print information about browser instance
         """
         print("* Using Selenium version: {}", format(webdriver.__version__))
         print("* Browser capabilities")
