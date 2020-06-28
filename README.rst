@@ -66,7 +66,6 @@ Usage
       `convertfiles`_ (convert).  Some let you specify the `raw document url`_ directly.
       `Google Docs`_ and `Zoho Docs`_ also import the spread sheet.
 
-
 #. ``lego-mindstorms-pieces.py`` is a Python3 script to help with calculating and
    ordering required LEGO Mindstorms EV3 spare parts.  It has three commands:
 
@@ -109,10 +108,10 @@ To run ``lego-mindstorms-pieces.py order`` you need:
 
 * Python Selenium (see ``requirements.txt``)
 * `geckodriver`_
-* `chromedriver`_
+* `chromedriver`_ (you must use version 2.33 for Chrome 62.0)
 
 .. _geckodriver: https://github.com/mozilla/geckodriver/releases
-.. _chromedriver: https://sites.google.com/a/chromium.org/chromedriver/ (you must use version 2.33 for Chrome 62.0)
+.. _chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
 
 Documentation, Examples, Hints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -170,7 +169,6 @@ LEGO Parts Research, Shopping And Other Resources
 
   * `LDraw`_
   * `LeoCAD`_
-
 
 .. [#note] Spare parts you want to buy in addition are usually available here.
    Use the 5-digit number of the set you did *not* buy (31313 or 45544) when
