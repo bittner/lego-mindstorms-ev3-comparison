@@ -271,15 +271,44 @@ class LegoShopBase:
         print("* Browser wanted URL: {url}".format(url=self.shop_url))
         print("* Browser current URL: {url}".format(url=self.browser.current_url))
 
+    def _process_age_gate(self):
+        """
+        Continue Passed Age Gate
+        """
+        print("* Continue Passed Age Gate")
+        try:
+            self.wait \
+                .until(EC.element_to_be_clickable((By.XPATH, "//button[@data-test = 'age-gate-grown-up-cta']")))\
+                .click()
+        except NoSuchElementException:
+            print("!!! Something's wrong with the age gate button")
+
+    def _process_choose_country(self):
+        """
+        Choose Country
+        """
+        print("* Choose Country")
+        try:
+            self.wait \
+                .until(EC.visibility_of_element_located((By.XPATH, "//select[@data-cy='choose-country-select']")))
+
+            sleep(.3)
+
+            self.wait \
+                .until(EC.element_to_be_clickable((By.XPATH, "//button[@data-cy = 'choose-country-button']")))\
+                .click()
+        except NoSuchElementException:
+            print("!!! Something's wrong with the age gate button")
+
     def _process_cookies_accept(self):
         """
         Accept Lego's cookies
         """
         print("* Accept Lego's website cookies")
         try:
-            cookie_button = self.browser.find_elements_by_xpath(
-                "//button[contains(@class,'l-accept__btn')]")
-            cookie_button[0].click()
+            self.wait \
+                .until(EC.element_to_be_clickable((By.XPATH, "//button[@data-test = 'cookie-necessary-button']"))) \
+                .click()
         except NoSuchElementException:
             print("!!! Something's wrong with the cookies button")
 
@@ -314,42 +343,48 @@ class LegoShopBase:
 
             print("* Let's log in with LEGO ID {user}.".format(user=self.username))
             login_link = self.wait.until(EC.element_to_be_clickable(
-                (By.CSS_SELECTOR, ".legoid-box .links > a[data-uitest='login-link']")))
+                (By.XPATH, "//button[@data-test = 'util-bar-account-dropdown']")))
             login_link.click()
 
-            self.browser.switch_to.frame('legoid-iframe')
+            login_link = self.wait.until(EC.element_to_be_clickable(
+                (By.XPATH, "//button[@data-test = 'legoid-login-button']")))
+            login_link.click()
 
             self.wait.until(EC.invisibility_of_element_located(
-                (By.XPATH, "//div[@id='accountLoader']")))
+                (By.XPATH, "//div[@id='loginform']")))
 
             user_input = self.wait.until(EC.element_to_be_clickable(
-                (By.ID, 'fieldUsername')))
+                (By.ID, 'username')))
             user_input.click()
             user_input.send_keys(self.username)
 
             passwd_input = self.wait.until(EC.element_to_be_clickable(
-                (By.ID, 'fieldPassword')))
+                (By.ID, 'password')))
             passwd_input.click()
             passwd_input.send_keys(self.password)
 
-            login_button = self.browser.find_element_by_id('buttonSubmitLogin')
+            login_button = self.browser.find_element_by_id('loginBtn')
             login_button.click()
 
             self.browser.switch_to.default_content()
 
             # ensure the user/password are good
             try:
+                account_link = self.wait.until(EC.element_to_be_clickable(
+                    (By.XPATH, "//button[@data-test = 'util-bar-account-dropdown']")))
+                account_link.click()
+
                 self.wait.until(EC.element_to_be_clickable(
-                    (By.CSS_SELECTOR,
-                     ".legoid-box .links > a[data-uitest='logout-link']")
-                ))
+                    (By.XPATH, "//div[text()='Logout']")))
+
+                self.browser.get(self.lego_shop + "/service/replacementparts/sale?chosenFlow=3")
 
                 print("login success!")
                 return True
             except TimeoutException:
                 print("login failed!")
                 # close the browser and stop here
-                self.browser.quit()
+                # self.browser.quit()
                 return False
         else:
             print("!!! credentials are not defined")
@@ -416,12 +451,16 @@ class ReplacementPart(LegoShopBase):
             lego_set=lego_set))
         setno_field = self.wait.until(
             EC.element_to_be_clickable(
-                (By.CSS_SELECTOR, '.product-search input[ng-model=productNumber]'))
+                (By.XPATH, "//input[@data-cy = 'enter-set-number-search']"))
         )
 
         setno_field.send_keys(lego_set)
         setno_field.send_keys(Keys.RETURN)
-        sleep(.3)  # seconds
+
+        self.wait.until(
+            EC.visibility_of_element_located(
+                (By.XPATH, "//div[@data-cy = 'set-number-details-information']"))
+        )
 
     def __process_partno(self, original_part_no):
         """
@@ -444,7 +483,7 @@ class ReplacementPart(LegoShopBase):
                 print("\t>> Trying to replace with #{pn} ".format(pn=part_no), end='')
 
             element_field = self.wait.until(
-                EC.element_to_be_clickable((By.ID, 'element-filter')))
+                EC.element_to_be_clickable((By.XPATH, "//input[@data-cy = 'search-set-number']")))
             element_field.clear()
             element_field.send_keys(part_no)
             element_field.send_keys(Keys.RETURN)
@@ -453,7 +492,7 @@ class ReplacementPart(LegoShopBase):
             try:
                 # tip: count results to ensure the wanted part_no return nothing or one
                 results_count = len(
-                    self.browser.find_elements_by_css_selector('.element-details + button'))
+                    self.browser.find_elements(By.XPATH, "//button[@data-cy = 'brick-item-direct-add-to-bag']"))
 
                 if results_count == 0:
 
@@ -537,11 +576,13 @@ class ReplacementPart(LegoShopBase):
         self._init_browser(self.browser_name,
                            self.lego_shop + "/service/replacementparts/sale?chosenFlow=3")
         self._process_survey()
+        self._process_age_gate()
         self._process_cookies_accept()
-        self._process_survey_age_country()
+        self._process_choose_country()
 
-        if not self._process_login():
-            return
+        # The site now fails these login attempts as they are too fast.
+        # if not self._process_login():
+        #     return
 
         self.__process_select_lego_set(lego_set)
 
@@ -606,7 +647,8 @@ class ReplacementPart(LegoShopBase):
                 print("Found!")
                 added_part[part_no] = original_part_no
 
-                add_button = self.browser.find_element_by_css_selector('.element-details + button')
+                add_button = self.wait \
+                    .until(EC.element_to_be_clickable((By.XPATH, "//button[@data-cy = 'brick-item-direct-add-to-bag']")))
 
                 if add_button.is_enabled():
                     add_button.click()
@@ -618,7 +660,9 @@ class ReplacementPart(LegoShopBase):
                     continue
 
                 # set the value for item's quantity drop-down menu
-                amount_select = self.browser.find_elements_by_css_selector('.bag-item select')[-1]
+                self.browser.execute_script("window.scroll(0, 0);")
+                amount_select = self.wait \
+                    .until(EC.visibility_of_element_located((By.XPATH, "//select[@data-cy = 'bag-item-quantity-select']")))
                 Select(amount_select).select_by_visible_text(quantity)
 
                 # ensure the value is correct
