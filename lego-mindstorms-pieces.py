@@ -178,6 +178,11 @@ def order(shop=None, browser=None, lego_set=None, order_list=None, username=None
     order.set_credentials(username, password)
     order.process(lego_set, order_list)
 
+    # Since the new site fails automated logins, we will wait for the user to login manually at the end
+    user_choice = input('Please click ENTER button to close application')
+    if not user_choice:
+        quit()
+
 
 if __name__ == "__main__":
     main()
